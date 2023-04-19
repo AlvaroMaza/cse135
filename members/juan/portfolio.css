@@ -1,0 +1,190 @@
+
+@font-face {
+    font-family: "Poppings", Sans-Serif;
+    src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJbecnFHGPezSQ.woff2) format('woff2');
+    font-display: auto;
+  }
+
+* {
+    font-family: Poppings, Sans-Serif;
+    font-weight:lighter;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color:rgb(255, 255, 255);
+    gap: 0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    height: 7em;
+    width: 100%;
+    gap: 2em;
+    background-color:rgb(41, 41, 41);
+    color: white;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+h1 {
+    display: flex;
+    font-weight: bolder;
+    align-items: center;
+    text-align: center;
+    padding-left: 1em;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    gap: 0.75em;
+    padding-right: 5em;
+}
+
+.navlink{
+    color: white;
+    padding: 0.5em;
+    text-align: none;
+    text-decoration: none;
+    border: rgb(255, 252, 252) solid;
+    border-width: 0.1em;
+    border-radius: 0.5em;
+    transition: all 0.5s ease-out;
+}
+
+.navlink:hover,
+.navlink:focus{
+    background-color: #fff;
+    color: #333;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 8em;
+    align-items: center;
+}
+
+h2{
+    font-weight: bolder;
+    text-align: center;
+}
+
+h3{
+    font-weight: 400;
+    text-align: center;
+}
+
+div#projects{
+    display: flex;
+    flex-direction: row;
+    gap: 6em;
+    padding-top: 0;
+    padding-left: 8em;
+    padding-bottom: 1em;
+    
+}
+
+.project{
+    text-align: justify;
+    width: fit-content;
+    max-width: 40%;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: rgb(255, 255, 255);
+    border: 0.2em solid #000000;
+    border-radius: 1.5em;
+    box-shadow: 0 0 15px 5px rgb(159, 159, 159)
+}
+
+figcaption{
+    padding-left: 2em;
+}
+
+
+/* Media queries - Responsive timeline on screens less than 800px wide */
+@media only screen and (max-width: 950px) {
+
+    /* Keep header visible and centered */
+    h1{
+        display: none;
+    }
+
+    header{
+        justify-content: center;
+        padding-left: 2em;
+    }
+
+    div#projects{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+        gap: 2em;
+        margin-right: 30%;
+        padding-left: 30%;
+    }
+
+    .project{
+        text-align: justify;
+        width:min-content;
+        max-width: 80%;
+    }
+
+    .project_img{
+        width: 100%;
+        padding-right: 8em;
+    }
+}
+
+footer{
+    width: 100%;
+    margin-top: auto;
+    background-color:rgb(41, 41, 41);
+    color: white;
+    justify-content: space-between;
+}
+
+footer>p{
+    font-size:medium;
+    padding-left: 2.5em;
+    height: 0.2em;
+}
+
+#footerlinks{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    gap: 2em;
+    padding-left: 2em;
+    padding-bottom: 0.8em;
+}
+
+.footerlink{
+    color: white;
+    padding: 0.5em;
+    margin: 0.5em;
+    text-align: none;
+    text-decoration: none;
+    border: rgb(255, 252, 252) solid;
+    border-width: 0.1em;
+    border-radius: 0.5em;
+    transition: all 0.5s ease-out;
+}
+
+.footerlink:hover,
+.footerlink:focus{
+    background-color: #fff;
+    color: #333;
+}
+
+

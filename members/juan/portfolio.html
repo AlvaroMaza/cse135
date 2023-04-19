@@ -1,0 +1,72 @@
+<!-- Validation is affected by the use of figcaption within div-->
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+        <meta charset = "utf-8" />
+        <meta name = "Description" content = "Work Experience - CSE 134B" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Juan Villanueva Romero </title>
+        <link rel = "icon" href = "images/favicon.ico">
+        <link rel="stylesheet" href="portfolio.css" type="text/css">
+
+</head>
+
+<body>
+    <header>
+        <h1> Juan Villanueva Romero</h1>
+        <nav>
+            <a id = "homepage" class = "navlink" href="juan.html">Home</a> 
+            <a id = "work" class = "navlink" href="work_exp.html">Experience</a>
+            <a id = "portfolio" class = "navlink" href="portfolio.html">Portfolio</a>
+            <a id = "contact" class = "navlink" href="contact.html">Contact</a> 
+        </nav>
+    </header>
+    <main>
+        <h2> Portfolio</h2>
+        <div id = "projects">
+            <div id = "project1" class="project">
+                <h3> Project 1: Image Classification with CNN </h3>
+                <p> This project was focused on the classification of handwritten digits from 1 to 9. 
+                    We used the well-known MNIST Dataset (60,000 training images and 10,000 for testing)
+                </p>
+                <details>
+                    <summary> Random Forest </summary>
+                    <p> This traditional machine learning model provided a high accuracy of almost 96%.</p>
+                </details>
+                <details>
+                    <summary> Convolutional Neural Network (CNN) - Using <code> keras </code> library </summary>
+                    <p> This deep learning model was selected as our final model, with an accuracy of 99%.</p>  
+                </details>
+                <figure>
+                    <!--This image is a screenshot of a personal project-->
+                    <img class = "project_img" src="images/reference_GUI.png" width="400" alt="MNIST Dataset"/>
+                </figure>
+                <figcaption>
+                    <p> <i>Screenshot of the GUI developed for this project</i> </p>
+                </figcaption>
+            </div>
+            <div id = "project2" class="project">
+                <h3> Project 2: Unsupervised Learning techniques </h3>
+                <p> The purpose of this project was to serve as a wide review of the main unsupervised learning techniques used
+                    in Data Science projects. The dataset is based on customers from a company, and the main idea is to perform 
+                    customer segmentation to implement better marketing campaigns.
+                </p>
+                <figure>
+                    <!--This image is a screenshot of a personal project-->
+                    <img class = "project_img" src="images/unsupervised_learning.png" width="400" alt="Unsupervised Learning"/>
+                </figure>
+                <figcaption>
+                    <p> <i>Screenshot of a customer segmentation (clustering)</i> </p>
+                </figcaption>
+                </div>
+        </div>
+    </main>
+    <footer>
+        <p><i> Website created by Juan Villanueva Romero &copy</i></p>
+        <div id = "footerlinks">
+            <a class = "footerlink" href="https://www.linkedin.com/in/juan-villanueva-romero/"> LinkedIn </a>
+            <a class = "footerlink" href="https://github.com/juan-villa02"> GitHub </a> 
+        </div>
+    </footer>
+</body>
+</html>

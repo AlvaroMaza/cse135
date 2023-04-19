@@ -1,0 +1,235 @@
+html{
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    background-color: rgb(250, 238, 215);
+    font-size: 2vmin;
+    color: darkslategray;
+}
+
+body {
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index:1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color:rgb(107, 107, 126);
+
+}
+
+#nav-list {
+    display: flex;
+}
+
+.nav-logo{
+    margin-right: auto;
+    max-height:100%;
+    width: 100%;
+}
+
+.nav-logo-hidden{
+    margin-left: auto;
+    max-height:100%;
+    width: 100%;
+    visibility: hidden;
+}
+
+.nav-items {
+    margin: 0 1dvw;
+    border-radius: 2px;
+    transition: 0.6s;
+}
+
+.nav-items a {
+    display: inline-block;
+    padding: 1.7dvh 2.5dvw;
+    text-decoration: none;
+    color: whitesmoke;
+    transition: 0.6s;
+}
+
+.nav-items:hover {
+    background-color: whitesmoke;
+}
+
+.nav-items:hover a {
+    color: rgb(96, 96, 141);
+}
+
+header{
+
+    /* <a href="https://www.freepik.com/free-photo/gray-grunge-surface-wall-texture-background_4390945
+    .htm#query=grey%20background&position=35&from_view=search&track=ais">Image by starline</a> on Freepik*/
+    background-image: url(multimedia/gray-grunge-surface-wall-texture-background.jpg);
+    
+    padding-top: 15dvh;
+    margin: 4em;
+    text-align: center;
+    height: 60dvh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: whitesmoke;
+    font-style: italic;
+}
+
+header a img{
+    opacity: 0.85;
+    transition: 0.6s;
+    max-width: 60%
+}
+
+header a:hover{
+    opacity: 0.9;
+    transform: scale(1.1);
+    
+}
+
+main{
+    margin: 5rem 0;
+}
+
+main > *{
+    padding: 4rem 10rem;
+}
+
+
+h2{
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+    font-size: 1.5em; 
+    color: darkslategray;
+    text-decoration-color: darkslategray;
+
+}
+
+#aboutme{
+    display: grid;
+    grid-template-rows: 15% auto;
+    grid-template-columns: 60% auto;
+    gap: 2em;
+}
+
+
+#aboutme img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #555;
+    width: 20vw;
+
+}
+
+#aboutme{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bauc3mlogo{
+    border : 0;
+    width: 8vw;
+    background: rgba(2, 2, 33, 0.314);
+    margin : 2rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+#grad1 {
+    height: 0.1rem;
+    background-color: rgb(250, 238, 215); /* For browsers that do not support gradients */
+    background-image: linear-gradient(rgb(250, 238, 215), rgb(190, 190, 203));
+}
+
+#grad2 {
+    height: 0.1rem;
+    background-color: rgb(190, 190, 203); /* For browsers that do not support gradients */
+    background-image: linear-gradient(rgb(190, 190, 203),rgb(250, 238, 215));
+}
+
+
+#portfolio {
+    background-color: rgb(190, 190, 203);
+}
+
+#portfolio p{
+    margin: 4rem 0;
+}
+
+#photos{
+
+    display:grid;
+
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 50% 50%;
+
+    align-items: center;
+    justify-items: center;
+    gap: 5%;
+    
+}
+
+
+.photo{
+    object-fit: cover;
+    width: 100%;
+    max-height: 100%;
+    border: 5px solid #555;
+
+}
+
+
+#contact a:link,#contact a:visited {
+    background-color: whitesmoke;
+    color: darkslategray;
+    border: 2px solid #555;
+    padding: 10px 20px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button{
+    background-color:#555;
+    border:#555;
+    color: whitesmoke;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+footer {
+    height: 5rem;
+    background-color: rgb(107, 107, 126);
+    color: whitesmoke;
+}
+
+footer p{
+    text-align: center;
+}
+
+
+
+@media screen and (max-width: 500px) {
+    #navbar {
+      display: none;
+    }
+    #aboutme{
+        display: block;
+        margin: 2em;
+    }
+    
+}
+

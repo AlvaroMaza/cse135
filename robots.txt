@@ -1,0 +1,5 @@
+# Block Googlebot and Adsbot
+User-agent: Googlebot
+User-agent: AdsBot-Google
+Disallow: /
+Sitemap: https://cse135spain.site/sitemap.xml

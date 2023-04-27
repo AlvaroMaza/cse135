@@ -1,7 +1,6 @@
 <?php
-echo "Cache-Control: no-cache\n";
-echo "Content-type: text/html \n\n";
-
+header("Cache-Control: no-cache");
+header("Content-type: text/html");
 // print HTML file top
 echo <<<END
 <!DOCTYPE html>

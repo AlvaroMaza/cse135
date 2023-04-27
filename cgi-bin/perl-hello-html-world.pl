@@ -8,6 +8,7 @@ print "<title>Hello, Perl!</title>";
 print "</head>";
 print "<body>";
 
+print "<marquee>Wow!</marquee>";
 print "<h1>cse135Spain was here - Hello, Perl!</h1>";
 print "<p>This page was generated with the Perl programming langauge</p>";
 

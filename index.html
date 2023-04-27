@@ -6,6 +6,25 @@
         <title>CSE 135 - Spain</title>
         <link rel = "icon" href = "images/crown-solid.svg">
     </head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create four equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 25%;
+            padding: 0px 10px;
+        }
+
+        /* Clear floats after the columns */
+        #homework2:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+    </style>
     <body>
         <h1>CSE 135 - Online Database Analytics Applications</h1>
         <h2>Spring 2023</h2>
@@ -27,13 +46,26 @@
         </section>
         <section id="homework2">
             <h3 style="background-color: rgb(223, 223, 223);">Homework 2</h3>
-            <li><a href="/cgi-bin/perl-hello-html-world.pl">Hello, Pearl!</a></li>
-            <li><a href="/cgi-bin/perl-hello-json-world.pl">Hello, Pearl! (JSON)</a></li>
-            <li><a href="/cgi-bin/perl-env.pl">Enviroment Variables (Manually)</a></li>
-            <li><a href="/cgi-bin/perl-env-pm.pl">Enviroment Variables (CGI.pm)</a></li>
-            <li><a href="/cgi-bin/perl-get-echo.pl">GET Echo</a></li>
-            <li><a href="/cgi-bin/perl-post-echo.pl">POST Echo</a></li>
-            <li><a href="/cgi-bin/perl-general-echo.pl">General Echo</a></li>
+            <div class="column">
+                <p style="margin: 0px;">Perl!</p>
+                <li><a href="/cgi-bin/perl-hello-html-world.pl">Hello, Pearl!</a></li>
+                <li><a href="/cgi-bin/perl-hello-json-world.pl">Hello, Pearl! (JSON)</a></li>
+                <li><a href="/cgi-bin/perl-env.pl">Enviroment Variables (Manually)</a></li>
+                <li><a href="/cgi-bin/perl-env-pm.pl">Enviroment Variables (CGI.pm)</a></li>
+                <li><a href="/cgi-bin/perl-get-echo.pl">GET Echo</a></li>
+                <li><a href="/cgi-bin/perl-post-echo.pl">POST Echo</a></li>
+                <li><a href="/cgi-bin/perl-general-echo.pl">General Echo</a></li>
+            </div>
+            <div class="column">
+                <p style="margin: 0px;">Perl!</p>
+                <li><a href="/cgi-bin/perl-hello-html-world.pl">Hello, Pearl!</a></li>
+                <li><a href="/cgi-bin/perl-hello-json-world.pl">Hello, Pearl! (JSON)</a></li>
+                <li><a href="/cgi-bin/perl-env.pl">Enviroment Variables (Manually)</a></li>
+                <li><a href="/cgi-bin/perl-env-pm.pl">Enviroment Variables (CGI.pm)</a></li>
+                <li><a href="/cgi-bin/perl-get-echo.pl">GET Echo</a></li>
+                <li><a href="/cgi-bin/perl-post-echo.pl">POST Echo</a></li>
+                <li><a href="/cgi-bin/perl-general-echo.pl">General Echo</a></li>
+            </div>
         </section>
         <section id="analyticsApp">
             <h3 style="background-color: rgb(223, 223, 223);">Analytics App</h3>

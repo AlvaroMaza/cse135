@@ -9,7 +9,7 @@ echo "</head>";
 echo "<body>";
 
 echo "<marquee>Wow!</marquee>";
-echo "<h1 align=\"center\">cse135Spain was here - Hello, Perl!</h1>";
+echo "<h1 align=\"center\">cse135Spain was here - Hello, PHP!</h1>";
 echo "<hr>";
 echo "<p>This page was generated with the PHP programming language</p>";
 

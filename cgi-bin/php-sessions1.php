@@ -1,4 +1,8 @@
 <?php
+// Start session and get session ID
+session_start();
+$id = session_id();
+
 // Headers
 header("Cache-Control: no-cache");
 
@@ -10,7 +14,7 @@ if(isset($_POST['username'])) {
 // Set the cookie using a header, add extra \n to end headers
 if (isset($name)) {
     header("Content-type: text/html");
-    header("Set-Cookie: username=$name\n");
+    header("Set-Cookie: username=$name; path=/; expires=" . time()+3600 . "; HttpOnly\n");
 } else {
     header("Content-type: text/html\n");
 }
@@ -35,16 +39,19 @@ echo "</table>";
 
 // Links for other pages
 echo "<br />";
-echo "<a href=\"/cgi-bin/php-sessions2.php\">Session Page 2</a>";
+echo "<a href=\"/php-sessions2.php\">Session Page 2</a>";
 echo "<br />";
 echo "<a href=\"/php-cgiform.html\">PHP CGI Form</a>";
 echo "<br /><br />";
 
 // Destroy Cookie button
-echo "<form action=\"/cgi-bin/php-destroy-session.php\" method=\"get\">";
+echo "<form action=\"/php-destroy-session.php\" method=\"get\">";
 echo "<button type=\"submit\">Destroy Session</button>";
 echo "</form>";
 
 echo "</body>";
 echo "</html>";
+
+// Save session ID in a cookie
+setcookie('PHPSESSID', $id, time()+3600, '/');
 ?>

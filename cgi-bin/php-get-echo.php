@@ -17,8 +17,7 @@ END;
 // The Query String is simply an environment variable
 echo "<b>Query String:</b> {$_SERVER['QUERY_STRING']}<br />\n";
 
-// Credit for this code to parse the Query string:
-// https://www.mediacollege.com/internet/perl/query-string.html
+
 if (strlen($_SERVER['QUERY_STRING']) > 0) {
   $buffer = $_SERVER['QUERY_STRING'];
   $pairs = explode("&", $buffer);

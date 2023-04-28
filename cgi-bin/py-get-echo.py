@@ -32,11 +32,8 @@ if query_string:
         query_dict[name] = value
 
 # Print out the Query String
-loop = 0
 for key, value in query_dict.items():
-    loop += 1
-    if loop % 2 != 0:
-        print(f"{key} = {value}<br/>\n")
+    print(f"{key} = {value}<br/>\n")
 
 # Print the HTML file bottom
 print("</body></html>")

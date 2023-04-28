@@ -30,12 +30,8 @@ if (strlen($_SERVER['QUERY_STRING']) > 0) {
 }
 
 // Print out the Query String
-$loop = 0;
 foreach ($in as $key => $value) {
-  $loop += 1;
-  if($loop % 2 != 0) {
-    echo "$key = $value<br/>\n";
-  }
+  echo "$key = $value<br/>\n";
 }
 
 // Print the HTML file bottom

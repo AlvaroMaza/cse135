@@ -19,12 +19,8 @@ echo "<b>Message Body:</b><br />\n";
 echo "<ul>\n";
 
 // print out the post data
-$loop = 0;
 foreach ($in as $key => $value) {
-  $loop += 1;
-  if ($loop % 2 != 0) {
-    echo "<li>$key = $value</li>\n";
-  }
+  echo "<li>$key = $value</li>\n";
 }
 
 echo "</ul>\n";

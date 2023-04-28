@@ -11,6 +11,7 @@ fclose($stdin);
 $name = "";
 if (strpos($username, "username=") !== false) {
     $name = substr($username, 9);
+    echo "EEEEEEEE";
 }
 
 // Set the cookie using a header, add extra \n to end headers

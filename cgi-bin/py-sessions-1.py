@@ -1,47 +1,37 @@
-#!/usr/bin/env python
-
-import os
-import cgi
-import http.cookies
+from flask import Flask, request, make_response
+from flask_session import Session
 from html import escape
-#from cgi.session import Session
-from session import Session
 
-# Create a new Python Session
-session = Session(inc=0, driver="File", prefix="py_sess_", directory="/tmp")
+app = Flask(__name__)
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = '/tmp'
+app.config['SESSION_COOKIE_NAME'] = 'CGISESSID'
+Session(app)
 
-# Create a CGI Object
-cgi = cgi.FieldStorage()
+@app.route('/')
+def index():
+    session = Session()
+    name = session.get('username') or request.args.get('username', '')
+    session['username'] = name
 
-# Create a new Cookie from the Session ID
-cookie = http.cookies.SimpleCookie()
-cookie['CGISESSID'] = session.id
-print("Set-Cookie:", cookie.output())
+    resp = make_response('')
+    resp.set_cookie('CGISESSID', session.sid)
+    resp.headers['Content-Type'] = 'text/html'
+    resp.data += '<html><head><title>Python Sessions</title></head><body>'
+    resp.data += '<h1>Python Sessions Page 1</h1>'
 
-#Store Data in that Python Session
-name = session.get('username') or cgi.getvalue('username', '')
-session.set('username', name)
+    if name:
+        resp.data += '<p><b>Name:</b> %s</p>' % escape(name)
+    else:
+        resp.data += '<p><b>Name:</b> You do not have a name set</p>'
 
-print("Content-Type: text/html\n")
+    resp.data += '<br/><br/><a href="/cgi-bin/py-sessions-2.py">Session Page 2</a><br/>'
+    resp.data += '<a href="/py-state-demo.html">Python CGI Form</a><br />'
+    resp.data += '<form style="margin-top:30px" action="/cgi-bin/py-destroy-session.py" method="get">'
+    resp.data += '<button type="submit">Destroy Session</button>'
+    resp.data += '</form></body></html>'
 
-print("<html>")
-print("<head>")
-print("<title>Python Sessions</title>")
-print("</head>")
-print("<body>")
+    return resp
 
-print("<h1>Python Sessions Page 1</h1>")
-
-if name:
-    print("<p><b>Name:</b> %s</p>" % escape(name))
-else:
-    print("<p><b>Name:</b> You do not have a name set</p>")
-print("<br/><br/>")
-print("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a><br/>")
-print("<a href=\"/py-state-demo.html\">Python CGI Form</a><br />")
-print("<form style=\"margin-top:30px\" action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
-print("<button type=\"submit\">Destroy Session</button>")
-print("</form>")
-
-print("</body>")
-print("</html>")
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from flask import Flask, request, make_response
 from flask_session import Session
 from html import escape

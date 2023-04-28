@@ -1,10 +1,11 @@
-import hashlib, shelve, time, Cookie, os
+import hashlib, shelve, time, os
+from http.cookies import SimpleCookie
 
 class Session(object):
 
     def __init__(self, expires=None, cookie_path=None):
         string_cookie = os.environ.get('HTTP_COOKIE', '')
-        self.cookie = Cookie.SimpleCookie()
+        self.cookie = SimpleCookie.SimpleCookie()
         self.cookie.load(string_cookie)
 
         if self.cookie.get('sid'):

@@ -39,7 +39,7 @@ echo "</table>";
 
 // Links for other pages
 echo "<br />";
-echo "<a href=\"/php-sessions2.php\">Session Page 2</a>";
+echo "<a href=\"/cgi-bin/php-sessions2.php\">Session Page 2</a>";
 echo "<br />";
 echo "<a href=\"/php-cgiform.html\">PHP CGI Form</a>";
 echo "<br /><br />";

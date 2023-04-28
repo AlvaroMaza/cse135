@@ -3,6 +3,7 @@ import os
 import cgi
 import http.cookies
 from html import escape
+from session import Session
 
 # Create a new CGI Object
 cgi = cgi.FieldStorage()
@@ -10,7 +11,7 @@ cgi = cgi.FieldStorage()
 # Get the Session ID from the Cookie
 cookie = http.cookies.SimpleCookie(os.environ.get('HTTP_COOKIE'))
 sid = cookie.get('CGISESSID')
-session = cgi.Session(sid=sid, inc=0, driver="File", prefix="py_sess_", directory="/tmp")
+session = Session(sid=sid, inc=0, driver="File", prefix="py_sess_", directory="/tmp")
 
 # Access Stored Data
 name = session.get("username", "")

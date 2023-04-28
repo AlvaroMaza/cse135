@@ -6,6 +6,7 @@ from cgi import FieldStorage
 from html import escape
 import cgi
 import cgitb
+from session import Session
 
 cgitb.enable()
 
@@ -14,7 +15,7 @@ print("Content-type: text/html\n")
 cookie = SimpleCookie(os.environ.get("HTTP_COOKIE"))
 sid = cookie.get("SITE_SID").value if cookie.get("SITE_SID") else None
 
-session = cgi.Session(
+session = Session(
     session_options={
         'id': sid,
         'cookie_only': True,

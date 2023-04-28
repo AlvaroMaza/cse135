@@ -5,9 +5,10 @@ import cgi
 import http.cookies
 from html import escape
 #from cgi.session import Session
+from session import Session
 
 # Create a new Python Session
-session = cgi.Session(inc=0, driver="File", prefix="py_sess_", directory="/tmp")
+session = Session(inc=0, driver="File", prefix="py_sess_", directory="/tmp")
 
 # Create a CGI Object
 cgi = cgi.FieldStorage()

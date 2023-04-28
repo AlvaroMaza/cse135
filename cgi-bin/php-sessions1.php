@@ -9,6 +9,7 @@ header("Cache-Control: no-cache");
 // Get Name from Environment
 if(isset($_POST['username'])) {
     $name = $_POST['username'];
+    $_SESSION['username'] = $name;
 }
 
 // Set the cookie using a header, add extra \n to end headers

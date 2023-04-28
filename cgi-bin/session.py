@@ -1,4 +1,4 @@
-import sha, shelve, time, Cookie, os
+import hashlib, shelve, time, Cookie, os
 
 class Session(object):
 
@@ -14,7 +14,7 @@ class Session(object):
 
         else:
             self.cookie.clear()
-            sid = sha.new(repr(time.time())).hexdigest()
+            sid = hashlib.new(repr(time.time())).hexdigest()
 
         self.cookie['sid'] = sid
 

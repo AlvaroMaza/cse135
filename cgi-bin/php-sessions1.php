@@ -3,21 +3,14 @@
 header("Cache-Control: no-cache");
 
 // Get Name from Environment
-$stdin = fopen("php://stdin", "r");
-$username = fgets($stdin, 1000);
-fclose($stdin);
-
-// Check to see if a proper name was sent
-$name = "";
-if (strpos($username, "username=") !== false) {
-    $name = substr($username, 9);
-    echo "EEEEEEEE";
+if(isset($_POST['username'])) {
+    $name = $_POST['username'];
 }
 
 // Set the cookie using a header, add extra \n to end headers
-if (strlen($name) > 0) {
+if (isset($name)) {
     header("Content-type: text/html");
-    header("Set-Cookie: $name\n");
+    header("Set-Cookie: username=$name\n");
 } else {
     header("Content-type: text/html\n");
 }
@@ -30,10 +23,10 @@ echo "<h1>PHP Sessions Page 1</h1>";
 echo "<table>";
 
 // First check for new Cookie, then Check for old Cookie
-if (strlen($name) > 0) {
+if (isset($name)) {
     echo "<tr><td>Cookie:</td><td>$name</td></tr>\n";
-} else if (isset($_COOKIE['PHPSESSID'])) {
-    echo "<tr><td>Cookie:</td><td>" . $_COOKIE['PHPSESSID'] . "</td></tr>\n";
+} else if (isset($_COOKIE['username'])) {
+    echo "<tr><td>Cookie:</td><td>" . $_COOKIE['username'] . "</td></tr>\n";
 } else {
     echo "<tr><td>Cookie:</td><td>None</td></tr>\n";
 }

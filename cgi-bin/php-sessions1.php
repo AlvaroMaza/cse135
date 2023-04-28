@@ -2,16 +2,25 @@
 // Start PHP Session
 session_start();
 
+// Include necessary libraries
+require_once('CGI.php');
+require_once('CGI/Session.php');
+
+// Create a new PHP Session
+$session = new CGI_Session("driver:File", null, array('Directory'=>"/tmp"));
+
 // Create CGI Object
 $cgi = new CGI();
 
-// Set Cookie with Session ID
-$cookie = $cgi->cookie("CGISESSID", session_id());
-header("Set-Cookie: " . $cookie);
+// Create a new Cookie from the Session ID
+$cookie = $cgi->cookie(array('name'=>'CGISESSID', 'value'=>$session->id));
 
-// Store Data in PHP Session
-$name = isset($_SESSION['username']) ? $_SESSION['username'] : $cgi->param('username');
-$_SESSION['username'] = $name;
+// Send the Cookie in the HTTP response header
+header('Set-Cookie: ' . $cookie->as_string());
+
+//Store Data in the PHP Session
+$name = $session->param('username') ?: $cgi->param('username');
+$session->param("username", $name);
 
 // Output HTML
 echo "<html>";
@@ -23,9 +32,9 @@ echo "<body>";
 echo "<h1>PHP Sessions Page 1</h1>";
 
 if ($name){
-	echo "<p><b>Name:</b> $name";
-} else{
-	echo "<p><b>Name:</b> You do not have a name set</p>";
+    echo "<p><b>Name:</b> $name";
+}else{
+    echo "<p><b>Name:</b> You do not have a name set</p>";
 }
 
 echo "<br/><br/>";

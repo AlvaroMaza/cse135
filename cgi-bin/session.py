@@ -26,12 +26,12 @@ class Session(object):
             try:
                 os.mkdir(session_dir, 0o2770)
                 # If the apache user can't create it do it manualy
-            except OSError, e:
+            except (OSError, e):
                 errmsg =  """
                     %s when trying to create the session directory.
                     Create it as '%s'
                 """ % (e.strerror, os.path.abspath(session_dir))
-                raise OSError, errmsg
+                raise (OSError, errmsg)
 
         self.data = shelve.open (
             '%s/sess_%s' % (session_dir, sid), 

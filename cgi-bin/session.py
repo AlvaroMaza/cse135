@@ -24,7 +24,7 @@ class Session(object):
         session_dir = os.environ['DOCUMENT_ROOT'] + '/session'
         if not os.path.exists(session_dir):
             try:
-                os.mkdir(session_dir, 02770)
+                os.mkdir(session_dir, 0o2770)
                 # If the apache user can't create it do it manualy
             except OSError, e:
                 errmsg =  """
@@ -37,7 +37,7 @@ class Session(object):
             '%s/sess_%s' % (session_dir, sid), 
             writeback=True
         )
-        os.chmod('%s/sess_%s' % (session_dir, sid), 0660)
+        os.chmod('%s/sess_%s' % (session_dir, sid), 0o660)
 
         # Initializes the expires data
         if not self.data.get('cookie'):

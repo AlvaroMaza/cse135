@@ -2,7 +2,7 @@
 import os
 import cgi
 import http.cookies
-from cgi import escape
+from html import escape
 from cgi.session import Session
 
 # Create a new CGI Object

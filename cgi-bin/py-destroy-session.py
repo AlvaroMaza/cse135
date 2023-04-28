@@ -3,7 +3,7 @@
 import os
 from http.cookies import SimpleCookie
 from cgi import FieldStorage
-from cgi import escape
+from html import escape
 import cgi
 import cgitb
 

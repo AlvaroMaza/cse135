@@ -1,8 +1,8 @@
 <?php
 // Load session using the session ID stored in the cookie
 if(isset($_COOKIE['PHPSESSID'])) {
-    session_id($_COOKIE['PHPSESSID']);
     session_start();
+    session_id($_COOKIE['PHPSESSID']);
 }
 
 // Headers

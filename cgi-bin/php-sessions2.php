@@ -14,6 +14,9 @@ echo "<html>";
 echo "<head><title>PHP Sessions</title></head>\n";
 echo "<body>";
 echo "<h1>PHP Sessions Page 2</h1>";
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 echo "<table>";
 
 // Check if session data is stored

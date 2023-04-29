@@ -3,6 +3,7 @@ import os
 import http.cookies as Cookie
 
 # Start a new session or load an existing one
+name = ''
 session_key = 'username'
 cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string:

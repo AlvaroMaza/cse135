@@ -5,7 +5,7 @@ import cgitb
 import os
 import hashlib
 from http import cookies
-from cgi import escape
+from html import escape
 from cgi import parse_qs, escape
 from uuid import uuid4
 

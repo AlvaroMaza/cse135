@@ -1,29 +1,30 @@
 #!/usr/bin/env python
 import os
-import http.cookies
+import http.cookies as Cookie
 
-# Start session and get session ID
-session_id = os.environ.get("HTTP_COOKIE")
-if not session_id:
-    session_id = str(hash(os.urandom(16)))
-    print(f"Set-Cookie: PHPSESSID={session_id}; path=/; HttpOnly")
+# Start a new session or load an existing one
+session_key = 'username'
+cookie_string = os.environ.get('HTTP_COOKIE')
+if cookie_string:
+    session_cookie = Cookie.SimpleCookie()
+    session_cookie.load(cookie_string)
+    if session_key in session_cookie:
+        name = session_cookie[session_key].value
+
+if not name:
+    name = ''
 
 # Headers
 print("Cache-Control: no-cache")
-
-# Get Name from Environment
-if "username" in os.environ.get("QUERY_STRING", ""):
-    name = os.environ["QUERY_STRING"].split("=")[1]
-    os.environ["HTTP_COOKIE"] = f"username={name}; {os.environ.get('HTTP_COOKIE', '')}"
-    cookie = http.cookies.SimpleCookie(os.environ["HTTP_COOKIE"])
-    name = cookie.get("username").value
+print("Content-type: text/html")
 
 # Set the cookie using a header, add extra \n to end headers
-if "username" in os.environ.get("HTTP_COOKIE", ""):
-    print("Content-type: text/html")
-    print(f"Set-Cookie: username={name}; path=/; expires={session_id}; HttpOnly\n")
-else:
-    print("Content-type: text/html\n")
+if len(name) > 0:
+    session_cookie = Cookie.SimpleCookie()
+    session_cookie[session_key] = name
+    session_cookie[session_key]['path'] = '/'
+    session_cookie[session_key]['expires'] = 3600
+    print(session_cookie.output())
 
 # Body - HTML
 print("<html>")
@@ -33,12 +34,10 @@ print("<h1>Python Sessions Page 1</h1>")
 print("<table>")
 
 # First check for new Cookie, then Check for old Cookie
-if "username" in os.environ.get("HTTP_COOKIE", ""):
-    cookie = http.cookies.SimpleCookie(os.environ["HTTP_COOKIE"])
-    name = cookie.get("username").value
+if len(name) > 0:
     print(f"<tr><td>Cookie:</td><td>{name}</td></tr>")
-elif "username" in os.environ.get("HTTP_COOKIE", ""):
-    print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
+elif cookie_string and session_key in session_cookie:
+    print(f"<tr><td>Cookie:</td><td>{session_cookie[session_key].value}</td></tr>")
 else:
     print("<tr><td>Cookie:</td><td>None</td></tr>")
 
@@ -46,7 +45,7 @@ print("</table>")
 
 # Links for other pages
 print("<br />")
-print("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>")
+print("<a href=\"/cgi-bin/python-sessions-2.py\">Session Page 2</a>")
 print("<br />")
 print("<a href=\"/python-cgiform.html\">Python CGI Form</a>")
 print("<br /><br />")

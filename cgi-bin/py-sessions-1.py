@@ -3,7 +3,6 @@ import os
 import http.cookies as Cookie
 
 # Start a new session or load an existing one
-name = ''
 session_key = 'username'
 cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string:
@@ -12,7 +11,7 @@ if cookie_string:
     if session_key in session_cookie:
         name = session_cookie[session_key].value
 
-if not name:
+if not cookie_string:
     name = ''
 
 # Headers

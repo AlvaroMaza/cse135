@@ -1,30 +1,41 @@
 #!/usr/bin/env python
+
+import cgi
+import cgitb
 import os
-import http.cookies as Cookie
+import hashlib
+from http import cookies
+from cgi import escape
+from cgi import parse_qs, escape
+from uuid import uuid4
 
-# Start a new session or load an existing one
-session_key = 'username'
-cookie_string = os.environ.get('HTTP_COOKIE')
-if cookie_string:
-    session_cookie = Cookie.SimpleCookie()
-    session_cookie.load(cookie_string)
-    if session_key in session_cookie:
-        name = session_cookie[session_key].value
+# Enable error reporting for debugging purposes
+cgitb.enable()
 
-if not cookie_string:
-    name = ''
+# Create a session ID
+session_id = str(uuid4())
+
+# Get the form data
+form = cgi.FieldStorage()
+
+# Get the username from the form data
+username = form.getvalue('username')
+
+# Store the username in the session
+session = cgi.FieldStorage()
+session['username'] = username
+
+# Set a session cookie with the session ID
+session_cookie = cookies.SimpleCookie()
+session_cookie['session_id'] = session_id
+session_cookie['session_id']['expires'] = 30 * 24 * 60 * 60  # 30 days
+session_cookie['session_id']['path'] = '/'
+session_cookie['session_id']['httponly'] = True
+print(session_cookie.output())
 
 # Headers
 print("Cache-Control: no-cache")
 print("Content-type: text/html\n")
-
-# Set the cookie using a header, add extra \n to end headers
-if len(name) > 0:
-    session_cookie = Cookie.SimpleCookie()
-    session_cookie[session_key] = name
-    session_cookie[session_key]['path'] = '/'
-    session_cookie[session_key]['expires'] = 3600
-    print(session_cookie.output())
 
 # Body - HTML
 print("<html>")
@@ -34,12 +45,12 @@ print("<h1>Python Sessions Page 1</h1>")
 print("<table>")
 
 # First check for new Cookie, then Check for old Cookie
-if len(name) > 0:
-    print(f"<tr><td>Cookie:</td><td>{name}</td></tr>")
-elif cookie_string and session_key in session_cookie:
-    print(f"<tr><td>Cookie:</td><td>{session_cookie[session_key].value}</td></tr>")
+if len(username) > 0:
+    print(f"<tr><td>Cookie:</td><td>{username}</td></tr>")
+elif session_cookie and session_id in session_cookie:
+    print(f"<tr><td>Cookie:</td><td>{session_cookie.output()}</td></tr>")
 else:
-    print("<tr><td>Cookie:</td><td>None</td></tr>")
+    print("<tr><td>Cookie:</td><td>Unknown</td></tr>")
 
 print("</table>")
 

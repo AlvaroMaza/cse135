@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 
+#!/usr/bin/env python3
 import os
 
 # Headers
 print("Cache-Control: no-cache")
 print("Content-type: text/html")
 
-# Get Name from Environment
-username = os.environ.get("QUERY_STRING")
+# Get Name from Cookie or Environment
+cookie = os.environ.get("HTTP_COOKIE")
 name = ""
-if username and username.startswith("u="):
-    name = username[2:]
+if cookie:
+    name = cookie.split("=")[1]
 
 # Set the cookie using a header, add extra \n to end headers
 if len(name) > 0:
-    print(f"Set-Cookie: {name}")
+    print(f"Set-Cookie: username={name}")
     print()
 else:
     print()
@@ -29,8 +30,8 @@ print("<table>")
 # First check for new Cookie, then Check for old Cookie
 if len(name) > 0:
     print(f"<tr><td>Cookie:</td><td>{name}</td></tr>")
-elif "HTTP_COOKIE" in os.environ and os.environ["HTTP_COOKIE"] != "destroyed":
-    print(f"<tr><td>Cookie:</td><td>{os.environ['HTTP_COOKIE']}</td></tr>")
+elif cookie:
+    print(f"<tr><td>Cookie:</td><td>{cookie}</td></tr>")
 else:
     print("<tr><td>Cookie:</td><td>None</td></tr>")
 
@@ -50,4 +51,5 @@ print("</form>")
 
 print("</body>")
 print("</html>")
+
 

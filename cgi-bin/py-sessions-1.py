@@ -17,7 +17,7 @@ if not name:
 
 # Headers
 print("Cache-Control: no-cache")
-print("Content-type: text/html")
+print("Content-type: text/html\n")
 
 # Set the cookie using a header, add extra \n to end headers
 if len(name) > 0:

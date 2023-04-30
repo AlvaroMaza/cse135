@@ -17,8 +17,8 @@ echo "<h1>PHP Sessions Page 2</h1>";
 echo "<table>";
 
 // Check if session data is stored
-if (isset($_SESSION['data'])) {
-    echo "<tr><td>Session Data:</td><td>" . $_SESSION['data'] . "</td></tr>\n";
+if (isset($_SESSION['username'])) {
+    echo "<tr><td>Session Data:</td><td>" . $_SESSION['username'] . "</td></tr>\n";
 } else {
     echo "<tr><td>Session Data:</td><td>None</td></tr>\n";
 }

@@ -1,21 +1,15 @@
 <?php
-// Load the necessary libraries
-require_once('CGI/Session.php');
+// Start the session
+session_start();
 
-// Set content type to HTML
-header('Content-type: text/html');
+// Unset all session variables
+$_SESSION = array();
 
-// Create a new CGI object
-$cgi = new CGI();
+// Destroy the session
+session_destroy();
 
-// Retrieve the session ID from the cookie or query string
-$sid = $cgi->cookie('SITE_SID') ?: $cgi->param('sid');
-
-// Create a new CGI session object using the retrieved session ID
-$session = new CGI_Session($sid);
-
-// Delete the session
-$session->delete();
+// Unset the cookie
+setcookie('username', '', time() - 3600, '/');
 
 // Output HTML response
 echo '<html>';

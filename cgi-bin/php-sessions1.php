@@ -46,7 +46,7 @@ echo "<a href=\"/php-cgiform.html\">PHP CGI Form</a>";
 echo "<br /><br />";
 
 // Destroy Cookie button
-echo "<form action=\"/php-destroy-session.php\" method=\"get\">";
+echo "<form action=\"/cgi-bin/php-destroy-session.php\" method=\"get\">";
 echo "<button type=\"submit\">Destroy Session</button>";
 echo "</form>";
 

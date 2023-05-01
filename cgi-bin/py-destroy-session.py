@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from http import cookies
+import os
 
 # Set up cookie
 cookie = cookies.SimpleCookie()
@@ -8,9 +9,11 @@ cookie['session_id'] = ''
 cookie['session_id']['path'] = '/'
 cookie['session_id']['expires'] = 0
 
-cookie['username'] = ''
-cookie['username']['path'] = '/'
-cookie['username']['expires'] = 0
+cookie_string = os.environ.get('HTTP_COOKIE')
+if cookie_string is not None:
+    cookie = cookies.SimpleCookie()
+    cookie.load(cookie_string)
+    cookie['username'].value = None
 
 # Set response headers
 headers = [('Content-type', 'text/html'),           ('Cache-Control', 'no-cache')]

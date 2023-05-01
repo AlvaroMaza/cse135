@@ -5,17 +5,24 @@ import os
 import time
 import cgi
 
-# Get session ID from cookie
-cookie = cookies.SimpleCookie(os.environ.get('HTTP_COOKIE'))
-session_id = cookie.get('session_id').value if cookie.get('session_id') else None
+# Retrieve session ID from cookie
+cookie_string = os.environ.get('HTTP_COOKIE')
+if cookie_string is not None:
+    cookie = cookies.SimpleCookie()
+    cookie.load(cookie_string)
+    session_id = cookie.get('session_id').value
+else:
+    # Handle case where session ID cookie is missing
+    session_id = None
 
-# Load session data
-if session_id:
-    session_file = os.path.join(os.environ['DOCUMENT_ROOT'], 'sessions', session_id)
-    if os.path.exists(session_file):
+# Load session
+if session_id is not None:
+    session_file = 'session_data/' + session_id + '.txt'
+    try:
         with open(session_file, 'r') as f:
             session_data = eval(f.read())
-    else:
+    except FileNotFoundError:
+        # Handle case where session file is missing
         session_data = {}
 else:
     session_data = {}
@@ -25,7 +32,7 @@ headers = [('Content-type', 'text/html'),
            ('Cache-Control', 'no-cache')]
 
 # Build HTML response
-body = '<html><head><title>Python Sessions 2</title></head>\n'
+body = '<html><head><title>Python Sessions Page 2</title></head>\n'
 body += '<body>'
 body += '<h1>Python Sessions Page 2</h1>'
 body += '<table>'
@@ -38,14 +45,15 @@ else:
 
 body += '</table>'
 
-body += "<br /><a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a>"
-body += "<br /><a href=\"/py-cgiform.html\">PY CGI Form</a>"
+body += "<br /><a href=\"/cgi-bin/py-sessions.py\">Session Page 1</a>"
+body += "<br /><a href=\"/py-state-demo.html\">Python CGI Form</a>"
 body +="</body>"
 body +="</html>"
 
-# Send response with headers and cookie
-print(cookie.output())
+print('Status: 200 OK')
 for header in headers:
-    print(header[0] + ': ' + header[1])
-print('')
+    print(f'{header[0]}: {header[1]}')
+if session_id is not None:
+    print(cookie.output())
+print()
 print(body)

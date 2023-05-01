@@ -44,7 +44,7 @@ body += '<table>'
 
 # Display stored data
 if 'username' in session_data:
-    body += '<tr><td>Session Data:</td><td>' + session_data['username'] + '</td></tr>\n'
+    body += '<tr><td>Session Data:</td><td>' + session_id + '</td></tr>\n'
 else:
     body += '<tr><td>Session Data:</td><td>None</td></tr>\n'
 

@@ -27,10 +27,11 @@ if username is not None:
 
 else:
     cookie_string = os.environ.get('HTTP_COOKIE')
-if cookie_string is not None:
-    cookie = cookies.SimpleCookie()
-    cookie.load(cookie_string)
-    session_id = cookie['username'].value
+    if cookie_string is not None:
+        cookie = cookies.SimpleCookie()
+        cookie.load(cookie_string)
+        session_id = cookie['username'].value
+
 # Set response headers
 headers = [('Content-type', 'text/html'),
            ('Cache-Control', 'no-cache')]

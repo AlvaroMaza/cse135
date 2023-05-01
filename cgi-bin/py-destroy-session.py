@@ -9,11 +9,9 @@ cookie['session_id'] = ''
 cookie['session_id']['path'] = '/'
 cookie['session_id']['expires'] = 0
 
-cookie_string = os.environ.get('HTTP_COOKIE')
-if cookie_string is not None:
-    cookie = cookies.SimpleCookie()
-    cookie.load(cookie_string)
-    cookie['username'].value = None
+new_cookie = cookies.SimpleCookie()
+new_cookie['username'] = ''
+new_cookie['username']['expires'] = 0
 
 # Set response headers
 headers = [('Content-type', 'text/html'),           ('Cache-Control', 'no-cache')]

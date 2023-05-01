@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from http.cookies import SimpleCookie
 import os
 

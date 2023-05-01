@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 from http.cookies import SimpleCookie
 
@@ -39,13 +41,13 @@ print("</table>")
 
 # Links for other pages
 print("<br />")
-print("<a href=\"/cgi-bin/php-sessions1.php\">Session Page 1</a>")
+print("<a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a>")
 print("<br />")
-print("<a href=\"/php-cgiform.html\">PHP CGI Form</a>")
+print("<a href=\"/py-cgiform.html\">PHP CGI Form</a>")
 print("<br /><br />")
 
 # Destroy Session button
-print("<form action=\"/cgi-bin/php-destroy-session.php\" method=\"get\">")
+print("<form action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
 print("<button type=\"submit\">Destroy Session</button>")
 print("</form>")
 

@@ -34,7 +34,7 @@ else:
         try:
             session_user_id = cookie['username'].value
         except KeyError:
-            session_user_id = None
+            session_user_id = "None"
 
 # Set response headers
 headers = [('Content-type', 'text/html'),

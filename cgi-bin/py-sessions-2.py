@@ -13,10 +13,10 @@ if cookie_string is not None:
     try:
         session_id = cookie['username'].value
     except KeyError:
-        session_id = None
+        session_id = "None"
 else:
     # Handle case where session ID cookie is missing
-    session_id = None
+    session_id = "None"
 
 # Load session
 if session_id is not None:

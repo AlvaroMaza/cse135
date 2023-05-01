@@ -19,12 +19,18 @@ cookie['session_id']['expires'] = 3600
 # Store data in session
 form = cgi.FieldStorage()
 username = form.getvalue("username")
-cookie['username'] = username
 
 if username is not None:
     # Store username in session data
     session_data['username'] = username
+    cookie['username'] = username
 
+else:
+    cookie_string = os.environ.get('HTTP_COOKIE')
+if cookie_string is not None:
+    cookie = cookies.SimpleCookie()
+    cookie.load(cookie_string)
+    session_id = cookie['username'].value
 # Set response headers
 headers = [('Content-type', 'text/html'),
            ('Cache-Control', 'no-cache')]

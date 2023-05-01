@@ -24,13 +24,14 @@ if username is not None:
     # Store username in session data
     session_data['username'] = username
     cookie['username'] = username
+    session_user_id = cookie['username'].value
 
 else:
     cookie_string = os.environ.get('HTTP_COOKIE')
     if cookie_string is not None:
         cookie = cookies.SimpleCookie()
         cookie.load(cookie_string)
-        session_id = cookie['username'].value
+        session_user_id = cookie['username'].value
 
 # Set response headers
 headers = [('Content-type', 'text/html'),
@@ -43,10 +44,7 @@ body += '<h1>Python Sessions Page</h1>'
 body += '<table>'
 
 # Display stored data
-if 'username' in session_data:
-    body += '<tr><td>Session Data:</td><td>' + session_id + '</td></tr>\n'
-else:
-    body += '<tr><td>Session Data:</td><td>None</td></tr>\n'
+body += '<tr><td>Session Data:</td><td>' + session_user_id + '</td></tr>\n'
 
 body += '</table>'
 

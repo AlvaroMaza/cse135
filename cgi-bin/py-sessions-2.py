@@ -4,7 +4,7 @@ import os
 from http.cookies import SimpleCookie
 
 # Load session using the session ID stored in the cookie
-if 'PHPSESSID' in os.environ['HTTP_COOKIE']:
+if 'PYSESSID' in os.environ['HTTP_COOKIE']:
     session_id = os.environ['HTTP_COOKIE'].split('=')[1]
     os.environ['REQUEST_METHOD'] = 'GET'  # Ensure subsequent requests are GET requests
 else:
@@ -16,7 +16,7 @@ print("Content-type: text/html\n")
 
 # Body - HTML
 print("<html>")
-print("<head><title>PHP Sessions</title></head>\n")
+print("<head><title>PY Sessions</title></head>\n")
 print("<body>")
 print("<h1>PHP Sessions Page 2</h1>")
 print("<table>")
@@ -25,9 +25,9 @@ print("<table>")
 if session_id:
     from http import cookies
     cookie = SimpleCookie()
-    cookie['PHPSESSID'] = session_id
-    cookie['PHPSESSID']['path'] = '/'
-    cookie['PHPSESSID']['expires'] = 3600
+    cookie['PYSESSID'] = session_id
+    cookie['PYSESSID']['path'] = '/'
+    cookie['PYSESSID']['expires'] = 3600
     print(cookie.output())
     print("<tr><td>Session Data:</td><td>" + os.environ['HTTP_COOKIE'] + "</td></tr>\n")
 elif 'username' in os.environ['QUERY_STRING']:

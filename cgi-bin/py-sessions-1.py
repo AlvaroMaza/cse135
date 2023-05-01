@@ -66,7 +66,7 @@ print("</html>")
 
 # Save session ID in a cookie
 cookie = SimpleCookie()
-cookie['PHPSESSID'] = session_id
-cookie['PHPSESSID']['path'] = '/'
-cookie['PHPSESSID']['expires'] = 3600
+cookie['PYSESSID'] = session_id
+cookie['PYSESSID']['path'] = '/'
+cookie['PYSESSID']['expires'] = 3600
 print(cookie.output(header=''))

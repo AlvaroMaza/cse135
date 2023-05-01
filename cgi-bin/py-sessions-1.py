@@ -42,7 +42,7 @@ else:
 body += '</table>'
 
 body += "<br /><a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>"
-body += "<br /><a href=\"/py-cgiform.html\">PY CGI Form</a>"
+body += "<br /><a href=\"/py-state-demo.html\">Python CGI Form</a>"
 body +="<br /><br />"
 body += "<form action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">"
 body +="<button type=\"submit\">Destroy Session</button>"

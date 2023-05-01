@@ -43,7 +43,7 @@ print("</table>")
 print("<br />")
 print("<a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a>")
 print("<br />")
-print("<a href=\"/py-cgiform.html\">PHP CGI Form</a>")
+print("<a href=\"/py-state-demo.html\">Python CGI Form</a>")
 print("<br /><br />")
 
 # Destroy Session button

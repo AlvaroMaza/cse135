@@ -1,70 +1,72 @@
 #!/usr/bin/env python
 
-import cgi
-import cgitb
+from http.cookies import SimpleCookie
 import os
-import hashlib
-from http import cookies
-from html import escape
-from cgi import parse_qs, escape
+
+# Start session and get session ID
 from uuid import uuid4
 
-# Enable error reporting for debugging purposes
-cgitb.enable()
-
-# Create a session ID
 session_id = str(uuid4())
 
-# Get the form data
-form = cgi.FieldStorage()
+# Get Name from Environment
+name = None
+if 'username' in os.environ:
+    name = os.environ['username']
+    os.environ['username'] = name
 
-# Get the username from the form data
-username = form.getvalue('username')
-
-# Store the username in the session
-session = cgi.FieldStorage()
-session['username'] = username
-
-# Set a session cookie with the session ID
-session_cookie = cookies.SimpleCookie()
-session_cookie['session_id'] = session_id
-session_cookie['session_id']['expires'] = 30 * 24 * 60 * 60  # 30 days
-session_cookie['session_id']['path'] = '/'
-session_cookie['session_id']['httponly'] = True
-print(session_cookie.output())
+# Set the cookie
+cookie = SimpleCookie()
+if name:
+    cookie['username'] = name
+    cookie['username']['path'] = '/'
+    cookie['username']['expires'] = 3600
+    cookie['username']['httponly'] = True
 
 # Headers
 print("Cache-Control: no-cache")
-print("Content-type: text/html\n")
+if name:
+    print("Content-type: text/html")
+    print(cookie.output(header=''))
+else:
+    print("Content-type: text/html\n")
 
 # Body - HTML
 print("<html>")
 print("<head><title>Python Sessions</title></head>")
 print("<body>")
-print("<h1>Python Sessions Page 1</h1>")
+print("<h1>PHP Sessions Page 1</h1>")
 print("<table>")
 
 # First check for new Cookie, then Check for old Cookie
-if len(username) > 0:
-    print(f"<tr><td>Cookie:</td><td>{username}</td></tr>")
-elif session_cookie and session_id in session_cookie:
-    print(f"<tr><td>Cookie:</td><td>{session_cookie.output()}</td></tr>")
+if name:
+    print("<tr><td>Cookie:</td><td>{}</td></tr>".format(name))
+elif 'HTTP_COOKIE' in os.environ:
+    cookie.load(os.environ['HTTP_COOKIE'])
+    if 'username' in cookie:
+        print("<tr><td>Cookie:</td><td>{}</td></tr>".format(cookie['username'].value))
 else:
-    print("<tr><td>Cookie:</td><td>Unknown</td></tr>")
+    print("<tr><td>Cookie:</td><td>None</td></tr>")
 
 print("</table>")
 
 # Links for other pages
 print("<br />")
-print("<a href=\"/cgi-bin/python-sessions-2.py\">Session Page 2</a>")
+print("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>")
 print("<br />")
-print("<a href=\"/python-cgiform.html\">Python CGI Form</a>")
+print("<a href=\"/py-cgiform.py\">Python CGI Form</a>")
 print("<br /><br />")
 
 # Destroy Cookie button
-print("<form action=\"/cgi-bin/python-destroy-session.py\" method=\"get\">")
+print("<form action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
 print("<button type=\"submit\">Destroy Session</button>")
 print("</form>")
 
 print("</body>")
 print("</html>")
+
+# Save session ID in a cookie
+cookie = SimpleCookie()
+cookie['PYSESSID'] = session_id
+cookie['PYSESSID']['path'] = '/'
+cookie['PYSESSID']['expires'] = 3600
+print(cookie.output(header=''))

@@ -1,39 +1,53 @@
 #!/usr/bin/env python
+
 import os
-import cgi
-import http.cookies
-from html import escape
-from session import Session
+from http.cookies import SimpleCookie
 
-# Create a new CGI Object
-cgi = cgi.FieldStorage()
-
-# Get the Session ID from the Cookie
-cookie = http.cookies.SimpleCookie(os.environ.get('HTTP_COOKIE'))
-sid = cookie.get('CGISESSID')
-session = Session(sid=sid, inc=0, driver="File", prefix="py_sess_", directory="/tmp")
-
-# Access Stored Data
-name = session.get("username", "")
-
-print("Content-Type: text/html\n")
-
-print("<html>")
-print("<head>")
-print("<title>Python Sessions</title>")
-print("</head>")
-print("<body>")
-
-print("<h1>Python Sessions Page 2</h1>")
-
-if name:
-    print("<p><b>Name:</b> %s</p>" % escape(name))
+# Load session using the session ID stored in the cookie
+if 'PYSESSID' in os.environ['HTTP_COOKIE']:
+    session_id = os.environ['HTTP_COOKIE'].split('=')[1]
+    os.environ['REQUEST_METHOD'] = 'GET'  # Ensure subsequent requests are GET requests
 else:
-    print("<p><b>Name:</b> You do not have a name set</p>")
-print("<br/><br/>")
-print("<a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a><br/>")
-print("<a href=\"/py-state-demo.html\">Python CGI Form</a><br />")
-print("<form style=\"margin-top:30px\" action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
+    session_id = None
+
+# Headers
+print("Cache-Control: no-cache")
+print("Content-type: text/html\n")
+
+# Body - HTML
+print("<html>")
+print("<head><title>PY Sessions</title></head>\n")
+print("<body>")
+print("<h1>PHP Sessions Page 2</h1>")
+print("<table>")
+
+# Check if session data is stored
+if session_id:
+    from http import cookies
+    cookie = SimpleCookie()
+    cookie['PYSESSID'] = session_id
+    cookie['PYSESSID']['path'] = '/'
+    cookie['PYSESSID']['expires'] = 3600
+    print(cookie.output())
+    print("<tr><td>Session Data:</td><td>" + os.environ['HTTP_COOKIE'] + "</td></tr>\n")
+elif 'username' in os.environ['QUERY_STRING']:
+    name = os.environ['QUERY_STRING'].split('=')[1]
+    print(f"Set-Cookie: username={name}; path=/; expires=" + str(time.time()+3600) + "; HttpOnly")
+    print("<tr><td>Session Data:</td><td>" + name + "</td></tr>\n")
+else:
+    print("<tr><td>Session Data:</td><td>None</td></tr>\n")
+
+print("</table>")
+
+# Links for other pages
+print("<br />")
+print("<a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a>")
+print("<br />")
+print("<a href=\"/py-cgiform.html\">PHP CGI Form</a>")
+print("<br /><br />")
+
+# Destroy Session button
+print("<form action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
 print("<button type=\"submit\">Destroy Session</button>")
 print("</form>")
 

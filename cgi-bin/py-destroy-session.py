@@ -8,6 +8,10 @@ cookie['session_id'] = ''
 cookie['session_id']['path'] = '/'
 cookie['session_id']['expires'] = 0
 
+cookie['username'] = ''
+cookie['username']['path'] = '/'
+cookie['username']['expires'] = 0
+
 # Set response headers
 headers = [('Content-type', 'text/html'),           ('Cache-Control', 'no-cache')]
 

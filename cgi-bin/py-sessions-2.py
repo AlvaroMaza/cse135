@@ -13,7 +13,7 @@ if cookie_string is not None:
     session_id = cookie['username'].value
 else:
     # Handle case where session ID cookie is missing
-    session_id = "hola"
+    session_id = None
 
 # Load session
 if session_id is not None:

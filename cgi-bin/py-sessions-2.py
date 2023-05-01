@@ -16,9 +16,9 @@ print("Content-type: text/html\n")
 
 # Body - HTML
 print("<html>")
-print("<head><title>PY Sessions</title></head>\n")
+print("<head><title>Python Sessions</title></head>\n")
 print("<body>")
-print("<h1>PHP Sessions Page 2</h1>")
+print("<h1>Python Sessions Page 2</h1>")
 print("<table>")
 
 # Check if session data is stored

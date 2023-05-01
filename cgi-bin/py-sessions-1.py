@@ -34,7 +34,7 @@ else:
 print("<html>")
 print("<head><title>Python Sessions</title></head>")
 print("<body>")
-print("<h1>PHP Sessions Page 1</h1>")
+print("<h1>Python Sessions Page 1</h1>")
 print("<table>")
 
 # First check for new Cookie, then Check for old Cookie

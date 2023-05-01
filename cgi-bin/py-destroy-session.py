@@ -17,7 +17,7 @@ body += '<body>'
 body += '<h1>Session Destroyed</h1>'
 body += "<br /><a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a>"
 body += "<br /><a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>"
-body += "<br /><a href=\"/py-cgiform.html\">PY CGI Form</a>"
+body += "<br /><a href=\"/py-state-demo.html\">PY CGI Form</a>"
 body +="</body>"
 body +="</html>"
 

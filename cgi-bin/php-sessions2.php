@@ -29,7 +29,7 @@ echo "</table>";
 echo "<br />";
 echo "<a href=\"/cgi-bin/php-sessions1.php\">Session Page 1</a>";
 echo "<br />";
-echo "<a href=\"/php-cgiform.html\">PHP CGI Form</a>";
+echo "<a href=\"/php-state-demo.html\">PHP CGI Form</a>";
 echo "<br /><br />";
 
 // Destroy Session button

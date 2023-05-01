@@ -30,7 +30,7 @@ else:
 
 # Body - HTML
 print("<html>")
-print("<head><title>PHP Sessions</title></head>")
+print("<head><title>Python Sessions</title></head>")
 print("<body>")
 print("<h1>PHP Sessions Page 1</h1>")
 print("<table>")
@@ -49,13 +49,13 @@ print("</table>")
 
 # Links for other pages
 print("<br />")
-print("<a href=\"/cgi-bin/php-sessions2.php\">Session Page 2</a>")
+print("<a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>")
 print("<br />")
-print("<a href=\"/php-cgiform.html\">PHP CGI Form</a>")
+print("<a href=\"/py-cgiform.py\">Python CGI Form</a>")
 print("<br /><br />")
 
 # Destroy Cookie button
-print("<form action=\"/cgi-bin/php-destroy-session.php\" method=\"get\">")
+print("<form action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">")
 print("<button type=\"submit\">Destroy Session</button>")
 print("</form>")
 

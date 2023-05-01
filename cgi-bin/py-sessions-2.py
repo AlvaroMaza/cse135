@@ -10,6 +10,7 @@ cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string is not None:
     cookie = cookies.SimpleCookie()
     cookie.load(cookie_string)
+    print(cookie)
     session_id = cookie.get('session_id').value
 else:
     # Handle case where session ID cookie is missing

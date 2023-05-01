@@ -15,9 +15,11 @@ cookie['session_id'] = session_id
 cookie['session_id']['path'] = '/'
 cookie['session_id']['expires'] = 3600
 
+
 # Store data in session
 form = cgi.FieldStorage()
 username = form.getvalue("username")
+cookie['username'] = username
 
 if username is not None:
     # Store username in session data

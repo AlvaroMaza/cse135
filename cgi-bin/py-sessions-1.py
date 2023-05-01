@@ -12,7 +12,6 @@ session_id = str(uuid4())
 name = None
 if 'username' in os.environ:
     name = os.environ['username']
-    os.environ['username'] = name
 
 # Set the cookie
 cookie = SimpleCookie()

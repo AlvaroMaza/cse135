@@ -24,7 +24,6 @@ if username is not None:
     # Store username in session data
     session_data['username'] = username
     cookie['username'] = username
-    session_id = cookie['username'].value
 
 else:
     cookie_string = os.environ.get('HTTP_COOKIE')

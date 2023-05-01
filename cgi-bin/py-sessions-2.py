@@ -10,7 +10,6 @@ cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string is not None:
     cookie = cookies.SimpleCookie()
     cookie.load(cookie_string)
-    print(cookie)
     session_id = cookie.get('session_id').value
 else:
     # Handle case where session ID cookie is missing
@@ -49,6 +48,7 @@ body += '</table>'
 body += "<br /><a href=\"/cgi-bin/py-sessions.py\">Session Page 1</a>"
 body += "<br /><a href=\"/py-state-demo.html\">Python CGI Form</a>"
 body +="</body>"
+body += "<p>"+ cookie +"</p>" 
 body +="</html>"
 
 print('Status: 200 OK')

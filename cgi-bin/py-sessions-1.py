@@ -31,7 +31,10 @@ else:
     if cookie_string is not None:
         cookie = cookies.SimpleCookie()
         cookie.load(cookie_string)
-        session_user_id = cookie['username'].value
+        try:
+            session_user_id = cookie['username'].value
+        except KeyError:
+            session_user_id = None
 
 # Set response headers
 headers = [('Content-type', 'text/html'),

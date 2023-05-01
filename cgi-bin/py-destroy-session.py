@@ -14,7 +14,9 @@ new_cookie['username'] = ''
 new_cookie['username']['expires'] = 0
 
 # Set response headers
-headers = [('Content-type', 'text/html'),           ('Cache-Control', 'no-cache')]
+headers = [('Content-type', 'text/html'),
+           ('Cache-Control', 'no-cache'),
+           ('Set-Cookie', new_cookie.output(header='', sep='; '))]
 
 # Build HTML response
 body = '<html><head><title>Python Sessions - Session Destroyed</title></head>\n'

@@ -40,10 +40,16 @@ else:
     body += '<tr><td>Session Data:</td><td>None</td></tr>\n'
 
 body += '</table>'
-body += '<br /><a href="/cgi-bin/python-sessions2.py">Session Page 2</a>'
-body += '<br /><br /><form action="/cgi-bin/python-destroy-session.py" method="get">'
-body += '<button type="submit">Destroy Session</button></form>'
-body += '</body></html>'
+
+body += "<br /><a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>"
+body += "<br /><a href=\"/py-cgiform.html\">PY CGI Form</a>"
+body +="<br /><br />"
+body += "<form action=\"/cgi-bin/py-destroy-session.py\" method=\"get\">"
+body +="<button type=\"submit\">Destroy Session</button>"
+body += "</form>"
+body +="</body>"
+body +="</html>"
+
 
 # Send response with headers and cookie
 print(cookie.output())

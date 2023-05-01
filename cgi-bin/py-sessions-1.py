@@ -15,7 +15,8 @@ cookie['session_id']['path'] = '/'
 cookie['session_id']['expires'] = 3600
 
 # Store data in session
-session_data['username'] = 'John'
+session_data['username'] = os.environ['username']
+
 
 # Set response headers
 headers = [('Content-type', 'text/html'),

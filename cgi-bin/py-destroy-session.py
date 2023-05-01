@@ -1,38 +1,29 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-import os
-from http.cookies import SimpleCookie
-from cgi import FieldStorage
-from html import escape
-import cgi
-import cgitb
-from session import Session
+from http import cookies
 
-cgitb.enable()
+# Set up cookie
+cookie = cookies.SimpleCookie()
+cookie['session_id'] = ''
+cookie['session_id']['path'] = '/'
+cookie['session_id']['expires'] = 0
 
-print("Content-type: text/html\n")
+# Set response headers
+headers = [('Content-type', 'text/html'),           ('Cache-Control', 'no-cache')]
 
-cookie = SimpleCookie(os.environ.get("HTTP_COOKIE"))
-sid = cookie.get("SITE_SID").value if cookie.get("SITE_SID") else None
+# Build HTML response
+body = '<html><head><title>Python Sessions - Session Destroyed</title></head>\n'
+body += '<body>'
+body += '<h1>Session Destroyed</h1>'
+body += "<br /><a href=\"/cgi-bin/py-sessions-1.py\">Session Page 1</a>"
+body += "<br /><a href=\"/cgi-bin/py-sessions-2.py\">Session Page 2</a>"
+body += "<br /><a href=\"/py-cgiform.html\">PY CGI Form</a>"
+body +="</body>"
+body +="</html>"
 
-session = Session(
-    session_options={
-        'id': sid,
-        'cookie_only': True,
-        'directory': '/tmp'
-    }
-)
-
-session.delete()
-
-print("<html>")
-print("<head>")
-print("<title>Python Session Destroyed</title>")
-print("</head>")
-print("<body>")
-print("<h1>Session Destroyed</h1>")
-print("<a href=\"/py-state-demo.html\">Back to the Python CGI Form</a><br />")
-print("<a href=\"/cgi-bin/py-sessions-1.py\">Back to Page 1</a><br />")
-print("<a href=\"/cgi-bin/py-sessions-2.py\">Back to Page 2</a>")
-print("</body>")
-print("</html>")
+# Send response with headers and cookie
+print(cookie.output())
+for header in headers:
+    print(header[0] + ': ' + header[1])
+print('')
+print(body)

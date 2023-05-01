@@ -69,4 +69,3 @@ cookie = SimpleCookie()
 cookie['PYSESSID'] = session_id
 cookie['PYSESSID']['path'] = '/'
 cookie['PYSESSID']['expires'] = 3600
-print(cookie.output(header=''))

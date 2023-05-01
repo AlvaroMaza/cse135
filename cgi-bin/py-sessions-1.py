@@ -3,6 +3,7 @@
 from http import cookies
 import os
 import time
+import cgi
 
 # Set up session
 session_id = str(time.time())
@@ -15,8 +16,12 @@ cookie['session_id']['path'] = '/'
 cookie['session_id']['expires'] = 3600
 
 # Store data in session
-session_data['username'] = os.environ['username']
+form = cgi.FieldStorage()
+username = form.getvalue("username")
 
+if username is not None:
+    # Store username in session data
+    session_data['username'] = username
 
 # Set response headers
 headers = [('Content-type', 'text/html'),

@@ -27,14 +27,13 @@ echo "<body>";
 echo "<h1>PHP Sessions Page 1</h1>";
 echo "<table>";
 
-// First check for new Cookie, then Check for old Cookie
-if (isset($name)) {
-    echo "<tr><td>Cookie:</td><td>$name</td></tr>\n";
-} else if (isset($_COOKIE['username'])) {
-    echo "<tr><td>Cookie:</td><td>" . $_COOKIE['username'] . "</td></tr>\n";
+// Check if session data is stored
+if (isset($_SESSION['username'])) {
+    echo "<tr><td>Session Data:</td><td>" . $_SESSION['username'] . "</td></tr>\n";
 } else {
-    echo "<tr><td>Cookie:</td><td>None</td></tr>\n";
+    echo "<tr><td>Session Data:</td><td>None</td></tr>\n";
 }
+
 
 echo "</table>";
 
@@ -45,7 +44,7 @@ echo "<br />";
 echo "<a href=\"/php-cgiform.html\">PHP CGI Form</a>";
 echo "<br /><br />";
 
-// Destroy Cookie button
+// Destroy Session button
 echo "<form action=\"/cgi-bin/php-destroy-session.php\" method=\"get\">";
 echo "<button type=\"submit\">Destroy Session</button>";
 echo "</form>";

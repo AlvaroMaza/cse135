@@ -30,7 +30,7 @@ const pool = mysql.createPool({
 // Enable "promise" for mysql2
 const promisePool = pool.promise();
 
-app.get('/users', async (req, res) => {
+app.get('/api', async (req, res) => {
     try {
         // Execute SQL query
         const [rows, fields] = await promisePool.query('SELECT * FROM users');
@@ -43,7 +43,7 @@ app.get('/users', async (req, res) => {
     }
 });
 
-app.post('/users', async (req, res) => {
+app.post('/api', async (req, res) => {
     try {
         const { name, email } = req.body;
 
@@ -64,7 +64,7 @@ app.post('/users', async (req, res) => {
     }
 });
 
-app.put('/users/:id', async (req, res) => {
+app.put('/api/:id', async (req, res) => {
 
     const id = req.params.id;
     const { name, email } = req.body;
@@ -85,7 +85,7 @@ app.put('/users/:id', async (req, res) => {
     }
 })
 
-app.delete('/users/:id', async (req, res) => {
+app.delete('/api/:id', async (req, res) => {
     // delete the user with the given id from the mySQL database
     const id = req.params.id;
 

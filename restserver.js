@@ -37,13 +37,13 @@ app.get('/static/', async (req, res) => {
 
 app.post('/static/', async (req, res) => {
     try {
-        const { url, timestamp, userAgent, screenDimensions } = req.body;
-        if (!url || !timestamp || !userAgent || !screenDimensions) {
+        const url = req.body;
+        if (!url) {
             return res.status(400).send('Missing info');
         }
 
         // Execute SQL query
-        const [result] = await promisePool.query('INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)', [url, timestamp, userAgent, screenDimensions]);
+        const [result] = await promisePool.query('INSERT INTO users (url) VALUES (?)', [url]);
 
         // Send response
         res.status(201).send(`User added with ID: ${result.insertId}`);

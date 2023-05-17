@@ -30,7 +30,12 @@ const pool = mysql.createPool({
 // Enable "promise" for mysql2
 const promisePool = pool.promise();
 
-app.get('/static', async (req, res) => {
+app.get('/', function(req, res) {
+    const logs = require('./logs.json');
+    res.json(logs);
+  });
+
+app.get('./static', async (req, res) => {
     const logs = require('./logs.json');
   
     res.json(logs);

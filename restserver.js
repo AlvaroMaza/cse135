@@ -20,9 +20,9 @@ app.use(cors({
 // Create connection pool to MySQL database
 
 const pool = mysql.createPool({
-    host: '143.198.66.79',
+    host: 'localhost',
     user: 'sammy',
-    password: 'cse135',
+    password: 'realmadrid',
     database: 'rest'
 });
 

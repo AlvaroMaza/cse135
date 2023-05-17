@@ -1,7 +1,7 @@
 const PORT = 3001;
 
 const express = require('express');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { time } = require('console');
@@ -28,8 +28,6 @@ const pool = mysql.createPool({
     
 });
 
-// Enable "promise" for mysql2
-const promisePool = pool.promise();
 
 app.get('/static/', async (req, res) => {
     const logs = require('./logs.json');
@@ -47,7 +45,11 @@ app.post('/static/', async (req, res) => {
         }
 
         // Execute SQL query
-        const [result] = await promisePool.query('INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)', [url, timestamp, userAgent, screenDimensions]);
+        const connection = await pool.getConnection();
+        const [result] = await connection.execute(
+            'INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)',
+            [url, timestamp, userAgent, JSON.stringify(screenDimensions)]);
+        connection.release();
 
         // Send response
         res.status(201).send(`User added with ID: ${result.insertId}`);

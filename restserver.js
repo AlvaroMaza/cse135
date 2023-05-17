@@ -31,16 +31,9 @@ const pool = mysql.createPool({
 const promisePool = pool.promise();
 
 app.get('/api', async (req, res) => {
-    try {
-        // Execute SQL query
-        const [rows, fields] = await promisePool.query('SELECT * FROM users');
-
-        // Send response
-        res.json(rows);
-    } catch (error) {
-        // Handle error
-        res.status(500).send(error);
-    }
+    const logs = require('./logs.json');
+  
+    res.json(logs);
 });
 
 app.post('/api', async (req, res) => {

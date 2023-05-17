@@ -39,11 +39,15 @@ app.post('/static/', async (req, res) => {
     try {
         const { url, timestamp, userAgent, screenDimensions } = req.body;
 
+        if (!url || !timestamp || !userAgent || !screenDimensions) {
+            console.log(`${req.body}`);
+            return res.status(400).send('Missing info');
+        }
 
         // ZOMG on the way to SQL INJECTION if you don't watch out!
 
         // Execute SQL query
-        const [result] = await promisePool.query('INSERT INTO users (url, referrer, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?, ?)', [url, referrer, timestamp, userAgent, screenDimensions]);
+        const [result] = await promisePool.query('INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)', [url, timestamp, userAgent, screenDimensions]);
 
         // Send response
         res.status(201).send(`User added with ID: ${result.insertId}`);

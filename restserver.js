@@ -1,17 +1,11 @@
-var jsonServer = require('json-server');
+const express = require('express')
+const app = express()
+const port = 3001
 
-// Returns an Express server
-var server = jsonServer.create();
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-// Set default middlewares (logger, static, cors and no-cache)
-server.use(jsonServer.defaults());
-
-// Add custom routes
-// server.get('/custom', function (req, res) { res.json({ msg: 'hello' }) })
-
-// Returns an Express router
-var router = jsonServer.router('logs.json');
-
-server.use(router);
-
-server.listen(3001);
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})

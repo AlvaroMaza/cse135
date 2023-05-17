@@ -25,7 +25,7 @@ const executeQuery = async (query, values) => {
   }
 };
 
-app.post('/api/static', async (req, res) => {
+app.post('/static/', async (req, res) => {
   try {
     const { url, timestamp, userAgent, screenDimensions } = req.body;
 

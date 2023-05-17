@@ -40,15 +40,16 @@ app.post('/static/', async (req, res) => {
         const { url, timestamp, userAgent, screenDimensions } = req.body;
 
         if (!url || !timestamp || !userAgent || !screenDimensions) {
-            console.log('Request Payload:', req.body)
             return res.status(400).send(req.body);
         }
-
+        console.log('Before query execution');
         // Execute SQL query
         const connection = await pool.getConnection();
+        console.log('While query execution');
         const [result] = await connection.execute(
             'INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)',
             [url, timestamp, userAgent, JSON.stringify(screenDimensions)]);
+        console.log('After query execution');
         connection.release();
 
         // Send response
@@ -56,7 +57,7 @@ app.post('/static/', async (req, res) => {
     } catch (error) {
         // Handle error
         console.log(error)
-        res.status(400).send(error);
+        res.status(500).send(error);
     }
 });
 

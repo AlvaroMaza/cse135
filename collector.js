@@ -2,8 +2,7 @@ window.addEventListener('DOMContentLoaded',init);
 function init(){
     let payload = {};
 
-    payload["url"] = window.location.href;
-    payload["referrer"] = document.referrer;
+    payload["url"] = window.location.href;;
 
     payload["timestamp"] = new Date().toISOString();
 

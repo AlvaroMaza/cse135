@@ -37,9 +37,9 @@ app.get('/static/', async (req, res) => {
 
 app.post('/static/', async (req, res) => {
     try {
-        const { url, referrer, timestamp, userAgent, screenDimensions } = req.body;
+        const { url, timestamp, userAgent, screenDimensions } = req.body;
 
-        if (!url || !referrer || !timestamp || !userAgent || !screenDimensions) {
+        if (!url || !timestamp || !userAgent || !screenDimensions) {
             return res.status(400).send('Missing info');
         }
 

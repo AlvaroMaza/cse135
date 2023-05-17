@@ -41,7 +41,7 @@ app.post('/static/', async (req, res) => {
 
         if (!url || !timestamp || !userAgent || !screenDimensions) {
             console.log('Request Payload:', req.body)
-            return res.status(400).send('Missing info');
+            return res.status(400).send(req.body);
         }
 
         // Execute SQL query

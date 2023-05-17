@@ -40,6 +40,7 @@ app.post('/static/', async (req, res) => {
         const { url, timestamp, userAgent, screenDimensions } = req.body;
 
         if (!url || !timestamp || !userAgent || !screenDimensions) {
+            console.log(`${req.body}`);
             return res.status(400).send('Missing info');
         }
 

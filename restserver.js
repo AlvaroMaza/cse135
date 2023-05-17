@@ -20,10 +20,12 @@ app.use(cors({
 // Create connection pool to MySQL database
 
 const pool = mysql.createPool({
-    host: '143.198.66.79',
+    port: '/var/run/mysqld/mysqld.sock',
+    host: 'localhost',
     user: 'sammy',
     password: 'realmadrid',
     database: 'rest'
+    
 });
 
 // Enable "promise" for mysql2

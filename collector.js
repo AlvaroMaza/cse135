@@ -13,5 +13,5 @@ function init(){
         height: window.screen.height
     };
 
-    navigator.sendBeacon("http://cse135spain.site/api/static", JSON.stringify(payload));
+    navigator.sendBeacon("https://cse135spain.site/api/static", JSON.stringify(payload));
 }

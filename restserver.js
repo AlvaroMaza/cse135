@@ -4,6 +4,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { time } = require('console');
 
 // Create express app
 const app = express();
@@ -17,23 +18,16 @@ app.use(cors({
 }));
 
 // Create connection pool to MySQL database
-// note my non-standard port number and very poor user name and password choices here
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    port: 8889,
-    user: 'root',
-    password: 'root',
-    database: 'users'
+    host: '143.198.66.79',
+    user: 'sammy',
+    password: 'cse135',
+    database: 'rest'
 });
 
 // Enable "promise" for mysql2
 const promisePool = pool.promise();
-
-app.get('/', function(req, res) {
-    const logs = require('./logs.json');
-    res.json(logs);
-  });
 
 app.get('/static/', async (req, res) => {
     const logs = require('./logs.json');
@@ -41,18 +35,18 @@ app.get('/static/', async (req, res) => {
     res.json(logs);
 });
 
-app.post('/api', async (req, res) => {
+app.post('/static/', async (req, res) => {
     try {
-        const { name, email } = req.body;
+        const { url, referrer, timestamp, userAgent, screenDimensions } = req.body;
 
-        if (!name || !email) {
-            return res.status(400).send('Missing name or email');
+        if (!url || !referrer || !timestamp || !userAgent || !screenDimensions) {
+            return res.status(400).send('Missing info');
         }
 
         // ZOMG on the way to SQL INJECTION if you don't watch out!
 
         // Execute SQL query
-        const [result] = await promisePool.query('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
+        const [result] = await promisePool.query('INSERT INTO users (url, referrer, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?, ?)', [url, referrer, timestamp, userAgent, screenDimensions]);
 
         // Send response
         res.status(201).send(`User added with ID: ${result.insertId}`);

@@ -10,7 +10,7 @@ server.use(jsonServer.defaults());
 // server.get('/custom', function (req, res) { res.json({ msg: 'hello' }) })
 
 // Returns an Express router
-var router = jsonServer.router('db.json');
+var router = jsonServer.router('logs.json');
 
 server.use(router);
 

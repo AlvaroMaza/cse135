@@ -9,8 +9,8 @@ const { time } = require('console');
 // Create express app
 const app = express();
 
-// Use body-parser middleware to parse request bodies
-app.use(bodyParser.json());
+app.use(express.json());
+
 
 // Better set up CORS properly or not depending on security posture
 app.use(cors({

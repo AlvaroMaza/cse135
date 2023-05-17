@@ -1,21 +1,17 @@
-const PORT = 3001;
+var jsonServer = require('json-server');
 
-const express = require('express');
-const mysql = require('mysql2');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+// Returns an Express server
+var server = jsonServer.create();
 
-// Create express app
-const app = express();
+// Set default middlewares (logger, static, cors and no-cache)
+server.use(jsonServer.defaults());
 
-app.get('/api/', function(req, res){
-    res.send("Hello from the root application URL");
-});
+// Add custom routes
+// server.get('/custom', function (req, res) { res.json({ msg: 'hello' }) })
 
-app.get('/api/test/', function(req, res){
-    res.send("Hello from the 'test' URL");
-});
-// Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Returns an Express router
+var router = jsonServer.router('db.json');
+
+server.use(router);
+
+server.listen(3001);

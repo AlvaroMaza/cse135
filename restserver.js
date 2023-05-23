@@ -14,7 +14,7 @@ app.use(cors({
 }));
 
 // Create connection pool to MySQL database
-const pool = mysql.createPool({
+const pool = mysql.createConnection({
   port: '/var/run/mysqld/mysqld.sock',
   host: 'localhost',
   user: 'sammy',

@@ -14,12 +14,7 @@
             gtag('config', 'G-RXB36D3BXL');
         </script>
         <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
-        <style>
-            zing-grid {
-              height: 400px;
-              width: 100%;
-            }
-          </style>
+        
     </head>
     <body>
         <zing-grid id="data-grid"></zing-grid>
@@ -30,9 +25,7 @@
 
                 const grid = document.querySelector('#data-grid');
         
-                grid.data = {
-                    records: data
-                };
+                grid.data = data;
 
                 console.log(grid.data);
                 grid.caption = 'User Data';

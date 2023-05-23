@@ -17,7 +17,7 @@ app.use(cors({
 const pool = mysql.createPool({
   port: '/var/run/mysqld/mysqld.sock',
   host: 'localhost',
-  user: 'sammy1',
+  user: 'sammy',
   password: 'realmadrid',
   database: 'rest'
 });

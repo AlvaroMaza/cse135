@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSE 135 - Spain</title>
+        <link rel = "icon" href = "images/crown-solid.svg">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RXB36D3BXL"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RXB36D3BXL');
+        </script>
+        <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+        <style>
+            zing-grid {
+              height: 400px;
+              width: 100%;
+            }
+          </style>
+    </head>
+    <body>
+        <zing-grid id="data-grid"></zing-grid>
+        <script>
+            fetch('https://cse135spain.site/api/static')
+              .then(response => response.json())
+              .then(data => {
+
+                const grid = document.querySelector('#data-grid');
+        
+                grid.data = data;
+                grid.caption = 'Database';
+        
+                grid.columns = [
+                  { field: 'url', header: 'URL' },
+                  { field: 'timestamp', header: 'Timestamp' },
+                  { field: 'userAgent', header: 'User Agent' },
+                  { field: 'language', header: 'Language'},
+                  { field: 'cookieEnabled', header: 'Cookie Enabled'},
+                  { field: 'jsEnabled', header: 'JavaScript Enabled' },
+                  { field: 'imagesEnabled', header: 'Images Enabled' },
+                  { field: 'cssEnabled', header: 'CSS Enabled' },
+                  { field: 'screenDimensions', header: 'Screen Dimensions', subGrid: true },
+                  { field: 'windowDimensions', header: 'Window Dimensions', subGrid: true },
+                  { field: 'connectionType', header: 'Connection Type'}];
+              })
+              .catch(error => console.log('Error:', error));
+          </script>
+    </body>
+</html>

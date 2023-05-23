@@ -28,10 +28,12 @@
               .then(response => response.json())
               .then(data => {
 
-
                 const grid = document.querySelector('#data-grid');
         
-                grid.data = data;
+                grid.data = {
+                    records: data
+                };
+
                 console.log(grid.data);
                 grid.caption = 'User Data';
         

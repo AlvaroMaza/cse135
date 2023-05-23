@@ -25,7 +25,7 @@
 
                 const grid = document.querySelector('#data-grid');
         
-                grid.data = data;
+                grid.data = JSON.stringify(data);
 
                 console.log(grid.data);
                 grid.caption = 'User Data';

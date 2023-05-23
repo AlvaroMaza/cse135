@@ -49,7 +49,6 @@ app.post('/static/', async (req, res) => {
 
     // Execute SQL query
     const connection = await pool.getConnection();
-    console.error(connection);
     const [result] = await connection.execute(
       'INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)',
       [url, timestamp, userAgent, JSON.stringify(screenDimensions)]

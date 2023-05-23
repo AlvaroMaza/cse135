@@ -14,7 +14,7 @@ app.use(cors({
 }));
 
 // Create connection pool to MySQL database
-const connection = await mysql.createConnection({
+const pool = mysql.createPool({
   port: '/var/run/mysqld/mysqld.sock',
   host: 'localhost',
   user: 'sammy',
@@ -25,7 +25,7 @@ const connection = await mysql.createConnection({
 app.get('/static/', async (req, res) => {
   try {
     // Execute SQL query to fetch data from the 'users' table
-    //const connection = await pool.getConnection();
+    const connection = await pool.getConnection();
     const [rows] = await connection.execute('SELECT * FROM users');
     connection.release();
 
@@ -48,7 +48,7 @@ app.post('/static/', async (req, res) => {
     }
 
     // Execute SQL query
-    // const connection = await pool.getConnection();
+    const connection = await pool.getConnection();
     const [result] = await connection.execute(
       'INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)',
       [url, timestamp, userAgent, JSON.stringify(screenDimensions)]

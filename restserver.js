@@ -32,7 +32,7 @@ connection.connect((err) => {
 });
 
 // Retrieve every entry logged in the static table
-app.get('/api/static', (req, res) => {
+app.get('/static/', (req, res) => {
   connection.query('SELECT * FROM static', (error, results) => {
     if (error) {
       console.error('Error:', error);
@@ -44,7 +44,7 @@ app.get('/api/static', (req, res) => {
 });
 
 // Retrieve a specific entry logged in the static table (that matches the given id)
-app.get('/api/static/:id', (req, res) => {
+app.get('/static/:id', (req, res) => {
   connection.query('SELECT * FROM static WHERE id = ?', [req.params.id], (error, results) => {
     if (error) {
       console.error('Error:', error);
@@ -58,7 +58,7 @@ app.get('/api/static/:id', (req, res) => {
 });
 
 // Add a new entry to the static table
-app.post('/api/static', (req, res) => {
+app.post('/static/', (req, res) => {
   const { url, timestamp, userAgent, screenDimensions } = req.body;
   if (!url || !timestamp || !userAgent || !screenDimensions) {
     console.log('Request Payload:', req.body);
@@ -79,7 +79,7 @@ app.post('/api/static', (req, res) => {
 });
 
 // Delete a specific entry from the static table (that matches the given id)
-app.delete('/api/static/:id', (req, res) => {
+app.delete('/static/:id', (req, res) => {
   connection.query('DELETE FROM static WHERE id = ?', [req.params.id], (error, results) => {
     if (error) {
       console.error('Error:', error);
@@ -93,7 +93,7 @@ app.delete('/api/static/:id', (req, res) => {
 });
 
 // Update a specific entry from the static table (that matches the given id)
-app.put('/api/static/:id', (req, res) => {
+app.put('/static/:id', (req, res) => {
   const { url, timestamp, userAgent, screenDimensions } = req.body;
   if (!url || !timestamp || !userAgent || !screenDimensions) {
     console.log('Request Payload:', req.body);

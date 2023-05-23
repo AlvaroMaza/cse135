@@ -24,6 +24,7 @@
               .then(data => {
 
                 const grid = document.querySelector('#data-grid');
+                grid.data = data;
                 console.log(grid.data);
                 grid.caption = 'User Data';
         
@@ -42,8 +43,6 @@
                     { field: 'windowDimensions.height', header: 'Window Height', subGrid: true },
                     { field: 'connectionType', header: 'Connection Type'}
                     ];
-
-                grid.data = data;
               })
               .catch(error => console.log('Error:', error));
           </script>

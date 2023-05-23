@@ -1,3 +1,5 @@
+const loadStartTime = performance.timing.navigationStart;
+let loadEndTime;
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
@@ -44,19 +46,19 @@ function init() {
     });
   
 
-    
-  var timing = window.performance.timing;
-  var loadStartTime = timing.navigationStart;
-  var loadEndTime = timing.loadEventEnd;
-  var totalLoadTime = loadEndTime - loadStartTime;
 
-  // Prepare data to send
-  var payload2 = {
-    timing: timing,
-    loadStartTime: loadStartTime,
-    loadEndTime: loadEndTime,
-    totalLoadTime: totalLoadTime
-  };
+    loadEndTime = performance.now();
+    const totalLoadTime = loadEndTime - loadStartTime;
+  
+    const timingObject = performance.timing;
+  
+    // Create payload object with performance data
+    let payload2 = {
+      timing: timingObject,
+      loadStartTime: loadStartTime,
+      loadEndTime: loadEndTime,
+      totalLoadTime: totalLoadTime
+    };
 
   const performanceData = JSON.stringify(payload2);
 
@@ -78,6 +80,13 @@ function init() {
       console.log('Error:', error);
     });
 }
+
+
+
+
+
+
+
 
 function JavaScriptEnabled() {
   // Check if JavaScript is enabled

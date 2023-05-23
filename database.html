@@ -31,20 +31,23 @@
                 const grid = document.querySelector('#data-grid');
         
                 grid.data = data;
-                grid.caption = 'Database';
+                grid.caption = 'User Data';
         
                 grid.columns = [
-                  { field: 'url', header: 'URL' },
-                  { field: 'timestamp', header: 'Timestamp' },
-                  { field: 'userAgent', header: 'User Agent' },
-                  { field: 'language', header: 'Language'},
-                  { field: 'cookieEnabled', header: 'Cookie Enabled'},
-                  { field: 'jsEnabled', header: 'JavaScript Enabled' },
-                  { field: 'imagesEnabled', header: 'Images Enabled' },
-                  { field: 'cssEnabled', header: 'CSS Enabled' },
-                  { field: 'screenDimensions', header: 'Screen Dimensions', subGrid: true },
-                  { field: 'windowDimensions', header: 'Window Dimensions', subGrid: true },
-                  { field: 'connectionType', header: 'Connection Type'}];
+                    { field: 'url', header: 'URL' },
+                    { field: 'timestamp', header: 'Timestamp' },
+                    { field: 'userAgent', header: 'User Agent' },
+                    { field: 'language', header: 'Language'},
+                    { field: 'cookieEnabled', header: 'Cookie Enabled'},
+                    { field: 'jsEnabled', header: 'JavaScript Enabled' },
+                    { field: 'imagesEnabled', header: 'Images Enabled' },
+                    { field: 'cssEnabled', header: 'CSS Enabled' },
+                    { field: 'screenDimensions.width', header: 'Screen Width', subGrid: true },
+                    { field: 'screenDimensions.height', header: 'Screen Height', subGrid: true },
+                    { field: 'windowDimensions.width', header: 'Window Width', subGrid: true },
+                    { field: 'windowDimensions.height', header: 'Window Height', subGrid: true },
+                    { field: 'connectionType', header: 'Connection Type'}
+                    ];
               })
               .catch(error => console.log('Error:', error));
           </script>

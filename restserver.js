@@ -48,7 +48,7 @@ app.post('/static/', async (req, res) => {
     res.status(201).send(`User added with ID: ${result.insertId}`);
   } catch (error) {
     // Handle error
-    res.status(500).send(result);
+    res.status(500).send(error);
   }
 });
 

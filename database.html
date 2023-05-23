@@ -19,10 +19,7 @@
     <body>
         <zing-grid id="data-grid"></zing-grid>
         <script>
-            fetch('https://cse135spain.site/api/static', {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json'}})
+            fetch('https://cse135spain.site/api/static', {method: 'GET'})
               .then(response => response.json())
               .then(data => {
 

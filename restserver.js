@@ -26,7 +26,7 @@ app.get('/static/', async (req, res) => {
   try {
     // Execute SQL query to fetch data from the 'users' table
     const connection = await pool.getConnection();
-    const [rows] = await connection.query('SELECT * FROM users');
+    const [rows] = await connection.execute('SELECT * FROM users');
     connection.release();
 
     // Send the fetched data as the response
@@ -49,7 +49,7 @@ app.post('/static/', async (req, res) => {
 
     // Execute SQL query
     const connection = await pool.getConnection();
-    const [result] = await connection.query(
+    const [result] = await connection.execute(
       'INSERT INTO users (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)',
       [url, timestamp, userAgent, JSON.stringify(screenDimensions)]
     );

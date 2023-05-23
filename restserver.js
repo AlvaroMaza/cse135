@@ -23,8 +23,18 @@ const pool = mysql.createPool({
 });
 
 app.get('/static/', async (req, res) => {
-  const logs = require('./logs.json');
-  res.json(logs);
+  try {
+    // Execute SQL query to fetch data from the 'users' table
+    const connection = await pool.getConnection();
+    const [rows] = await connection.execute('SELECT * FROM users');
+    connection.release();
+
+    // Send the fetched data as the response
+    res.json(rows);
+  } catch (error) {
+    // Handle error
+    res.status(500).send(error);
+  }
 });
 
 app.post('/static/', async (req, res) => {

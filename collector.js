@@ -6,10 +6,22 @@ function init() {
   payload.url = window.location.href;
   payload.timestamp = new Date().toISOString();
   payload.userAgent = navigator.userAgent;
+  payload.language = navigator.language;
+  payload.cookieEnabled = navigator.cookieEnabled;
+  payload.jsEnabled = true; // JavaScript is always enabled in the browser
+  payload.imagesEnabled = true; // Images are always enabled in the browser
+  payload.cssEnabled = true; // CSS is always enabled in the browser
   payload.screenDimensions = {
     width: window.screen.width,
     height: window.screen.height,
   };
+  payload.windowDimensions = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+  payload.connectionType = navigator.connection
+    ? navigator.connection.effectiveType
+    : 'unknown'; // If network information is not available, set it as unknown
 
   const data = JSON.stringify(payload);
 

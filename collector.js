@@ -8,9 +8,9 @@ function init() {
   payload.userAgent = navigator.userAgent;
   payload.language = navigator.language;
   payload.cookieEnabled = navigator.cookieEnabled;
-  payload.jsEnabled = true; // JavaScript is always enabled in the browser
-  payload.imagesEnabled = true; // Images are always enabled in the browser
-  payload.cssEnabled = true; // CSS is always enabled in the browser
+  payload.jsEnabled = JavaScriptEnabled(); 
+  payload.imagesEnabled = ImagesEnabled(); 
+  payload.cssEnabled = CSSEnabled(); 
   payload.screenDimensions = {
     width: window.screen.width,
     height: window.screen.height,
@@ -42,4 +42,27 @@ function init() {
     .catch((error) => {
       console.log('Error:', error);
     });
+}
+
+function JavaScriptEnabled() {
+  // Check if JavaScript is enabled
+  return typeof navigator === 'object' && 'onLine' in navigator;
+}
+
+function ImagesEnabled() {
+  // Check if images are enabled
+  const img = new Image();
+  img.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+  return img.width > 0 && img.height > 0;
+}
+
+function CSSEnabled() {
+  // Check if CSS is enabled
+  const style = document.createElement('style');
+  style.innerText = 'body { color: red; }';
+  document.head.appendChild(style);
+  const computedStyle = window.getComputedStyle(document.body);
+  const color = computedStyle.color;
+  document.head.removeChild(style);
+  return color === 'rgb(255, 0, 0)';
 }

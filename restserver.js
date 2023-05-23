@@ -22,7 +22,7 @@ const pool = mysql.createPool({
   database: 'rest'
 });
 
-app.get('/static/', async (req, res) => {
+app.get('static/', async (req, res) => {
   try {
     // Execute SQL query to fetch data from the 'users' table
     const connection = await pool.getConnection();
@@ -38,7 +38,7 @@ app.get('/static/', async (req, res) => {
   }
 });
 
-app.post('/static/', async (req, res) => {
+app.post('static/', async (req, res) => {
   try {
     const { url, timestamp, userAgent, screenDimensions } = req.body;
 

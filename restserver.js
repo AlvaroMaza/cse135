@@ -22,17 +22,97 @@ const connection = mysql.createConnection({
   database: 'rest'
 });
 
-// Retrieve every entry logged in the static table
-app.get('/static/', async (req, res) => {
-  connection.connect()
+// Connect to MySQL database
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to database:', err);
+    return;
+  }
+  console.log('Connected to MySQL database');
+});
 
-  connection.query('SELECT 1 + 1 AS solution', (err, rows, fields) => {
-    if (err) throw err
-  
-    console.log('The solution is: ', rows[0].solution)
-  })
-  
-  connection.end()
+// Retrieve every entry logged in the static table
+app.get('/api/static', (req, res) => {
+  connection.query('SELECT * FROM static', (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Retrieve a specific entry logged in the static table (that matches the given id)
+app.get('/api/static/:id', (req, res) => {
+  connection.query('SELECT * FROM static WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.length === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.json(results[0]);
+    }
+  });
+});
+
+// Add a new entry to the static table
+app.post('/api/static', (req, res) => {
+  const { url, timestamp, userAgent, screenDimensions } = req.body;
+  if (!url || !timestamp || !userAgent || !screenDimensions) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing information');
+  }
+  connection.query(
+    'INSERT INTO static (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)',
+    [url, timestamp, userAgent, JSON.stringify(screenDimensions)],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else {
+        res.status(201).send(`Entry added with ID: ${results.insertId}`);
+      }
+    }
+  );
+});
+
+// Delete a specific entry from the static table (that matches the given id)
+app.delete('/api/static/:id', (req, res) => {
+  connection.query('DELETE FROM static WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.status(200).send(`Entry deleted with ID: ${req.params.id}`);
+    }
+  });
+});
+
+// Update a specific entry from the static table (that matches the given id)
+app.put('/api/static/:id', (req, res) => {
+  const { url, timestamp, userAgent, screenDimensions } = req.body;
+  if (!url || !timestamp || !userAgent || !screenDimensions) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing information');
+  }
+  connection.query(
+    'UPDATE static SET url = ?, timestamp = ?, userAgent = ?, screenDimensions = ? WHERE id = ?',
+    [url, timestamp, userAgent, JSON.stringify(screenDimensions), req.params.id],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else if (results.affectedRows === 0) {
+        res.status(404).send('Entry not found');
+      } else {
+        res.status(200).send(`Entry updated with ID: ${req.params.id}`);
+      }
+    }
+  );
 });
 
 // Start server

@@ -64,9 +64,12 @@ app.post('/static/', (req, res) => {
     console.log('Request Payload:', req.body);
     return res.status(400).send('Missing information');
   }
+
+  const formattedTimestamp = new Date(timestamp).toISOString().slice(0, 19).replace('T', ' ');
+
   connection.query(
     'INSERT INTO static (url, timestamp, userAgent, screenDimensions) VALUES (?, ?, ?, ?)',
-    [url, timestamp, userAgent, JSON.stringify(screenDimensions)],
+    [url, formattedTimestamp, userAgent, JSON.stringify(screenDimensions)],
     (error, results) => {
       if (error) {
         console.error('Error:', error);

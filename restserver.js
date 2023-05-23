@@ -181,6 +181,58 @@ app.put('/static/:id', (req, res) => {
     }
   );
 });
+
+
+
+// Add a new entry to the performance table
+app.post('/performance/', (req, res) => {
+  const {
+    timing,
+    loadStartTime,
+    loadEndTime,
+    totalLoadTime
+  } = req.body;
+
+  if (!timing || !loadStartTime || !loadEndTime || !totalLoadTime) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+
+  connection.query(
+    'INSERT INTO performance (timing, loadStartTime, loadEndTime, totalLoadTime) VALUES (?, ?, ?, ?)',
+    [
+      JSON.stringify(timing),
+      loadStartTime,
+      loadEndTime,
+      totalLoadTime
+    ],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else {
+        res.status(201).send(`Performance data added with ID: ${results.insertId}`);
+      }
+    }
+  );
+});
+
+// Retrieve every entry logged in the performance table
+app.get('/performance/', (req, res) => {
+  connection.query('SELECT * FROM performance', (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

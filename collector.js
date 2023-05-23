@@ -42,6 +42,41 @@ function init() {
     .catch((error) => {
       console.log('Error:', error);
     });
+  
+
+    
+  var timing = window.performance.timing;
+  var loadStartTime = timing.navigationStart;
+  var loadEndTime = timing.loadEventEnd;
+  var totalLoadTime = loadEndTime - loadStartTime;
+
+  // Prepare data to send
+  var payload2 = {
+    timing: timing,
+    loadStartTime: loadStartTime,
+    loadEndTime: loadEndTime,
+    totalLoadTime: totalLoadTime
+  };
+
+  const performanceData = JSON.stringify(payload2);
+
+  fetch('https://cse135spain.site/api/performance', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: performanceData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log('Data sent successfully.');
+      } else {
+        console.log('Failed to send data.');
+      }
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+    });
 }
 
 function JavaScriptEnabled() {

@@ -23,7 +23,7 @@
               .then(response => response.json())
               .then(data => {
 
-                const grid = document.querySelector('#data-grid');
+                const grid = document.getElementById('#data-grid');
                 grid.data = data;
                 console.log(grid.data);
                 grid.caption = 'User Data';

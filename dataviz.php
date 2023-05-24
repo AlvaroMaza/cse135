@@ -5,6 +5,7 @@
 </head>
 <body>
   <div id="myChart"></div>
+  <div id="myChart2"></div>
 
   <?php
   $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
@@ -61,6 +62,34 @@
       }
     });
   });
+
+  zingchart.render({
+      id: 'myChart2',
+      height: 400,
+      width: "100%",
+      data: myConfig = {
+        type: "pie",
+        title: {
+          "text": "A Pie Chart"
+        },
+        series: [{
+            "values": [59]
+          },
+          {
+            "values": [55]
+          },
+          {
+            "values": [30]
+          },
+          {
+            "values": [28]
+          },
+          {
+            "values": [15]
+          }
+        ]
+      }
+    });
   </script>
 </body>
 </html>

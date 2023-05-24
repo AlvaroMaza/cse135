@@ -119,12 +119,12 @@ function sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj) {
 };
 
 // Intentionally throwing an error for testing purposes
-function triggerError() {
-  throw new Error('Intentional error for testing');
-}
+//function triggerError() {
+//  throw new Error('Intentional error for testing');
+//}
 
 // Call the function to trigger the error
-triggerError();
+//triggerError();
 
 function JavaScriptEnabled() {
   // Check if JavaScript is enabled

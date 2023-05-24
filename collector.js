@@ -118,6 +118,14 @@ function sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj) {
     });
 }
 
+// Intentionally throwing an error for testing purposes
+function triggerError() {
+  throw new Error('Intentional error for testing');
+}
+
+// Call the function to trigger the error
+triggerError();
+
 function JavaScriptEnabled() {
   // Check if JavaScript is enabled
   return typeof navigator === 'object' && 'onLine' in navigator;

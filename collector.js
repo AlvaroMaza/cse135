@@ -82,6 +82,29 @@ window.addEventListener('DOMContentLoaded',() => {
 
 });
 
+function JavaScriptEnabled() {
+  // Check if JavaScript is enabled
+  return typeof navigator === 'object' && 'onLine' in navigator;
+}
+
+function ImagesEnabled() {
+  // Check if images are enabled
+  const img = new Image();
+  img.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+  return img.width > 0 && img.height > 0;
+}
+
+function CSSEnabled() {
+  // Check if CSS is enabled
+  const style = document.createElement('style');
+  style.innerText = 'body { color: red; }';
+  document.head.appendChild(style);
+  const computedStyle = window.getComputedStyle(document.body);
+  const color = computedStyle.color;
+  document.head.removeChild(style);
+  return color === 'rgb(255, 0, 0)';
+}
+
 window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObj) {
   // Collect the thrown error and send it to the API endpoint
   sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj);
@@ -126,25 +149,52 @@ function sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj) {
 // Call the function to trigger the error
 //triggerError();
 
-function JavaScriptEnabled() {
-  // Check if JavaScript is enabled
-  return typeof navigator === 'object' && 'onLine' in navigator;
+
+function sendMouseActivityToAPI(mouseData) {
+  fetch('https://cse135spain.site/api/mouseactivity', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(mouseData)
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log('Mouse activity data sent successfully');
+      } else {
+        console.error('Error sending mouse activity data:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error('Error sending mouse activity data:', error);
+    });
 }
 
-function ImagesEnabled() {
-  // Check if images are enabled
-  const img = new Image();
-  img.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-  return img.width > 0 && img.height > 0;
-}
+// Mousemove event listener to capture cursor positions
+window.addEventListener('mousemove', function(event) {
+  const cursorPosition = {
+    x: event.clientX,
+    y: event.clientY
+  };
+  sendMouseActivityToAPI({ type: 'mousemove', position: cursorPosition });
+});
 
-function CSSEnabled() {
-  // Check if CSS is enabled
-  const style = document.createElement('style');
-  style.innerText = 'body { color: red; }';
-  document.head.appendChild(style);
-  const computedStyle = window.getComputedStyle(document.body);
-  const color = computedStyle.color;
-  document.head.removeChild(style);
-  return color === 'rgb(255, 0, 0)';
-}
+// Click event listener to capture clicks and mouse button information
+window.addEventListener('click', function(event) {
+  const button = event.button === 0 ? 'left' : event.button === 1 ? 'middle' : 'right';
+  const clickData = {
+    x: event.clientX,
+    y: event.clientY,
+    button: button
+  };
+  sendMouseActivityToAPI({ type: 'click', data: clickData });
+});
+
+// Scroll event listener to capture scrolling coordinates
+window.addEventListener('scroll', function(event) {
+  const scrollData = {
+    x: window.scrollX,
+    y: window.scrollY
+  };
+  sendMouseActivityToAPI({ type: 'scroll', data: scrollData });
+});

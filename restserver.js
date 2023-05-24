@@ -277,6 +277,41 @@ app.get('/errors/', (req, res) => {
   });
 });
 
+// Add a new entry to the mouseactivity table
+app.post('/mouseactivity/', (req, res) => {
+  const { type, data } = req.body;
+
+  if (!type || !data) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+
+  connection.query(
+    'INSERT INTO mouseactivity (type, data) VALUES (?, ?)',
+    [type, JSON.stringify(data)],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else {
+        res.status(201).send(`Mouse activity data added with ID: ${results.insertId}`);
+      }
+    }
+  );
+});
+
+// Retrieve every entry logged in the mouseactivity table
+app.get('/mouseactivity/', (req, res) => {
+  connection.query('SELECT * FROM mouseactivity', (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

@@ -230,8 +230,52 @@ app.get('/performance/', (req, res) => {
 });
 
 
+// Add a new entry to the errors table
+app.post('/errors/', (req, res) => {
+  const {
+    errorMsg,
+    url,
+    lineNumber,
+    columnNumber,
+    errorObj,
+  } = req.body;
 
+  if (!errorMsg || !url || !lineNumber || !columnNumber || !errorObj) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
 
+  connection.query(
+    'INSERT INTO errors (errorMsg, url, lineNumber, columnNumber, errorObj) VALUES (?, ?, ?, ?, ?)',
+    [
+      errorMsg,
+      url,
+      lineNumber,
+      columnNumber,
+      JSON.stringify(errorObj)
+    ],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else {
+        res.status(201).send(`Error data added with ID: ${results.insertId}`);
+      }
+    }
+  );
+});
+
+// Retrieve every entry logged in the errors table
+app.get('/errors/', (req, res) => {
+  connection.query('SELECT * FROM errors', (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 // Start server
 app.listen(PORT, () => {

@@ -47,7 +47,7 @@ function init() {
   
 
 
-    loadEndTime = performance.now();
+    loadEndTime = Date.now();
     const totalLoadTime = loadEndTime - loadStartTime;
   
     const timingObject = performance.timing;

@@ -1,8 +1,7 @@
 const loadStartTime = Date.now();
 let loadEndTime;
-window.addEventListener('DOMContentLoaded', loadFunction());
+window.addEventListener('DOMContentLoaded',() => {
 
-function loadFunction() {
   let payload = {};
 
   payload.url = window.location.href;
@@ -79,10 +78,8 @@ function loadFunction() {
     .catch((error) => {
       console.log('Error:', error);
     });
-}
 
-
-
+});
 
 function JavaScriptEnabled() {
   // Check if JavaScript is enabled

@@ -80,43 +80,43 @@ window.addEventListener('DOMContentLoaded',() => {
       console.log('Error:', error);
     });
 
-});
-
-window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObj) {
-  // Collect the thrown error and send it to the API endpoint
-  sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj);
-};
-
-// Function to send error data to the API endpoint
-function sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj) {
-
-  const payload = {
-    errorMsg: errorMsg,
-    url: url,
-    lineNumber: lineNumber,
-    columnNumber: columnNumber,
-    errorObj: errorObj
+  window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObj) {
+    // Collect the thrown error and send it to the API endpoint
+    sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj);
   };
 
-  // Send the error data to the API endpoint using fetch
-  fetch('https://cse135spain.site/api/errors', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-    .then(response => {
-      if (response.ok) {
-        console.log('Error data sent successfully');
-      } else {
-        console.error('Error sending error data:', response.statusText);
-      }
+  // Function to send error data to the API endpoint
+  function sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj) {
+
+    const payload = {
+      errorMsg: errorMsg,
+      url: url,
+      lineNumber: lineNumber,
+      columnNumber: columnNumber,
+      errorObj: errorObj
+    };
+
+    // Send the error data to the API endpoint using fetch
+    fetch('https://cse135spain.site/api/errors', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
     })
-    .catch(error => {
-      console.error('Error sending error data:', error);
-    });
-}
+      .then(response => {
+        if (response.ok) {
+          console.log('Error data sent successfully');
+        } else {
+          console.error('Error sending error data:', response.statusText);
+        }
+      })
+      .catch(error => {
+        console.error('Error sending error data:', error);
+      });
+  }
+
+});
 
 // Intentionally throwing an error for testing purposes
 function triggerError() {

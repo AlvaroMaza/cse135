@@ -6,6 +6,7 @@
 <body>
   <div id="myChart"></div>
   <div id="myChart2"></div>
+  <div id="myChart" class="chart--container"></div>
 
   <?php
   $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
@@ -89,6 +90,105 @@
           }
         ]
       }
+    });
+
+    let colors = {
+      blue: 'rgba(151,187,205,1)',
+      gray: '#EBEBEB',
+      grayDark: '#3F3F3F',
+    };
+
+    function randomVal(min, max, num) {
+      let aData = [];
+      for (let i = 0; i < num; i++) {
+        let val = Math.random() * (max - min) + min;
+        aData.push(parseInt(val));
+      }
+      return aData;
+    }
+
+    let chartConfig = {
+      type: 'bar',
+      backgroundColor: '#FFF',
+      plot: {
+        backgroundColor2: 'rgba(151,187,205,1)',
+        lineColor: 'rgba(151,187,205,1)',
+        lineWidth: '2px',
+        marker: {
+          backgroundColor: 'rgba(151,187,205,1)',
+          borderColor: 'white',
+          shadow: false,
+        },
+      },
+      plotarea: {
+        backgroundColor: 'white',
+      },
+      scaleX: {
+        guide: {
+          alpha: 1,
+          lineColor: colors.gray,
+          lineStyle: 'solid',
+        },
+        item: {
+          color: colors.grayDark,
+        },
+        lineColor: colors.gray,
+        lineWidth: '1px',
+        tick: {
+          lineColor: '#C7C7C7',
+          lineWidth: '1px',
+        },
+      },
+      scaleY: {
+        guide: {
+          alpha: 1,
+          lineColor: colors.gray,
+          lineStyle: 'solid',
+        },
+        item: {
+          color: colors.grayDark,
+        },
+        lineColor: colors.gray,
+        lineWidth: '1px',
+        tick: {
+          lineColor: '#C7C7C7',
+          lineWidth: '1px',
+        },
+      },
+      series: [{
+          values: randomVal(22, 42, 8),
+          alpha: 0.5,
+          backgroundColor1: 'rgba(220,220,220,1)',
+          backgroundColor2: 'rgba(220,220,220,1)',
+          borderBottom: '0px',
+          borderColor: '#C7C7C7',
+          borderTop: '2px solid #C7C7C7',
+          borderWidth: '2px',
+          lineColor: 'rgba(220,220,220,1)',
+          lineWidth: '2px',
+          marker: {
+            backgroundColor: 'rgba(220,220,220,1)',
+          },
+        },
+        {
+          values: randomVal(7, 32, 8),
+          alpha: 0.5,
+          backgroundColor1: colors.blue,
+          backgroundColor2: colors.blue,
+          borderBottom: '0px',
+          borderColor: colors.blue,
+          borderTop: '2px solid ' + colors.blue,
+          borderWidth: '2px',
+        },
+      ],
+    };
+
+    zingchart.render({
+      id: 'myChart3',
+      data: chartConfig,
+      height: '100%',
+      width: '100%',
+      hideprogresslogo: true,
     });
   </script>
 </body>

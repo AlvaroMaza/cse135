@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <title>ZingSoft Demo</title>
  
-  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
 
 
 </head>
  
 <body>
 
-    <php>
+    <?php
       /* Open connection to "rest" MySQL database. */
       $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
       
@@ -26,8 +26,6 @@
       $data=mysqli_query($mysqli, "SELECT * FROM static");
       printf($data)
     ?>
-    </php>
-      
   
 </body>
  

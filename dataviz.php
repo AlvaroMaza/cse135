@@ -4,41 +4,35 @@
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
-<div id="myChart"></div>
+  <div id="myChart"></div>
 
-<?php
-$mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
-
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
-
-$data = mysqli_query($mysqli, "SELECT * FROM performance");
-?>
-
-<script>
-var myData = [
   <?php
-  while ($info = mysqli_fetch_array($data)) {
-      echo $info['loadEndTime'] . ',';
-  }
-  ?>
-];
+  $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
 
-var myLabels = [
-  <?php
-  $data = mysqli_query($mysqli, "SELECT * FROM performance");
-  while ($info = mysqli_fetch_array($data)) {
-      echo '"' . $info['loadStartTime'] . '",';
+  if (mysqli_connect_errno()) {
+      printf("Connect failed: %s\n", mysqli_connect_error());
+      exit();
   }
-  ?>
-];
-</script>
 
-<?php
-$mysqli->close();
-?>
+  $data = mysqli_query($mysqli, "SELECT * FROM static");
+  ?>
+
+  <script>
+  var myData = [
+    <?php
+    while ($info = mysqli_fetch_array($data)) {
+        echo $info['column_name'] . ',';
+    }
+    ?>
+  ];
+
+  var myLabels = [
+    <?php
+    $data = mysqli_query($mysqli, "SELECT * FROM static");
+    while ($info = mysqli_fetch_array($data)) {
+        echo '"' . $info['column_name'] . '",';
+    }
+    ?>
   ];
   </script>
 

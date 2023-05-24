@@ -14,23 +14,23 @@
       exit();
   }
 
-  $data = mysqli_query($mysqli, "SELECT * FROM static");
+  $data = mysqli_query($mysqli, "SELECT * FROM performance");
   ?>
 
   <script>
   var myData = [
     <?php
     while ($info = mysqli_fetch_array($data)) {
-        echo $info['f_data'] . ',';
+        echo $info['loadEndTime '] . ',';
     }
     ?>
   ];
 
   var myLabels = [
     <?php
-    $data = mysqli_query($mysqli, "SELECT * FROM static");
+    $data = mysqli_query($mysqli, "SELECT * FROM performance");
     while ($info = mysqli_fetch_array($data)) {
-        echo '"' . $info['f_name'] . '",';
+        echo '"' . $info['loadStartTime'] . '",';
     }
     ?>
   ];

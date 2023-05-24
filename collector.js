@@ -1,8 +1,8 @@
 const loadStartTime = performance.now();
 let loadEndTime;
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('DOMContentLoaded', loadFunction);
 
-function init() {
+function loadFunction() {
   let payload = {};
 
   payload.url = window.location.href;
@@ -50,7 +50,7 @@ function init() {
     loadEndTime = performance.now();
     const totalLoadTime = loadEndTime - loadStartTime;
 
-    const timingObject = performance.getEntriesByType('navigation')[0];
+    const timingObject = performance.timing;
     
     // Create payload object with performance data
     let payload2 = {

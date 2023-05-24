@@ -285,8 +285,6 @@ app.post('/mouseactivity/', (req, res) => {
     console.log('Request Payload:', req.body);
     return res.status(400).send('Missing or invalid information');
   }
-
-  data = JSON.stringify(data)
   
   const x = data['x']
   const y = data['y']

@@ -31,7 +31,7 @@
     <?php
     $data = mysqli_query($mysqli, "SELECT * FROM performance");
     while ($info = mysqli_fetch_array($data)) {
-        echo '"' . $info['loadStartTime'] . '",';
+        echo $info['loadStartTime'] . ',';
     }
     ?>
   ];
@@ -44,35 +44,51 @@
   <script>
   window.addEventListener('load', function() {
     let chartConfig = {
-      type: 'line',
-      title: {
-        text: 'Click On Node To Freeze The tooltip'
-      },
-      subtitle: {
-        text: 'Click and drag label vertically.'
-      },
-      plot: {
-        tooltip: {
-          visible: false
-        },
-        cursor: 'hand'
-      },
-      scaleX: {
-        markers: [],
-        offsetEnd: '75px',
-        labels: ['1','2','3','4','5','6','7']
-      },
-      crosshairX: {},
-      series: [{
-          text: 'Apple Sales',
-          values: myData
-        },
-        {
-          text: 'Peach Sales',
-          values: myLabels
-        }
-      ]
-    };
+  "type": "bar",
+  "title": {
+    "text": "Change me please!"
+  },
+  "plot": {
+    "value-box": {
+      "text": "%v"
+    },
+    "tooltip": {
+      "text": "%v"
+    }
+  },
+  "legend": {
+    "toggle-action": "hide",
+    "header": {
+      "text": "Legend Header"
+    },
+    "item": {
+      "cursor": "pointer"
+    },
+    "draggable": true,
+    "drag-handler": "icon"
+  },
+  "scale-x": {
+    "values": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+    ]
+  },
+  "series": [
+    {
+      "values": myData,
+      "text": "apples"
+    },
+    {
+      "values": myLabels,
+      "text": "oranges"
+    }
+  ]
+};
 
     zingchart.render({
       id: 'myChart',

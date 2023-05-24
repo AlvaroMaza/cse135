@@ -110,9 +110,8 @@
 
     zingchart.render({
       id: 'myChart3',
-      height: '100%',
+      height: 400,
       width: '100%',
-      hideprogresslogo: true,
       data: {
         type: 'bar',
         backgroundColor: '#FFF',
@@ -128,38 +127,6 @@
         },
         plotarea: {
           backgroundColor: 'white',
-        },
-        scaleX: {
-          guide: {
-            alpha: 1,
-            lineColor: colors.gray,
-            lineStyle: 'solid',
-          },
-          item: {
-            color: colors.grayDark,
-          },
-          lineColor: colors.gray,
-          lineWidth: '1px',
-          tick: {
-            lineColor: '#C7C7C7',
-            lineWidth: '1px',
-          },
-        },
-        scaleY: {
-          guide: {
-            alpha: 1,
-            lineColor: colors.gray,
-            lineStyle: 'solid',
-          },
-          item: {
-            color: colors.grayDark,
-          },
-          lineColor: colors.gray,
-          lineWidth: '1px',
-          tick: {
-            lineColor: '#C7C7C7',
-            lineWidth: '1px',
-          },
         },
         series: [{
             values: [12,23,15,27,23,14,13,15],

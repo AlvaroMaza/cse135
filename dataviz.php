@@ -6,7 +6,7 @@
 <body>
   <div id="myChart"></div>
   <div id="myChart2"></div>
-  <div id="myChart" class="chart--container"></div>
+  <div id="myChart3"></div>
 
   <?php
   $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");

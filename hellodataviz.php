@@ -24,7 +24,7 @@
       
       /* Fetch result set from static table */
       $data=mysqli_query($mysqli, "SELECT * FROM static");
-      printf($data)
+      echo $data
     ?>
   
 </body>

@@ -1,4 +1,4 @@
-const loadStartTime = performance.timing.navigationStart;
+const loadStartTime = Date.now();
 let loadEndTime;
 window.addEventListener('DOMContentLoaded', init);
 

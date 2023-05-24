@@ -11,8 +11,8 @@
 </head>
  
 <body>
-  <p>
-    <?php
+
+    <php>
       /* Open connection to "rest" MySQL database. */
       $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
       
@@ -26,8 +26,8 @@
       $data=mysqli_query($mysqli, "SELECT * FROM static");
       printf($data)
     ?>
-  </p>
-
+    </php>
+      
   
 </body>
  

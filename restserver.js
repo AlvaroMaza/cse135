@@ -279,17 +279,17 @@ app.get('/errors/', (req, res) => {
 
 // Add a new entry to the mouseactivity table
 app.post('/mouseactivity/', (req, res) => {
-  const { type, position } = req.body;
+  const { type, data } = req.body;
 
-  if (!type || !position) {
+  if (!type || !data) {
     console.log('Request Payload:', req.body);
     return res.status(400).send('Missing or invalid information');
   }
 
-  //data = JSON.stringify(data)
+  data = JSON.stringify(data)
   
-  const x = position['x']
-  const y = position['y']
+  const x = data['x']
+  const y = data['y']
   //const button = data['button']
 
   connection.query(

@@ -176,7 +176,7 @@ window.addEventListener('mousemove', function(event) {
     x: event.clientX,
     y: event.clientY
   };
-  sendMouseActivityToAPI({ type: 'mousemove', position: cursorPosition });
+  sendMouseActivityToAPI({ type: 'mousemove', data: cursorPosition });
 });
 
 // Click event listener to capture clicks and mouse button information

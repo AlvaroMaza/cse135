@@ -4,36 +4,41 @@
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
-  <h1>MyChart</h1>
-  <div id="myChart"></div>
+<div id="myChart"></div>
 
+<?php
+$mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
+
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+$data = mysqli_query($mysqli, "SELECT * FROM performance");
+?>
+
+<script>
+var myData = [
   <?php
-  $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
-
-  if (mysqli_connect_errno()) {
-      printf("Connect failed: %s\n", mysqli_connect_error());
-      exit();
+  while ($info = mysqli_fetch_array($data)) {
+      echo $info['loadEndTime'] . ',';
   }
-
-  $data = mysqli_query($mysqli, "SELECT * FROM performance");
   ?>
+];
 
-  <script>
-  var myData = [
-    <?php
-    while ($info = mysqli_fetch_array($data)) {
-        echo $info['loadEndTime'] . ',';
-    }
-    ?>
-  ];
+var myLabels = [
+  <?php
+  $data = mysqli_query($mysqli, "SELECT * FROM performance");
+  while ($info = mysqli_fetch_array($data)) {
+      echo '"' . $info['loadStartTime'] . '",';
+  }
+  ?>
+];
+</script>
 
-  var myLabels = [
-    <?php
-    $data = mysqli_query($mysqli, "SELECT * FROM performance");
-    while ($info = mysqli_fetch_array($data)) {
-        echo $info['loadStartTime'] . ',';
-    }
-    ?>
+<?php
+$mysqli->close();
+?>
   ];
   </script>
 
@@ -43,62 +48,24 @@
 
   <script>
   window.addEventListener('load', function() {
-    let chartConfig = {
-  "type": "bar",
-  "title": {
-    "text": "Change me please!"
-  },
-  "plot": {
-    "value-box": {
-      "text": "%v"
-    },
-    "tooltip": {
-      "text": "%v"
-    }
-  },
-  "legend": {
-    "toggle-action": "hide",
-    "header": {
-      "text": "Legend Header"
-    },
-    "item": {
-      "cursor": "pointer"
-    },
-    "draggable": true,
-    "drag-handler": "icon"
-  },
-  "scale-x": {
-    "values": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-    ]
-  },
-  "series": [
-    {
-      "values": myData,
-      "text": "apples"
-    },
-    {
-      "values": myLabels,
-      "text": "oranges"
-    }
-  ]
-};
-
     zingchart.render({
-      id: 'myChart',
-      data: chartConfig,
-      height: '100%',
-      width: '100%',
+      id: "myChart",
+      width: "100%",
+      height: 400,
+      data: {
+        type: 'bar',
+        title: {
+          text: "Data Pulled from MySQL Database"
+        },
+        'scale-x': {
+          labels: myLabels
+        },
+        series: [{
+          values: myData
+        }]
+      }
     });
   });
-
-  
   </script>
 </body>
 </html>

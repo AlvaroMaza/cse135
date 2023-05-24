@@ -1,4 +1,5 @@
-const loadStartTime = Date.now();
+let loadStartTime 
+loadStartTime = performance.now();
 let loadEndTime;
 window.addEventListener('DOMContentLoaded',() => {
 

@@ -42,22 +42,42 @@
 
   <script>
   window.addEventListener('load', function() {
-    zingchart.render({
-      id: "myChart",
-      width: "100%",
-      height: 400,
-      data: {
-        type: 'bar',
-        title: {
-          text: "Data Pulled from MySQL Database"
+    let chartConfig = {
+      type: 'line',
+      title: {
+        text: 'Click On Node To Freeze The tooltip'
+      },
+      subtitle: {
+        text: 'Click and drag label vertically.'
+      },
+      plot: {
+        tooltip: {
+          visible: false
         },
-        'scale-x': {
-          labels: myLabels
-        },
-        series: [{
+        cursor: 'hand'
+      },
+      scaleX: {
+        markers: [],
+        offsetEnd: '75px',
+        labels: ['1','2','3','4','5','6','7']
+      },
+      crosshairX: {},
+      series: [{
+          text: 'Apple Sales',
           values: myData
-        }]
-      }
+        },
+        {
+          text: 'Peach Sales',
+          values: myLabels
+        }
+      ]
+    };
+
+    zingchart.render({
+      id: 'myChart',
+      data: chartConfig,
+      height: '100%',
+      width: '100%',
     });
   });
   </script>

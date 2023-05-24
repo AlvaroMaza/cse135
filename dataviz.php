@@ -7,6 +7,7 @@
   <div id="myChart"></div>
   <div id="myChart2"></div>
   <div id="myChart3"></div>
+  <div id="myChart4"></div>
 
   <?php
   $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
@@ -156,6 +157,25 @@
         ],
       }
     });
+
+    var myConfig = 
+ 
+    zingchart.render({
+      id: 'myChart4',
+      height: 400,
+      width: "100%",
+      data: {
+      type: "line",
+      series: [{
+        "values": [20, 40, 25, 50, 15, 45, 33, 34]
+      }, {
+        "values": [5, 30, 21, 18, 59, 50, 28, 33]
+      }, {
+        "values": [30, 5, 18, 21, 33, 41, 29, 15]
+      }]
+    };
+    });
+  </script>
   </script>
 </body>
 </html>

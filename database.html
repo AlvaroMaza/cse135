@@ -16,7 +16,6 @@
         <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
         <style>
             zing-grid {
-              height: 400px;
               width: 100%;
             }
           </style>
@@ -27,8 +26,17 @@
         filter 
         pager 
         gridlines="both"
-        page-size="10"
+        page-size="5"
         page-size-options="5,10,20"
         caption = 'User Static Data'></zing-grid>
+
+        <zing-grid src="https://cse135spain.site/api/performance" 
+        sort 
+        filter 
+        pager 
+        gridlines="both"
+        page-size="5"
+        page-size-options="5,10,20"
+        caption = 'User Performance Data'></zing-grid>
     </body>
 </html>

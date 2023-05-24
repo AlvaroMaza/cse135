@@ -1,4 +1,4 @@
-const loadStartTime = Date.now();
+const loadStartTime = performance.now();
 let loadEndTime;
 window.addEventListener('DOMContentLoaded', init);
 
@@ -47,11 +47,11 @@ function init() {
   
 
 
-    loadEndTime = Date.now();
+    loadEndTime = performance.now();
     const totalLoadTime = loadEndTime - loadStartTime;
-  
-    const timingObject = performance.timing;
-  
+
+    const timingObject = performance.getEntriesByType('navigation')[0];
+    
     // Create payload object with performance data
     let payload2 = {
       timing: timingObject,
@@ -80,10 +80,6 @@ function init() {
       console.log('Error:', error);
     });
 }
-
-
-
-
 
 
 

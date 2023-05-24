@@ -88,7 +88,7 @@ window.addEventListener('DOMContentLoaded',() => {
   // Function to send error data to the API endpoint
   function sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj) {
 
-    const payload = {
+    const payload3 = {
       errorMsg: errorMsg,
       url: url,
       lineNumber: lineNumber,
@@ -102,7 +102,7 @@ window.addEventListener('DOMContentLoaded',() => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload3)
     })
       .then(response => {
         if (response.ok) {

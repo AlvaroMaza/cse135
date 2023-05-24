@@ -99,7 +99,7 @@ function sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj) {
   };
 
   // Send the error data to the API endpoint using fetch
-  fetch('/api/errors', {
+  fetch('https://cse135spain.site/api/errors', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

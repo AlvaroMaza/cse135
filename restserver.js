@@ -288,11 +288,12 @@ app.post('/mouseactivity/', (req, res) => {
   
   const x = data['x'];
   const y = data['y'];
+  let button
   try {
-    const button = data['button'];
+    button = data['button'];
   }
   catch(err) {
-    const button = null;
+    button = null;
   };
   connection.query(
     'INSERT INTO mouseactivity (type, x, y, button) VALUES (?, ?, ?, ?)',

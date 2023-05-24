@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded',() => {
 
 window.onerror = function (errorMsg, url, lineNumber, columnNumber, errorObj) {
   // Collect the thrown error and send it to the API endpoint
-  sendErrorToAPI(errorMsg, url, lineNumber, columNumber, errorObj);
+  sendErrorToAPI(errorMsg, url, lineNumber, columnNumber, errorObj);
 };
 
 // Function to send error data to the API endpoint

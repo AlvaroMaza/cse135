@@ -286,15 +286,9 @@ app.post('/mouseactivity/', (req, res) => {
     return res.status(400).send('Missing or invalid information');
   }
 
-  data = JSON.stringify(data)
-  
-  const x = data['x']
-  const y = data['y']
-  //const button = data['button']
-
   connection.query(
-    'INSERT INTO mouseactivity (type, x, y, button) VALUES (?, ?, ?)',
-    [type, x, y],
+    'INSERT INTO mouseactivity (type, x, y) VALUES (?, ?, ?)',
+    [type, data['x'], data['y']],
     (error, results) => {
       if (error) {
         console.error('Error:', error);

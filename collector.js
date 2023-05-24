@@ -1,6 +1,6 @@
-const loadStartTime = performance.now();
+const loadStartTime = Date.now();
 let loadEndTime;
-window.addEventListener('DOMContentLoaded', loadFunction);
+window.addEventListener('DOMContentLoaded', loadFunction());
 
 function loadFunction() {
   let payload = {};

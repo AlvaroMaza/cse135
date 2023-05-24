@@ -11,7 +11,7 @@
 </head>
  
 <body>
-  <p>
+
     <?php
       /* Open connection to "rest" MySQL database. */
       $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
@@ -24,10 +24,8 @@
       
       /* Fetch result set from static table */
       $data=mysqli_query($mysqli, "SELECT * FROM static");
-      printf($data)
+      echo $data
     ?>
-  </p>
-
   
 </body>
  

@@ -571,9 +571,12 @@ app.post('/idleactivity/', (req, res) => {
   
   const { breakStartTimestamp, breakEndTimestamp, breakDuration} = data;
 
+  const formattedBreakStartTimestamp = new Date(breakStartTimestamp).toISOString().slice(0, 19).replace('T', ' ');
+  const formattedBreakEndTimestamp = new Date(breakEndTimestamp).toISOString().slice(0, 19).replace('T', ' ');
+
   connection.query(
     'INSERT INTO idleactivity (breakStartTimestamp, breakEndTimestamp, breakDuration) VALUES (?, ?, ?)',
-    [breakStartTimestamp, breakEndTimestamp, breakDuration],
+    [formattedBreakStartTimestamp, formattedBreakEndTimestamp, breakDuration],
     (error, results) => {
       if (error) {
         console.error('Error:', error);
@@ -622,9 +625,12 @@ app.put('/idleactivity/:id', (req, res) => {
   
   const { breakStartTimestamp, breakEndTimestamp, breakDuration} = data;
 
+  const formattedBreakStartTimestamp = new Date(breakStartTimestamp).toISOString().slice(0, 19).replace('T', ' ');
+  const formattedBreakEndTimestamp = new Date(breakEndTimestamp).toISOString().slice(0, 19).replace('T', ' ');
+
   connection.query(
     'UPDATE idleactivity SET breakStartTimestamp = ?, breakEndTimestamp = ?, breakDuration = ? WHERE id = ?',
-    [breakStartTimestamp, breakEndTimestamp, breakDuration, req.params.id],
+    [formattedBreakStartTimestamp, formattedBreakEndTimestamp, breakDuration, req.params.id],
     (error, results) => {
       if (error) {
         console.error('Error:', error);

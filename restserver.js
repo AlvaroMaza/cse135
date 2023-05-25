@@ -562,7 +562,7 @@ app.put('/keyboardactivity/:id', (req, res) => {
 
 // Add a new entry to the keyboardactivity table
 app.post('/idleactivity/', (req, res) => {
-  const { type, data } = req.body;
+  const { data } = req.body;
 
   if (!type || !data) {
     console.log('Request Payload:', req.body);
@@ -613,7 +613,7 @@ app.delete('/idledactivity/:id', (req, res) => {
 
 // Update a specific entry from the keyboardactivity table (that matches the given id)
 app.put('/idleactivity/:id', (req, res) => {
-  const { type, data } = req.body;
+  const { data } = req.body;
 
   if (!type || !data) {
     console.log('Request Payload:', req.body);

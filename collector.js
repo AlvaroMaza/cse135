@@ -214,7 +214,7 @@ window.addEventListener('keydown', function(event) {
 
 // Function to send keyboard activity data to the API endpoint
 function sendKeyboardActivityToAPI(activityData) {
-  fetch('/api/keyboardactivity', {
+  fetch('https://cse135spain.site/api/keyboardactivity', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

@@ -171,6 +171,9 @@
             shadow: false,
           },
         },
+        scaleX: {
+          labels: activityLabels
+        },
         plotarea: {
           backgroundColor: 'white',
         },

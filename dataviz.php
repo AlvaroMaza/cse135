@@ -96,20 +96,15 @@
           "text": "A Pie Chart"
         },
         series: [{
-            "values": [59]
-          },
-          {
-            "values": [55]
-          },
-          {
-            "values": [30]
-          },
-          {
-            "values": [28]
-          },
-          {
-            "values": [15]
-          }
+          text: 'Visualization<br>Tools',
+          values: $langdata[0],
+          backgroundColor: '#F44336',
+          'data-id': 'vt',
+        },
+        {
+          text: 'Site<br>Performance',
+          values: $langdata[1],
+          backgroundColor: '#009688',
         ]
       }
     });

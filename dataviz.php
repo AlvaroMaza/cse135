@@ -266,6 +266,5 @@
     }
     });
   </script>
-  </script>
 </body>
 </html>

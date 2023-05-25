@@ -124,7 +124,7 @@
         },
 
         title: {
-          "text": "A Pie Chart"
+          "text": "Pie chart of the times the server was accesses in English or Spanish"
         },
         series: [{
           text: langLabels[0],
@@ -153,6 +153,9 @@
       width: '100%',
       data: {
         type: 'bar',
+        title: {
+          "text": "Average X and Y coordinates for mouse activities"
+        },
         backgroundColor: '#FFF',
         plot: {
           backgroundColor2: 'rgba(151,187,205,1)',
@@ -206,11 +209,10 @@
       width: "100%",
       data: {
       type: "line",
-      scaleX: {
-        label: {
-          "text": "Nº of times Ctrl, Shift or Alft is pressed for each vowel",
- 
+      title: {
+        "text": "Nº of times Ctrl, Shift or Alft is pressed for each vowel"
         },
+      scaleX: {
         labels: [
           "a",
           "e",

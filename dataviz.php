@@ -58,6 +58,39 @@
     ?>
   ];
 
+  var avgX = [
+    <?php
+    $xdata = mysqli_query($mysqli, "SELECT AVG(X) FROM mouseactivity GROUP BY type");
+
+    while ($xinfo = mysqli_fetch_array($xdata)) {
+          echo  '"' . $xinfo['AVG(X)'] . '",';
+    }
+    ?>
+  ];
+
+  var avgY = [
+    <?php
+    $ydata = mysqli_query($mysqli, "SELECT AVG(Y) FROM mouseactivity GROUP BY type");
+
+    while ($yinfo = mysqli_fetch_array($xdata)) {
+          echo  '"' . $yinfo['AVG(Y)'] . '",';
+    }
+    ?>
+  ];
+
+  var activityLabels = [
+    <?php
+    $ydata = mysqli_query($mysqli, "SELECT type, AVG(Y) FROM mouseactivity GROUP BY type");
+
+    while ($yinfo = mysqli_fetch_array($xdata)) {
+          echo  '"' . $yinfo['type'] . '",';
+    }
+    ?>
+  ];
+
+
+  
+
   </script>
 
   <?php

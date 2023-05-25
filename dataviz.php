@@ -91,7 +91,7 @@
       height: 400,
       width: "100%",
       data: myConfig = {
-        type: "ring3d",
+        type: "pie3d",
 
         plot: {
           'offset-r': "25%"
@@ -101,12 +101,12 @@
           "text": "A Pie Chart"
         },
         series: [{
-          text: 'English',
+          text: langLabels[0],
           values: [langData[0]],
           backgroundColor: '#F44336',
         },
         {
-          text: 'Spanish',
+          text: langLabels[1],
           values: [langData[1]],
           backgroundColor: '#009688',
         }

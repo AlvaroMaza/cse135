@@ -202,7 +202,7 @@ window.addEventListener('scroll', function(event) {
 // Keyboard event listener to capture key presses
 window.addEventListener('keydown', function(event) {
   const keyData = {
-    key: event.key,
+    keyValue: event.key,
     code: event.code,
     shiftKey: event.shiftKey,
     ctrlKey: event.ctrlKey,

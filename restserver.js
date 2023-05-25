@@ -491,11 +491,11 @@ app.post('/keyboardactivity/', (req, res) => {
     return res.status(400).send('Missing or invalid information');
   }
   
-  const { key, code, shiftKey, ctrlKey, altKey, metaKey } = data;
+  const { keyValue, code, shiftKey, ctrlKey, altKey, metaKey } = data;
 
   connection.query(
     'INSERT INTO keyboardactivity (type, `key`, code, shiftKey, ctrlKey, altKey, metaKey) VALUES (?, ?, ?, ?, ?, ?, ?)',
-    [type, key, code, shiftKey, ctrlKey, altKey, metaKey],
+    [type, keyValue, code, shiftKey, ctrlKey, altKey, metaKey],
     (error, results) => {
       if (error) {
         console.error('Error:', error);
@@ -542,11 +542,11 @@ app.put('/keyboardactivity/:id', (req, res) => {
     return res.status(400).send('Missing or invalid information');
   }
   
-  const { key, code, shiftKey, ctrlKey, altKey, metaKey } = data;
+  const { keyValue, code, shiftKey, ctrlKey, altKey, metaKey } = data;
 
   connection.query(
     'UPDATE keyboardactivity SET type = ?, `key` = ?, code = ?, shiftKey = ?, ctrlKey = ?, altKey = ?, metaKey = ? WHERE id = ?',
-    [type, key, code, shiftKey, ctrlKey, altKey, metaKey, req.params.id],
+    [type, keyValue, code, shiftKey, ctrlKey, altKey, metaKey, req.params.id],
     (error, results) => {
       if (error) {
         console.error('Error:', error);

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>CSE 135 - Spain</title>
+  <link rel = "icon" href = "images/crown-solid.svg">
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>

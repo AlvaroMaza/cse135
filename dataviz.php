@@ -105,6 +105,7 @@
           text: 'Site<br>Performance',
           values: $langdata[1],
           backgroundColor: '#009688',
+        }
         ]
       }
     });

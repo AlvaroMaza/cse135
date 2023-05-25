@@ -284,17 +284,66 @@ function startIdleTimeout() {
 // Event listener for mousemove event
 window.addEventListener('mousemove', function() {
   // Reset the idle timeout on mouse movement
-  clearTimeout(idleTimeout);
-  startIdleTimeout();
+  try {
+    clearTimeout(idleTimeout);
+    startIdleTimeout();
+  } catch (error) {
+    console.log('Checking for idle breaks...')
+  };
 });
 
 // Event listener for keydown event
 window.addEventListener('keydown', function() {
   // Reset the idle timeout on key press
-  clearTimeout(idleTimeout);
-  startIdleTimeout();
+  try {
+    clearTimeout(idleTimeout);
+    startIdleTimeout();
+  } catch (error) {
+    console.log('Checking for idle breaks...')
+  };
+  
 });
 
 // Start the initial idle timeout
 startIdleTimeout();
+
+// Function to send page activity data to the API endpoint
+function sendPageActivityToAPI(type, page) {
+  const payload = {
+    type: type,
+    page: page
+  };
+
+  // Send the page activity data to the API endpoint using fetch
+  fetch('https://cse135spain.site/api/pageactivity', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log('Page activity data sent successfully');
+      } else {
+        console.error('Error sending page activity data:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error('Error sending page activity data:', error);
+    });
+}
+
+// Event handler for when the user enters the page
+window.onload = function() {
+  const page = window.location.href; // Get the current page 
+  sendPageActivityToAPI('enter', page); // Send the enter activity to the API
+};
+
+// Event handler for when the user leaves the page
+window.onunload = function() {
+  const page = window.location.href; // Get the current page
+  sendPageActivityToAPI('leave', page); // Send the leave activity to the API
+};
+
 

@@ -208,9 +208,9 @@
       height: 400,
       width: "100%",
       data: {
-      type: "line",
+      type: "line3d",
       title: {
-        "text": "Nº of times Ctrl, Shift or Alft is pressed for each vowel"
+        "text": "Nº of times Ctrl(red), Shift(blue) or Alft(green) is pressed for each vowel"
         },
       scaleX: {
         labels: [

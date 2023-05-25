@@ -40,7 +40,7 @@
 
   var langData = [
     <?php
-    $langdata = mysqli_query($mysqli, "SELECT Language,COUNT(*) FROM performance GROUP BY Language");
+    $langdata = mysqli_query($mysqli, "SELECT Language,COUNT(*) FROM static GROUP BY Language");
     while ($langinfo = mysqli_fetch_array($langdata)) {
         echo '"' . $langinfo['loadStartTime'] . '",';
     }

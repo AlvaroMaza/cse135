@@ -88,9 +88,38 @@
     ?>
   ];
 
+  var shiftData = [
+    <?php
+    $shiftdata = mysqli_query($mysqli,
+     "SELECT keyValue, COUNT(*) FROM keyboardactivity WHERE shiftKey = 1 AND keyValue IN ('a', 'e', 'i', 'o', 'u') GROUP BY keyValue;");
 
-  
+    while ($shiftinfo = mysqli_fetch_array($shiftdata)) {
+          echo  $shiftinfo['COUNT(*)'] . ',';
+    }
+    ?>
+  ];
 
+  var ctrlData = [
+    <?php
+    $ctrlsdata = mysqli_query($mysqli,
+     "SELECT keyValue, COUNT(*) FROM keyboardactivity WHERE ctrlKey = 1 AND keyValue IN ('a', 'e', 'i', 'o', 'u') GROUP BY keyValue;");
+
+    while ($crtlinfo = mysqli_fetch_array($ctrlsdata)) {
+          echo  $crtlinfo['COUNT(*)'] . ',';
+    }
+    ?>
+  ];
+
+  var altData = [
+    <?php
+    $altdata = mysqli_query($mysqli,
+     "SELECT keyValue, COUNT(*) FROM keyboardactivity WHERE altKey = 1 AND keyValue IN ('a', 'e', 'i', 'o', 'u') GROUP BY keyValue;");
+
+    while ($altinfo = mysqli_fetch_array($altdata)) {
+          echo  $altinfo['COUNT(*)'] . ',';
+    }
+    ?>
+  ];  
   </script>
 
   <?php

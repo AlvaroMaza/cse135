@@ -43,7 +43,7 @@
     $langdata = mysqli_query($mysqli, "SELECT Language,COUNT(*) FROM static GROUP BY Language");
 
     while ($langinfo = mysqli_fetch_array($langdata)) {
-          echo  $langinfo['COUNT(*)'] ',';
+          echo  $langinfo['COUNT(*)'] . ',';
     }
     ?>
   ];

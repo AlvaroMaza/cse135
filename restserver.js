@@ -482,6 +482,85 @@ app.put('/mouseactivity/:id', (req, res) => {
   );
 });
 
+// Add a new entry to the keyboardactivity table
+app.post('/keyboardactivity/', (req, res) => {
+  const { type, data } = req.body;
+
+  if (!type || !data) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+  
+  const { key, code, shiftKey, ctrlKey, altKey, metaKey } = data;
+
+  connection.query(
+    'INSERT INTO keyboardactivity (type, key, code, shiftKey, ctrlKey, altKey, metaKey) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    [type, key, code, shiftKey, ctrlKey, altKey, metaKey],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else {
+        res.status(201).send(`Keyboard activity data added with ID: ${results.insertId}`);
+      }
+    }
+  );
+});
+
+// Retrieve every entry logged in the keyboardactivity table
+app.get('/keyboardactivity/', (req, res) => {
+  connection.query('SELECT * FROM keyboardactivity', (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Delete a specific entry from the keyboardactivity table (that matches the given id)
+app.delete('/keyboardactivity/:id', (req, res) => {
+  connection.query('DELETE FROM keyboardactivity WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.status(200).send(`Entry deleted with ID: ${req.params.id}`);
+    }
+  });
+});
+
+// Update a specific entry from the keyboardactivity table (that matches the given id)
+app.put('/keyboardactivity/:id', (req, res) => {
+  const { type, data } = req.body;
+
+  if (!type || !data) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+  
+  const { key, code, shiftKey, ctrlKey, altKey, metaKey } = data;
+
+  connection.query(
+    'UPDATE keyboardactivity SET type = ?, key = ?, code = ?, shiftKey = ?, ctrlKey = ?, altKey = ?, metaKey = ? WHERE id = ?',
+    [type, key, code, shiftKey, ctrlKey, altKey, metaKey, req.params.id],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else if (results.affectedRows === 0) {
+        res.status(404).send('Entry not found');
+      } else {
+        res.status(200).send(`Entry updated with ID: ${req.params.id}`);
+      }
+    }
+  );
+});
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

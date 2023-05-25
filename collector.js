@@ -198,3 +198,37 @@ window.addEventListener('scroll', function(event) {
   };
   sendMouseActivityToAPI({ type: 'scroll', data: scrollData });
 });
+
+// Keyboard event listener to capture key presses
+window.addEventListener('keydown', function(event) {
+  const keyData = {
+    key: event.key,
+    code: event.code,
+    shiftKey: event.shiftKey,
+    ctrlKey: event.ctrlKey,
+    altKey: event.altKey,
+    metaKey: event.metaKey
+  };
+  sendKeyboardActivityToAPI({ type: 'keypress', data: keyData });
+});
+
+// Function to send keyboard activity data to the API endpoint
+function sendKeyboardActivityToAPI(activityData) {
+  fetch('/api/keyboardactivity', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(activityData)
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log('Keyboard activity data sent successfully');
+      } else {
+        console.error('Error sending keyboard activity data:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error('Error sending keyboard activity data:', error);
+    });
+}

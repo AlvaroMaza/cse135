@@ -4,7 +4,6 @@
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
-  <div id="myChart"></div>
   <div id="myChart2"></div>
   <div id="myChart3"></div>
   <div id="myChart4"></div>
@@ -16,28 +15,9 @@
       printf("Connect failed: %s\n", mysqli_connect_error());
       exit();
   }
-
-  $data = mysqli_query($mysqli, "SELECT * FROM performance");
   ?>
 
   <script>
-  var myData = [
-    <?php
-    while ($info = mysqli_fetch_array($data)) {
-        echo $info['loadEndTime'] . ',';
-    }
-    ?>
-  ];
-
-  var myLabels = [
-    <?php
-    $data = mysqli_query($mysqli, "SELECT * FROM performance");
-    while ($info = mysqli_fetch_array($data)) {
-        echo '"' . $info['loadStartTime'] . '",';
-    }
-    ?>
-  ];
-
   var langData = [
     <?php
     $langdata = mysqli_query($mysqli, "SELECT Language,COUNT(*) FROM static GROUP BY Language");
@@ -129,24 +109,6 @@
 
   <script>
   window.addEventListener('load', function() {
-    zingchart.render({
-      id: "myChart",
-      width: "100%",
-      height: 400,
-      data: {
-        type: 'bar',
-        title: {
-          text: "Data Pulled from MySQL Database"
-        },
-        'scale-x': {
-          labels: myLabels
-        },
-        series: [{
-          values: myData
-        }]
-      }
-    });
-  });
 
   zingchart.render({
       id: 'myChart2',
@@ -175,13 +137,6 @@
         ]
       }
     });
-
-    let colors = {
-      blue: 'rgba(151,187,205,1)',
-      gray: '#EBEBEB',
-      grayDark: '#3F3F3F',
-    };
-
 
     zingchart.render({
       id: 'myChart3',
@@ -224,11 +179,11 @@
           {
             values: avgY,
             alpha: 0.5,
-            backgroundColor1: colors.blue,
-            backgroundColor2: colors.blue,
+            backgroundColor1: 'rgba(151,187,205,1)',
+            backgroundColor2: 'rgba(151,187,205,1)',
             borderBottom: '0px',
-            borderColor: colors.blue,
-            borderTop: '2px solid ' + colors.blue,
+            borderColor: 'rgba(151,187,205,1)',
+            borderTop: '2px solid ' + 'rgba(151,187,205,1)',
             borderWidth: '2px',
           },
         ],

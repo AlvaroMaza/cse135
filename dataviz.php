@@ -91,17 +91,17 @@
       height: 400,
       width: "100%",
       data: myConfig = {
-        type: "pie",
+        type: "ring",
         title: {
           "text": "A Pie Chart"
         },
         series: [{
-          text: 'Visualization<br>Tools',
+          text: 'English',
           values: [langData[0]],
           backgroundColor: '#F44336',
         },
         {
-          text: 'Site<br>Performance',
+          text: 'Spanish',
           values: [langData[1]],
           backgroundColor: '#009688',
         }

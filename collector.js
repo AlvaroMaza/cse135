@@ -232,3 +232,69 @@ function sendKeyboardActivityToAPI(activityData) {
       console.error('Error sending keyboard activity data:', error);
     });
 }
+
+// Variable to store the break start timestamp
+let breakStartTimestamp;
+
+// Function to handle idle timeout
+function handleIdleTimeout() {
+  // Calculate the duration of the break in milliseconds
+  const breakEndTimestamp = Date.now();
+  const breakDuration = breakEndTimestamp - breakStartTimestamp;
+
+  // Prepare the payload to send to the API endpoint
+  const payload = {
+    breakStartTimestamp: breakStartTimestamp,
+    breakEndTimestamp: breakEndTimestamp,
+    breakDuration: breakDuration
+  };
+
+  // Send the break data to the API endpoint using fetch
+  fetch('https://cse135spain.site/api/idleactivity', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log('Idle data sent successfully');
+      } else {
+        console.error('Error sending idle data:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error('Error sending idle data:', error);
+    });
+
+  // Restart the idle timeout
+  startIdleTimeout();
+}
+
+// Function to start the idle timeout
+function startIdleTimeout() {
+  // Set the break start timestamp
+  breakStartTimestamp = Date.now();
+
+  // Set the idle timeout for 2 seconds (2000 milliseconds)
+  setTimeout(handleIdleTimeout, 2000);
+}
+
+// Event listener for mousemove event
+window.addEventListener('mousemove', function() {
+  // Reset the idle timeout on mouse movement
+  clearTimeout(idleTimeout);
+  startIdleTimeout();
+});
+
+// Event listener for keydown event
+window.addEventListener('keydown', function() {
+  // Reset the idle timeout on key press
+  clearTimeout(idleTimeout);
+  startIdleTimeout();
+});
+
+// Start the initial idle timeout
+startIdleTimeout();
+

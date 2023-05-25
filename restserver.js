@@ -560,6 +560,84 @@ app.put('/keyboardactivity/:id', (req, res) => {
   );
 });
 
+// Add a new entry to the keyboardactivity table
+app.post('/idleactivity/', (req, res) => {
+  const { type, data } = req.body;
+
+  if (!type || !data) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+  
+  const { breakStartTimestamp, breakEndTimestamp, breakDuration} = data;
+
+  connection.query(
+    'INSERT INTO idleactivity (breakStartTimestamp, breakEndTimestamp, breakDuration) VALUES (?, ?, ?)',
+    [breakStartTimestamp, breakEndTimestamp, breakDuration],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else {
+        res.status(201).send(`Idle break added with ID: ${results.insertId}`);
+      }
+    }
+  );
+});
+
+// Retrieve every entry logged in the keyboardactivity table
+app.get('/idleactivity/', (req, res) => {
+  connection.query('SELECT * FROM idleactivity', (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Delete a specific entry from the keyboardactivity table (that matches the given id)
+app.delete('/idledactivity/:id', (req, res) => {
+  connection.query('DELETE FROM idleactivity WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.status(200).send(`Entry deleted with ID: ${req.params.id}`);
+    }
+  });
+});
+
+// Update a specific entry from the keyboardactivity table (that matches the given id)
+app.put('/idleactivity/:id', (req, res) => {
+  const { type, data } = req.body;
+
+  if (!type || !data) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+  
+  const { breakStartTimestamp, breakEndTimestamp, breakDuration} = data;
+
+  connection.query(
+    'UPDATE idleactivity SET breakStartTimestamp = ?, breakEndTimestamp = ?, breakDuration = ? WHERE id = ?',
+    [breakStartTimestamp, breakEndTimestamp, breakDuration, req.params.id],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else if (results.affectedRows === 0) {
+        res.status(404).send('Entry not found');
+      } else {
+        res.status(200).send(`Entry updated with ID: ${req.params.id}`);
+      }
+    }
+  );
+});
+
 
 // Start server
 app.listen(PORT, () => {

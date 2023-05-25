@@ -286,8 +286,10 @@ window.addEventListener('mousemove', function() {
   // Reset the idle timeout on mouse movement
   try {
     clearTimeout(idleTimeout);
-  } catch (error) {};
-  startIdleTimeout();
+    startIdleTimeout();
+  } catch (error) {
+    startIdleTimeout();
+  };
 });
 
 // Event listener for keydown event
@@ -295,8 +297,11 @@ window.addEventListener('keydown', function() {
   // Reset the idle timeout on key press
   try {
     clearTimeout(idleTimeout);
-  } catch (error) {};
-  startIdleTimeout();
+    startIdleTimeout();
+  } catch (error) {
+    startIdleTimeout();
+  };
+  
 });
 
 // Start the initial idle timeout

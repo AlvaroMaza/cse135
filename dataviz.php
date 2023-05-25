@@ -91,7 +91,7 @@
       height: 400,
       width: "100%",
       data: myConfig = {
-        type: "pie3d",
+        type: "ring3d",
 
         plot: {
           'offset-r': "25%"

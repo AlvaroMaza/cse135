@@ -564,7 +564,7 @@ app.put('/keyboardactivity/:id', (req, res) => {
 app.post('/idleactivity/', (req, res) => {
   const { data } = req.body;
 
-  if (!type || !data) {
+  if (!data) {
     console.log('Request Payload:', req.body);
     return res.status(400).send('Missing or invalid information');
   }
@@ -615,7 +615,7 @@ app.delete('/idledactivity/:id', (req, res) => {
 app.put('/idleactivity/:id', (req, res) => {
   const { data } = req.body;
 
-  if (!type || !data) {
+  if (!data) {
     console.log('Request Payload:', req.body);
     return res.status(400).send('Missing or invalid information');
   }

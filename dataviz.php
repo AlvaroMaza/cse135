@@ -243,12 +243,12 @@
       width: "100%",
       data: {
       type: "line",
-      scale-x: {
-        "label": {
+      scaleX: {
+        label: {
           "text": "Nº of times Ctrl, Shift or Alft is pressed for each vowel",
  
         },
-        "labels": [
+        labels: [
           "a",
           "e",
           "i",

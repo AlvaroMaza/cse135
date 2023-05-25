@@ -124,7 +124,7 @@
         },
 
         title: {
-          "text": "Pie chart of the times the server was accesses in English or Spanish"
+          "text": "Pie chart of the times the server was accessed in English or Spanish"
         },
         series: [{
           text: langLabels[0],

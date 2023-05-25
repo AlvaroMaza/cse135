@@ -97,13 +97,12 @@
         },
         series: [{
           text: 'Visualization<br>Tools',
-          values: $langdata[0],
+          values: $langData[0],
           backgroundColor: '#F44336',
-          'data-id': 'vt',
         },
         {
           text: 'Site<br>Performance',
-          values: $langdata[1],
+          values: $langData[1],
           backgroundColor: '#009688',
         }
         ]

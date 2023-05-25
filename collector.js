@@ -284,7 +284,7 @@ function startIdleTimeout() {
 // Event listener for mousemove event
 window.addEventListener('mousemove', function() {
   // Reset the idle timeout on mouse movement
-  if (variableName !== undefined) {
+  if (idleTimeout !== undefined) {
     clearTimeout(idleTimeout);
   };
   startIdleTimeout();
@@ -293,7 +293,7 @@ window.addEventListener('mousemove', function() {
 // Event listener for keydown event
 window.addEventListener('keydown', function() {
   // Reset the idle timeout on key press
-  if (variableName !== undefined) {
+  if (idleTimeout !== undefined) {
     clearTimeout(idleTimeout);
   };
   startIdleTimeout();

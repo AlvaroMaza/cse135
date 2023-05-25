@@ -494,7 +494,7 @@ app.post('/keyboardactivity/', (req, res) => {
   const { key, code, shiftKey, ctrlKey, altKey, metaKey } = data;
 
   connection.query(
-    'INSERT INTO keyboardactivity (type, key, code, shiftKey, ctrlKey, altKey, metaKey) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    'INSERT INTO keyboardactivity (type, `key`, code, shiftKey, ctrlKey, altKey, metaKey) VALUES (?, ?, ?, ?, ?, ?, ?)',
     [type, key, code, shiftKey, ctrlKey, altKey, metaKey],
     (error, results) => {
       if (error) {
@@ -545,7 +545,7 @@ app.put('/keyboardactivity/:id', (req, res) => {
   const { key, code, shiftKey, ctrlKey, altKey, metaKey } = data;
 
   connection.query(
-    'UPDATE keyboardactivity SET type = ?, key = ?, code = ?, shiftKey = ?, ctrlKey = ?, altKey = ?, metaKey = ? WHERE id = ?',
+    'UPDATE keyboardactivity SET type = ?, `key` = ?, code = ?, shiftKey = ?, ctrlKey = ?, altKey = ?, metaKey = ? WHERE id = ?',
     [type, key, code, shiftKey, ctrlKey, altKey, metaKey, req.params.id],
     (error, results) => {
       if (error) {

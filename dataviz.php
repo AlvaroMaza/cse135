@@ -153,15 +153,6 @@
       grayDark: '#3F3F3F',
     };
 
-    function randomVal(min, max, num) {
-      let aData = [];
-      for (let i = 0; i < num; i++) {
-        let val = Math.random() * (max - min) + min;
-        aData.push(parseInt(val));
-      }
-      return aData;
-    }
-
 
     zingchart.render({
       id: 'myChart3',
@@ -184,7 +175,7 @@
           backgroundColor: 'white',
         },
         series: [{
-            values: [12,23,15,27,23,14,13,15],
+            values: avgX,
             alpha: 0.5,
             backgroundColor1: 'rgba(220,220,220,1)',
             backgroundColor2: 'rgba(220,220,220,1)',
@@ -199,7 +190,7 @@
             },
           },
           {
-            values: [17,12,23,15,27,23,14,13],
+            values: avgY,
             alpha: 0.5,
             backgroundColor1: colors.blue,
             backgroundColor2: colors.blue,

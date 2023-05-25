@@ -644,6 +644,80 @@ app.put('/idleactivity/:id', (req, res) => {
   );
 });
 
+// Add a new entry to the pageactivity table
+app.post('/pageactivity/', (req, res) => {
+  const { type, page } = req.body;
+
+  if (!type || !page) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+
+  connection.query(
+    'INSERT INTO pageactivity (type, page) VALUES (?, ?)',
+    [type, page],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else {
+        res.status(201).send(`Page activity data added with ID: ${results.insertId}`);
+      }
+    }
+  );
+});
+
+// Retrieve every entry logged in the pageactivity table
+app.get('/pageactivity/', (req, res) => {
+  connection.query('SELECT * FROM pageactivity', (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Delete a specific entry from the pageactivity table (that matches the given id)
+app.delete('/pageactivity/:id', (req, res) => {
+  connection.query('DELETE FROM pageactivity WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.status(200).send(`Entry deleted with ID: ${req.params.id}`);
+    }
+  });
+});
+
+// Update a specific entry from the pageactivity table (that matches the given id)
+app.put('/pageactivity/:id', (req, res) => {
+  const { type, page } = req.body;
+
+  if (!type || !page) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+
+  connection.query(
+    'UPDATE pageactivity SET type = ?, page = ? WHERE id = ?',
+    [type, page, req.params.id],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else if (results.affectedRows === 0) {
+        res.status(404).send('Entry not found');
+      } else {
+        res.status(200).send(`Entry updated with ID: ${req.params.id}`);
+      }
+    }
+  );
+});
+
 
 // Start server
 app.listen(PORT, () => {

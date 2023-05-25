@@ -228,6 +228,5 @@
     }
     });
   </script>
-  </script>
 </body>
 </html>

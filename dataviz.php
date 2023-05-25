@@ -4,7 +4,7 @@
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
-  <div id="myChart"></div>
+
   <div id="myChart2"></div>
   <div id="myChart3"></div>
   <div id="myChart4"></div>
@@ -129,24 +129,6 @@
 
   <script>
   window.addEventListener('load', function() {
-    zingchart.render({
-      id: "myChart",
-      width: "100%",
-      height: 400,
-      data: {
-        type: 'bar',
-        title: {
-          text: "Data Pulled from MySQL Database"
-        },
-        'scale-x': {
-          labels: myLabels
-        },
-        series: [{
-          values: myData
-        }]
-      }
-    });
-  });
 
   zingchart.render({
       id: 'myChart2',
@@ -235,7 +217,6 @@
       }
     });
 
-    var myConfig = 
  
     zingchart.render({
       id: 'myChart4',
@@ -265,6 +246,7 @@
       }]
     }
     });
+  });
   </script>
 </body>
 </html>

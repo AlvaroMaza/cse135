@@ -97,12 +97,12 @@
         },
         series: [{
           text: 'Visualization<br>Tools',
-          values: langData[0],
+          values: [langData[0]],
           backgroundColor: '#F44336',
         },
         {
           text: 'Site<br>Performance',
-          values: langData[1],
+          values: [langData[1]],
           backgroundColor: '#009688',
         }
         ]

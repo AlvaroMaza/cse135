@@ -288,7 +288,7 @@ window.addEventListener('mousemove', function() {
     clearTimeout(idleTimeout);
     startIdleTimeout();
   } catch (error) {
-    console.log('Setting idle timeout...')
+    console.log('Checking for idle breaks...')
   };
 });
 
@@ -299,7 +299,7 @@ window.addEventListener('keydown', function() {
     clearTimeout(idleTimeout);
     startIdleTimeout();
   } catch (error) {
-    console.log('Setting idle timeout...')
+    console.log('Checking for idle breaks...')
   };
   
 });

@@ -229,6 +229,58 @@ app.get('/performance/', (req, res) => {
   });
 });
 
+// Delete a specific entry from the performance table (that matches the given id)
+app.delete('/performance/:id', (req, res) => {
+  connection.query('DELETE FROM performance WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.status(200).send(`Entry deleted with ID: ${req.params.id}`);
+    }
+  });
+});
+
+// Update a specific entry from the performance table (that matches the given id)
+app.put('/performance/:id', (req, res) => {
+  const {
+    timing,
+    loadStartTime,
+    loadEndTime,
+    totalLoadTime
+  } = req.body;
+
+  if (!timing || !loadStartTime || !loadEndTime || !totalLoadTime) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+
+  const formattedTimestamp = new Date(timestamp).toISOString().slice(0, 19).replace('T', ' ');
+
+  connection.query(
+    'UPDATE performance SET timing = ?, loadStartTime = ?, loadEndTime = ?, totalLoadTime = ? WHERE id = ?',
+    [
+      timing,
+      loadStartTime,
+      loadEndTime,
+      totalLoadTime,
+      req.params.id
+    ],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else if (results.affectedRows === 0) {
+        res.status(404).send('Entry not found');
+      } else {
+        res.status(200).send(`Entry updated with ID: ${req.params.id}`);
+      }
+    }
+  );
+});
+
 
 // Add a new entry to the errors table
 app.post('/errors/', (req, res) => {
@@ -277,6 +329,60 @@ app.get('/errors/', (req, res) => {
   });
 });
 
+
+// Delete a specific entry from the errors table (that matches the given id)
+app.delete('/errors/:id', (req, res) => {
+  connection.query('DELETE FROM errors WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.status(200).send(`Entry deleted with ID: ${req.params.id}`);
+    }
+  });
+});
+
+// Update a specific entry from the errors table (that matches the given id)
+app.put('/errors/:id', (req, res) => {
+  const {
+    errorMsg,
+    url,
+    lineNumber,
+    columnNumber,
+    errorObj,
+  } = req.body;
+
+  if (!errorMsg || !url || !lineNumber || !columnNumber || !errorObj) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+
+  connection.query(
+    'UPDATE errors SET errorMsg = ?, url = ?, lineNumber = ?, columnNumber = ?, errorObj = ? WHERE id = ?',
+    [
+      errorMsg,
+      url,
+      lineNumber,
+      columnNumber,
+      errorObj,
+      req.params.id
+    ],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else if (results.affectedRows === 0) {
+        res.status(404).send('Entry not found');
+      } else {
+        res.status(200).send(`Entry updated with ID: ${req.params.id}`);
+      }
+    }
+  );
+});
+
+
 // Add a new entry to the mouseactivity table
 app.post('/mouseactivity/', (req, res) => {
   const { type, data } = req.body;
@@ -319,6 +425,61 @@ app.get('/mouseactivity/', (req, res) => {
       res.json(results);
     }
   });
+});
+
+// Delete a specific entry from the mouseactivity table (that matches the given id)
+app.delete('/mouseactivity/:id', (req, res) => {
+  connection.query('DELETE FROM mouseactivity WHERE id = ?', [req.params.id], (error, results) => {
+    if (error) {
+      console.error('Error:', error);
+      res.status(500).send(error);
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Entry not found');
+    } else {
+      res.status(200).send(`Entry deleted with ID: ${req.params.id}`);
+    }
+  });
+});
+
+// Update a specific entry from the mouseactivity table (that matches the given id)
+app.put('/mouseactivity/:id', (req, res) => {
+  const { type, data } = req.body;
+
+  if (!type || !data) {
+    console.log('Request Payload:', req.body);
+    return res.status(400).send('Missing or invalid information');
+  }
+  
+  const x = data['x'];
+  const y = data['y'];
+  let button
+  try {
+    button = data['button'];
+  }
+  catch(err) {
+    button = null;
+  };
+
+  connection.query(
+    'UPDATE mouseactivity SET type = ?, x = ?, y = ?, button = ? WHERE id = ?',
+    [
+      type,
+      x,
+      y,
+      button,
+      req.params.id
+    ],
+    (error, results) => {
+      if (error) {
+        console.error('Error:', error);
+        res.status(500).send(error);
+      } else if (results.affectedRows === 0) {
+        res.status(404).send('Entry not found');
+      } else {
+        res.status(200).send(`Entry updated with ID: ${req.params.id}`);
+      }
+    }
+  );
 });
 
 // Start server

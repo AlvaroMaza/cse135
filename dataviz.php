@@ -138,6 +138,13 @@
       }
     });
 
+    let colors = {
+      blue: 'rgba(151,187,205,1)',
+      gray: '#EBEBEB',
+      grayDark: '#3F3F3F',
+    };
+
+
     zingchart.render({
       id: 'myChart3',
       height: 400,
@@ -179,11 +186,11 @@
           {
             values: avgY,
             alpha: 0.5,
-            backgroundColor1: 'rgba(151,187,205,1)',
-            backgroundColor2: 'rgba(151,187,205,1)',
+            backgroundColor1: colors.blue,
+            backgroundColor2: colors.blue,
             borderBottom: '0px',
-            borderColor: 'rgba(151,187,205,1)',
-            borderTop: '2px solid ' + 'rgba(151,187,205,1)',
+            borderColor: colors.blue,
+            borderTop: '2px solid ' + colors.blue,
             borderWidth: '2px',
           },
         ],

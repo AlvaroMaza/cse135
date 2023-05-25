@@ -243,6 +243,19 @@
       width: "100%",
       data: {
       type: "line",
+      scale-x: {
+        "label": {
+          "text": "Nº of times Ctrl, Shift or Alft is pressed for each vowel",
+ 
+        },
+        "labels": [
+          "a",
+          "e",
+          "i",
+          "o",
+          "u"
+        ]
+      },
       series: [{
         "values": shiftData
       }, {

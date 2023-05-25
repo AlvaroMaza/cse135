@@ -91,7 +91,12 @@
       height: 400,
       width: "100%",
       data: myConfig = {
-        type: "ring",
+        type: "pie3d",
+
+        plot: {
+          'offset-r': "25%"
+        },
+
         title: {
           "text": "A Pie Chart"
         },

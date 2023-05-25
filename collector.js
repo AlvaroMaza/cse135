@@ -336,13 +336,13 @@ function sendPageActivityToAPI(type, page) {
 
 // Event handler for when the user enters the page
 window.onload = function() {
-  const page = window.location.pathname; // Get the current page path
+  const page = window.location; // Get the current page path
   sendPageActivityToAPI('enter', page); // Send the enter activity to the API
 };
 
 // Event handler for when the user leaves the page
 window.onunload = function() {
-  const page = window.location.pathname; // Get the current page path
+  const page = window.location; // Get the current page path
   sendPageActivityToAPI('leave', page); // Send the leave activity to the API
 };
 

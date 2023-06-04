@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>Login Form</header>
+        
+        <form class="login-form" id="login" action="#">
+            <div class="login-form">
+                <label for="name">Email: </label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="login-form">
+                <label for="email">Password: </label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="login-form">
+                <input type="submit" value="Login!">
+            </div>
+        </form>
+        <div class="error" id="error-text"></div>
+        <div class="sign-txt">Not yet member? <a href="./register.html">Signup now</a></div>
+    </div>
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>

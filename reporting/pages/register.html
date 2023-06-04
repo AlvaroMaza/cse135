@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>Registration Form</header>
+        
+        <form class="login-form" id="register-form" action="#">
+            <div class="login-form">
+                <label for="name">User Name: </label>
+                <input name="username" id="username" required>
+            </div>
+            <div class="login-form">
+                <label for="name">Email: </label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="login-form">
+                <label for="email">Password: </label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="login-form">
+                <input type="submit" value="Register!">
+            </div>
+        </form>
+        <div class="error" id="error-text"></div>
+        <div class="sign-txt">Already a Member? <a href="./login.html">Login</a></div>
+    </div>
+
+    <script src="register.js"></script>
+
+</body>
+
+</html>

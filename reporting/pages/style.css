@@ -1,0 +1,21 @@
+form.login-form {
+    display: table;
+}
+
+div.login-form {
+    display: table-row;
+}
+
+label,
+input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+
+label {
+    padding-right: 10px;
+}
+
+.error {
+    color: red;
+}

@@ -1,3 +1,4 @@
+const PORT = 3002;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors');
@@ -19,8 +20,8 @@ app.use("/user", user);
 mongoose.connect(MONGOURI)
 .then(() => {
 	console.log("Connected to DB");
-	app.listen(3002, () => {
-		console.log(`Node is running on port 3002`);
+	app.listen(PORT, () => {
+		console.log(`Node is running on http://localhost:${PORT}`);
     });
   })
   .catch((error) => {

@@ -7,7 +7,7 @@ const mysql = require('mysql2')
 
 const app = express();
 
-const MONGOURI = "";
+const MONGOURI = "mongodb://127.0.0.1/users";
 
 app.use(bodyParser.json());
 app.use(cors())
@@ -19,8 +19,8 @@ app.use("/user", user);
 mongoose.connect(MONGOURI)
 .then(() => {
 	console.log("Connected to DB");
-	app.listen(3000, () => {
-		console.log(`Node is running on port 3000`);
+	app.listen(3002, () => {
+		console.log(`Node is running on port 3002`);
     });
   })
   .catch((error) => {

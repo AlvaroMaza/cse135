@@ -1,20 +1,24 @@
-const loginForm = document.getElementById("register-form")
+const loginForm = document.getElementById("login")
+
+window.onload = function() {
+    auth_token = sessionStorage.getItem('auth_token');
+    if(auth_token != null){
+        console.log('Auth token present')
+        window.location.href = "./dashboard.html";
+    }
+};
 
 loginForm.onsubmit = async (e) => {
     e.preventDefault();
 
-    var username = document.getElementById("username").value;
     var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value
-    var error = document.getElementById("error-text")
-    
+    var password = document.getElementById("password").value;
+    var error = document.getElementById("error-text");
     requestBody = {
-        username,
         email,
         password
     }
-    
-    const res = await fetch("http://localhost:3000/user/register",{
+    const res = await fetch("http://localhost:3002/user/login",{
         method: 'POST',
         headers:{
             "Content-Type":'application/json'
@@ -25,7 +29,8 @@ loginForm.onsubmit = async (e) => {
             if(response.status != 200){
                 error.innerHTML = data.msg;
             } else {
-                window.location.href = "./login.html";
+                sessionStorage.setItem('auth_token', data.token);
+                window.location.href = "./dashboard.html";
             }
         })
     }).catch(error =>{

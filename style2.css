@@ -31,7 +31,7 @@ form.login-form {
     margin-bottom: 10px;
 }
 
-.login-form input[type="email"],
+.login-form input[type="text"],
 .login-form input[type="password"],
 .login-form input[type="submit"],
 #username {

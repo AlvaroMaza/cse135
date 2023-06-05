@@ -33,7 +33,8 @@ form.login-form {
 
 .login-form input[type="email"],
 .login-form input[type="password"],
-.login-form input[type="submit"] {
+.login-form input[type="submit"],
+#username {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;

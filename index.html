@@ -23,39 +23,15 @@
         <!-- Add your footer content here -->
     </footer>
     <script>
+
         window.onload = function() {
             auth_token = sessionStorage.getItem('auth_token');
-            if (auth_token == null) {
-            console.log('Auth token not present');
-            window.location.href = "./login.html";
-            } else {
-            fetch("http://localhost:3002/user/secure-api", {
-                headers: {
-                "Content-Type": "application/json",
-                "auth-token": auth_token
-                }
-            }).then(response => {
-                if (response.status === 200) {
-                // User is authenticated and authorized
-                const isAdmin = response.headers.get("isAdmin");
-                const crudLink = document.getElementById("crud-link");
-
-                if (isAdmin === "true") {
-                    // User is an admin, show the CRUD link
-                    crudLink.style.display = "block";
-                } else {
-                    // User is not an admin, hide the CRUD link
-                    crudLink.style.display = "none";
-                }
-                } else {
-                // User is not authenticated or authorized
-                throw new Error("Unauthorized");
-                }
-            }).catch(error => {
-                console.log(error);
-            });
+            if(auth_token == null){
+                console.log('Auth token not present')
+                window.location.href = "./login.html";
             }
         };
+
 
         // Add a click event listener to the logout button
         document.getElementById("logout-button").addEventListener("click", function() {

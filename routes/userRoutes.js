@@ -4,9 +4,7 @@ const User = require("../model/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
-const cors = require('cors');
 
-router.use(cors());
 
 router.post("/register", async(req,res) =>{
     const {username, email, password} = req.body;

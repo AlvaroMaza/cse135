@@ -1,13 +1,59 @@
-#container {
-    display: flex;
-    height: 50vh;
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
   }
-
+  
+  header {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  #container {
+    display: flex;
+    height: 45vh;
+  }
+  
   .chart {
     flex: 1;
     margin-right: 10px;
+    background-color: #333;
+    padding: 20px;
   }
-
+  
+  .chart2 {
+    background-color: #333;
+    height: 45vh;
+    padding: 20px;
+  }
+  
   button {
     margin-top: 10px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  a button {
+    margin-top: 20px;
+  }
+  
+  a button:hover {
+    background-color: #555;
   }

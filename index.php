@@ -7,6 +7,9 @@
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
+  <header>
+    <h1>Analytics Dashboard</h1>
+  </header>
     <div id="container">
       <div class="chart" id="myChart2"></div>
       <div class="chart" id="myChart3"></div>

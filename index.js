@@ -12,7 +12,10 @@ const app = express();
 const MONGOURI = "mongodb://127.0.0.1/users";
 
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors({
+  origin: '*'
+}));
+
 
 // Read all users
 app.get("/db", async (req, res) => {
@@ -62,6 +65,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+
 app.use("/user", user);
 
 

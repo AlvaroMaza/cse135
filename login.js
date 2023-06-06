@@ -4,7 +4,7 @@ window.onload = function() {
     auth_token = sessionStorage.getItem('auth_token');
     if(auth_token != null){
         console.log('Auth token present')
-        window.location.href = "./dashboard.html";
+        window.location.href = "./index.html";
     }
 };
 
@@ -30,7 +30,7 @@ loginForm.onsubmit = async (e) => {
                 error.innerHTML = data.msg;
             } else {
                 sessionStorage.setItem('auth_token', data.token);
-                window.location.href = "./dashboard.html";
+                window.location.href = "./index.html";
             }
         })
     }).catch(error =>{

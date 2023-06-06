@@ -49,6 +49,7 @@ body {
     border: none;
     padding: 10px 20px;
     font-size: 16px;
+    height: 40px; /* Set a fixed height */
     cursor: pointer;
   }
   

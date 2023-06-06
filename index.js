@@ -55,6 +55,12 @@ app.delete("/db/:id", async (req, res) => {
   }
 });
 
+// Set "Content-Type" header for all routes
+app.use((req, res, next) => {
+  res.setHeader('Content-Type', 'application/json');
+  next();
+});
+
 app.use("/user", user);
 
 

@@ -6,6 +6,15 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
 
+// Read all users
+router.get("/db", async (req, res) => {
+    try {
+      const users = await User.find();
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
 
 router.post("/register", async(req,res) =>{
     const {username, email, password} = req.body;
@@ -85,15 +94,5 @@ router.get("/secure-api", auth, async (req, res) => {
       res.send({ msg: "Error in Fetching user" });
     }
 });
-
-// Read all users
-router.get("/", async (req, res) => {
-    try {
-      const users = await User.find();
-      res.status(200).json(users);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  });
 
 module.exports = router;

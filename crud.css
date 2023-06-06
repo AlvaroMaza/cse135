@@ -1,0 +1,23 @@
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    padding: 20px;
+  }
+  
+
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  
+  .chart {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #333;
+    padding: 20px;
+  }

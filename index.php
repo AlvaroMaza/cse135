@@ -7,18 +7,22 @@
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Analytics Dashboard</h1>
-  </header>
-    <div id="container">
-      <div class="chart" id="myChart2"></div>
-      <div class="chart" id="myChart3"></div>
+<header>
+    <div class="title-container">
+      <h1>Analytics Dashboard</h1>
+      <div class="buttons-container">
+        <button id="logout-button">Logout</button>
+        <a href="./crud.html">
+          <button>Go to CRUD</button>
+        </a>
+      </div>
     </div>
-    <div class="chart2" id="myChart4"></div>
-    <button id="logout-button">Logout</button>
-    <a href="./crud.html">
-        <button>Go to CRUD</button>
-    </a>
+  </header>
+  <div id="container">
+    <div class="chart" id="myChart2"></div>
+    <div class="chart" id="myChart3"></div>
+  </div>
+  <div class="chart2" id="myChart4"></div>
 
   <?php
   $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");

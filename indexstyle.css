@@ -8,9 +8,20 @@ body {
     padding: 20px;
   }
   
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
   h1 {
     font-size: 24px;
     margin: 0;
+  }
+  
+  .buttons-container {
+    display: flex;
+    gap: 10px;
   }
   
   #container {

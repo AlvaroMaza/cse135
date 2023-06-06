@@ -5,7 +5,7 @@ const cors = require('cors');
 const user = require("./routes/userRoutes");
 const mongoose = require("mongoose");
 const mysql = require('mysql2')
-const User = require("../model/User"); 
+const User = require("./model/User"); 
 
 const app = express();
 

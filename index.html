@@ -14,6 +14,7 @@
     
     <main>
         <h2>Dashboard Overview</h2>
+        <button id="logout-button">Logout</button>
         <!-- Add your dashboard content here -->
     </main>
     
@@ -21,5 +22,15 @@
         <h2>Contact Information</h2>
         <!-- Add your footer content here -->
     </footer>
+    <script>
+        // Add a click event listener to the logout button
+        document.getElementById("logout-button").addEventListener("click", function() {
+          // Clear the authentication token from the session storage
+          sessionStorage.removeItem("auth_token");
+          
+          // Redirect the user to the login page
+          window.location.href = "./login.html";
+        });
+      </script>
 </body>
 </html>

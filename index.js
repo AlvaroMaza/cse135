@@ -55,12 +55,13 @@ app.delete("/db/:id", async (req, res) => {
   }
 });
 
-// Set "Content-Type" header for all routes
+// Set CORS headers
 app.use((req, res, next) => {
-  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-
 app.use("/user", user);
 
 

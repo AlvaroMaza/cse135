@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
+router.use(cors());
 
 // Read all users
 router.get("/db", async (req, res) => {

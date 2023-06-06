@@ -62,10 +62,6 @@ body {
     color: #fff;
   }
   
-  a button {
-    margin-top: 20px;
-  }
-  
   a button:hover {
     background-color: #555;
   }

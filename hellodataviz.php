@@ -7,9 +7,13 @@
 </head>
 <body>
 
-  <div id="myChart2"></div>
-  <div id="myChart3"></div>
-  <div id="myChart4"></div>
+    <div id="myChart2"></div>
+    <div id="myChart3"></div>
+    <div id="myChart4"></div>
+    <button id="logout-button">Logout</button>
+    <a href="./crud.html">
+        <button>Go to CRUD</button>
+    </a>
 
   <?php
   $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
@@ -233,6 +237,23 @@
     }
     });
   });
+
+  window.onload = function() {
+        auth_token = sessionStorage.getItem('auth_token');
+        if(auth_token == null){
+            console.log('Auth token not present')
+            window.location.href = "./login.html";
+        }
+    };
+
+    // Add a click event listener to the logout button
+    document.getElementById("logout-button").addEventListener("click", function() {
+        // Clear the authentication token from the session storage
+        sessionStorage.removeItem("auth_token");
+        
+        // Redirect the user to the login page
+        window.location.href = "./logout.html";
+    });
   </script>
 </body>
 </html>

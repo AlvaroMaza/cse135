@@ -1,0 +1,13 @@
+#container {
+    display: flex;
+    height: 40vh;
+  }
+
+  .chart {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  button {
+    margin-top: 10px;
+  }

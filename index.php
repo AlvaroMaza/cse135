@@ -3,13 +3,15 @@
 <head>
   <title>CSE 135 - Spain</title>
   <link rel = "icon" href = "images/crown-solid.svg">
+  <link rel="stylesheet" href="indexstyle.css">
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 <body>
-
-    <div id="myChart2"></div>
-    <div id="myChart3"></div>
-    <div id="myChart4"></div>
+    <div id="container">
+      <div class="chart" id="myChart2"></div>
+      <div class="chart" id="myChart3"></div>
+      <div class="chart" id="myChart4"></div>
+    </div>
     <button id="logout-button">Logout</button>
     <a href="./crud.html">
         <button>Go to CRUD</button>

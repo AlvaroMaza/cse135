@@ -30,7 +30,7 @@ loginForm.onsubmit = async (e) => {
                 error.innerHTML = data.msg;
             } else {
                 sessionStorage.setItem('auth_token', data.token);
-                window.location.href = "./index.html";
+                window.location.href = "./index.php";
             }
         })
     }).catch(error =>{

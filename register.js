@@ -14,7 +14,7 @@ loginForm.onsubmit = async (e) => {
         password
     }
     
-    const res = await fetch("https://reporting.cse135spain.site/user/register",{
+    const res = await fetch("https://reporting.cse135spain.site/api/user/register",{
         method: 'POST',
         headers:{
             "Content-Type":'application/json'

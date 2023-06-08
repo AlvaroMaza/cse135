@@ -93,96 +93,97 @@
 
   <script>
   window.addEventListener('load', function() {
-
-  zingchart.render({
-      id: 'myChart2',
-      height: 400,
-      width: "100%",
-      data: myConfig = {
-        type: "pie3d",
-
-        plot: {
-          'offset-r': "25%"
-        },
-
-        title: {
-          "text": "Pie chart of the times the server was accessed in English or Spanish"
-        },
-        series: [{
-          text: langLabels[0],
-          values: [langData[0]],
-          backgroundColor: '#F44336',
-        },
-        {
-          text: langLabels[1],
-          values: [langData[1]],
-          backgroundColor: '#009688',
-        }
-        ]
-      }
-    });
-
-    let colors = {
-      blue: 'rgba(151,187,205,1)',
-      gray: '#EBEBEB',
-      grayDark: '#3F3F3F',
-    };
-
-
+    
     zingchart.render({
-      id: 'myChart3',
-      height: 400,
-      width: '100%',
-      data: {
-        type: 'bar',
-        title: {
-          "text": "Average X and Y coordinates for mouse activities"
-        },
-        backgroundColor: '#FFF',
-        plot: {
-          backgroundColor2: 'rgba(151,187,205,1)',
-          lineColor: 'rgba(151,187,205,1)',
-          lineWidth: '2px',
-          marker: {
-            backgroundColor: 'rgba(151,187,205,1)',
-            borderColor: 'white',
-            shadow: false,
+        id: 'myChart2',
+        height: 400,
+        width: "100%",
+        data: myConfig = {
+          type: "pie3d",
+
+          plot: {
+            'offset-r': "25%"
           },
-        },
-        scaleX: {
-          labels: activityLabels
-        },
-        plotarea: {
-          backgroundColor: 'white',
-        },
-        series: [{
-            values: avgX,
-            alpha: 0.5,
-            backgroundColor1: 'rgba(220,220,220,1)',
-            backgroundColor2: 'rgba(220,220,220,1)',
-            borderBottom: '0px',
-            borderColor: '#C7C7C7',
-            borderTop: '2px solid #C7C7C7',
-            borderWidth: '2px',
-            lineColor: 'rgba(220,220,220,1)',
-            lineWidth: '2px',
-            marker: {
-              backgroundColor: 'rgba(220,220,220,1)',
-            },
+
+          title: {
+            "text": "Pie chart of the times the server was accessed in English or Spanish"
+          },
+          series: [{
+            text: langLabels[0],
+            values: [langData[0]],
+            backgroundColor: '#F44336',
           },
           {
-            values: avgY,
-            alpha: 0.5,
-            backgroundColor1: colors.blue,
-            backgroundColor2: colors.blue,
-            borderBottom: '0px',
-            borderColor: colors.blue,
-            borderTop: '2px solid ' + colors.blue,
-            borderWidth: '2px',
+            text: langLabels[1],
+            values: [langData[1]],
+            backgroundColor: '#009688',
+          }
+          ]
+        }
+      });
+
+      let colors = {
+        blue: 'rgba(151,187,205,1)',
+        gray: '#EBEBEB',
+        grayDark: '#3F3F3F',
+      };
+
+
+      zingchart.render({
+        id: 'myChart3',
+        height: 400,
+        width: '100%',
+        data: {
+          type: 'bar',
+          title: {
+            "text": "Average X and Y coordinates for mouse activities"
           },
-        ],
-      }
-    });
+          backgroundColor: '#FFF',
+          plot: {
+            backgroundColor2: 'rgba(151,187,205,1)',
+            lineColor: 'rgba(151,187,205,1)',
+            lineWidth: '2px',
+            marker: {
+              backgroundColor: 'rgba(151,187,205,1)',
+              borderColor: 'white',
+              shadow: false,
+            },
+          },
+          scaleX: {
+            labels: activityLabels
+          },
+          plotarea: {
+            backgroundColor: 'white',
+          },
+          series: [{
+              values: avgX,
+              alpha: 0.5,
+              backgroundColor1: 'rgba(220,220,220,1)',
+              backgroundColor2: 'rgba(220,220,220,1)',
+              borderBottom: '0px',
+              borderColor: '#C7C7C7',
+              borderTop: '2px solid #C7C7C7',
+              borderWidth: '2px',
+              lineColor: 'rgba(220,220,220,1)',
+              lineWidth: '2px',
+              marker: {
+                backgroundColor: 'rgba(220,220,220,1)',
+              },
+            },
+            {
+              values: avgY,
+              alpha: 0.5,
+              backgroundColor1: colors.blue,
+              backgroundColor2: colors.blue,
+              borderBottom: '0px',
+              borderColor: colors.blue,
+              borderTop: '2px solid ' + colors.blue,
+              borderWidth: '2px',
+            },
+          ],
+        }
+      });
+  }
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

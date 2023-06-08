@@ -21,3 +21,43 @@ body {
     background-color: #333;
     padding: 20px;
   }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .buttons-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  #container {
+    display: flex;
+    height: 60vh;
+  }
+
+  button {
+    margin-top: 10px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    height: 40px; /* Set a fixed height */
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  a button:hover {
+    background-color: #555;
+  }

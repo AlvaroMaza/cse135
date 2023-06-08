@@ -132,6 +132,18 @@
     yAxisGroup.selectAll(".tick text")
       .style("font-size", "14px"); // Adjust font size as needed
 
+
+    // Create the y-axis grid lines
+    var yGrid = d3.axisLeft(yScale)
+      .tickSize(-width + margin.left + margin.right)
+      .tickFormat("");
+
+    // Append the y-axis grid lines to the SVG
+    svg.append("g")
+      .attr("class", "y-grid")
+      .attr("transform", "translate(" + margin.left + ",0)")
+      .call(yGrid);
+
     // Append the line to the SVG
     svg.append("path")
       .datum(visitCounts)

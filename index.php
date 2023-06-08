@@ -88,6 +88,15 @@
       .domain([0, d3.max(visitCounts)])
       .range([height - margin.bottom, margin.top]);
 
+    // Create the y-axis
+    var yAxis = d3.axisLeft(yScale);
+
+    // Append the y-axis to the SVG
+    svg.append("g")
+      .attr("class", "y-axis")
+      .attr("transform", "translate(" + margin.left + ", 0)")
+      .call(yAxis);
+
     // Create the line generator
     var line = d3.line()
     .x(function(d, i) { return xScale(dates[i]); })

@@ -276,7 +276,7 @@
       }
     };
     xhr.send();
-  }:
+  };
     
 
     // Add a click event listener to the logout button

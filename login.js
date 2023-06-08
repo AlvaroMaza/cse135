@@ -4,7 +4,7 @@ window.onload = function() {
     auth_token = sessionStorage.getItem('auth_token');
     if(auth_token != null){
         console.log('Auth token present')
-        window.location.href = "./index.html";
+        window.location.href = "./index.php";
     }
 };
 

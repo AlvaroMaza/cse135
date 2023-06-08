@@ -60,6 +60,10 @@ body {
     text-decoration: none;
     color: #fff;
   }
+
+  a button {
+    background-color: #45a049;
+  }
   
   a button:hover {
     background-color: #555;

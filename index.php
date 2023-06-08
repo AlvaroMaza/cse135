@@ -22,7 +22,7 @@
     <div class="chart" id="myChart2"></div>
     <div class="chart" id="myChart3"></div>
   </div>
-  <!--<div class="chart2" id="myChart4"></div>-->
+  <div class="chart2" id="myChart4"></div>
 
   <?php
   $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
@@ -87,7 +87,20 @@
   </script>
 
   <?php
-  $mysqli->close();
+    // Fetch timestamp data from the database table
+    $query = "SELECT timestamp FROM log_table";
+    $result = $mysqli->query($query);
+
+    $timestamps = array();
+    while ($row = $result->fetch_assoc()) {
+      $timestamps[] = strtotime($row['timestamp']) * 1000; // Convert timestamp to milliseconds
+    }
+
+    $result->free();
+    $mysqli->close();
+
+    // Pass the timestamps to JavaScript
+    echo "<script>var timestamps = " . json_encode($timestamps) . ";</script>";
   ?>
 
 
@@ -184,6 +197,45 @@
       }
     });
   });
+
+  // Convert the timestamps to JavaScript Date objects
+  var dates = timestamps.map(function(timestamp) {
+    return new Date(timestamp);
+  });
+
+  // Set up the chart dimensions
+  var width = 800;
+  var height = 400;
+  var margin = { top: 20, right: 20, bottom: 30, left: 50 };
+
+  // Create an SVG element for the chart
+  var svg = d3.select("#myChart4")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  // Set up the scales for x and y axes
+  var xScale = d3.scaleTime()
+    .domain(d3.extent(dates))
+    .range([margin.left, width - margin.right]);
+
+  // Use a linear scale for the y axis (adjust as needed)
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(dates)]) // Adjust the domain based on your data
+    .range([height - margin.bottom, margin.top]);
+
+  // Create the line generator
+  var line = d3.line()
+    .x(function(d, i) { return xScale(dates[i]); })
+    .y(function(d) { return yScale(d); });
+
+  // Append the line to the SVG
+  svg.append("path")
+    .datum(dates)
+    .attr("fill", "none")
+    .attr("stroke", "steelblue")
+    .attr("stroke-width", 2)
+    .attr("d", line);
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

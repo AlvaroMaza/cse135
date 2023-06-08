@@ -12,7 +12,7 @@
       <h1>Analytics Dashboard</h1>
       <div class="buttons-container">
         <button id="logout-button">Logout</button>
-        <a href="./crud.html">
+        <a href="./crud.html" id="crud-link">
           <button>Go to CRUD</button>
         </a>
       </div>

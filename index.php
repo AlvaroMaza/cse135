@@ -66,7 +66,7 @@
     });
 
     // Set up the chart dimensions
-    var width = 1200;
+    var width = 1500;
     var height = 400;
     var margin = { top: 20, right: 20, bottom: 30, left: 50 };
 

@@ -30,6 +30,7 @@ loginForm.onsubmit = async (e) => {
                 error.innerHTML = data.msg;
             } else {
                 sessionStorage.setItem('auth_token', data.token);
+                sessionStorage.setItem('id', data.userId);
                 window.location.href = "./index.php";
             }
         })

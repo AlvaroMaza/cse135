@@ -5,6 +5,7 @@
   <link rel = "icon" href = "images/crown-solid.svg">
   <link rel="stylesheet" href="indexstyle.css">
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 <header>

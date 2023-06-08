@@ -66,6 +66,7 @@ router.post("/login", async (req, res) => {
 			if (err) throw err;
 			res.status(200).json({
 				token,
+                userId: user.id
 			});
 		});
     } catch (err) {

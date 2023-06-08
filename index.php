@@ -18,75 +18,20 @@
       </div>
     </div>
   </header>
-  <div id="container">
+  <!--<div id="container">
     <div class="chart" id="myChart2"></div>
     <div class="chart" id="myChart3"></div>
-  </div>
+  </div>-->
   <div class="chart2" id="myChart4"></div>
 
   <?php
-  $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
+    $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
 
-  if (mysqli_connect_errno()) {
-      printf("Connect failed: %s\n", mysqli_connect_error());
-      exit();
-  }
-  ?>
-
-  <script>
-
-  var langData = [
-    <?php
-    $langdata = mysqli_query($mysqli, "SELECT Language,COUNT(*) FROM static GROUP BY Language");
-
-    while ($langinfo = mysqli_fetch_array($langdata)) {
-          echo  $langinfo['COUNT(*)'] . ',';
+    if (mysqli_connect_errno()) {
+        printf("Connect failed: %s\n", mysqli_connect_error());
+        exit();
     }
-    ?>
-  ];
 
-  var langLabels = [
-    <?php
-    $langdata = mysqli_query($mysqli, "SELECT Language,COUNT(*) FROM static GROUP BY Language");
-
-    while ($langinfo = mysqli_fetch_array($langdata)) {
-          echo  '"' . $langinfo['Language'] . '",';
-    }
-    ?>
-  ];
-
-  var avgX = [
-    <?php
-    $xdata = mysqli_query($mysqli, "SELECT AVG(X) FROM mouseactivity GROUP BY type");
-
-    while ($xinfo = mysqli_fetch_array($xdata)) {
-          echo  $xinfo['AVG(X)'] . ',';
-    }
-    ?>
-  ];
-
-  var avgY = [
-    <?php
-    $ydata = mysqli_query($mysqli, "SELECT AVG(Y) FROM mouseactivity GROUP BY type");
-
-    while ($yinfo = mysqli_fetch_array($ydata)) {
-          echo  $yinfo['AVG(Y)'] . ',';
-    }
-    ?>
-  ];
-
-  var activityLabels = [
-    <?php
-    $labelsdata = mysqli_query($mysqli, "SELECT type, AVG(Y) FROM mouseactivity GROUP BY type");
-
-    while ($yinfo = mysqli_fetch_array($labelsdata)) {
-          echo  '"' . $yinfo['type'] . '",';
-    }
-    ?>
-  ];
-  </script>
-
-  <?php
     // Fetch timestamp data from the database table
     $query = "SELECT timestamp FROM log_table";
     $result = $mysqli->query($query);
@@ -107,135 +52,44 @@
   <script>
   window.addEventListener('load', function() {
 
-  zingchart.render({
-      id: 'myChart2',
-      height: 400,
-      width: "100%",
-      data: myConfig = {
-        type: "pie3d",
-
-        plot: {
-          'offset-r': "25%"
-        },
-
-        title: {
-          "text": "Pie chart of the times the server was accessed in English or Spanish"
-        },
-        series: [{
-          text: langLabels[0],
-          values: [langData[0]],
-          backgroundColor: '#F44336',
-        },
-        {
-          text: langLabels[1],
-          values: [langData[1]],
-          backgroundColor: '#009688',
-        }
-        ]
-      }
+    var dates = timestamps.map(function(timestamp) {
+      return new Date(timestamp);
     });
 
-    let colors = {
-      blue: 'rgba(151,187,205,1)',
-      gray: '#EBEBEB',
-      grayDark: '#3F3F3F',
-    };
+    // Set up the chart dimensions
+    var width = 800;
+    var height = 400;
+    var margin = { top: 20, right: 20, bottom: 30, left: 50 };
 
+    // Create an SVG element for the chart
+    var svg = d3.select("#myChart4")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
 
-    zingchart.render({
-      id: 'myChart3',
-      height: 400,
-      width: '100%',
-      data: {
-        type: 'bar',
-        title: {
-          "text": "Average X and Y coordinates for mouse activities"
-        },
-        backgroundColor: '#FFF',
-        plot: {
-          backgroundColor2: 'rgba(151,187,205,1)',
-          lineColor: 'rgba(151,187,205,1)',
-          lineWidth: '2px',
-          marker: {
-            backgroundColor: 'rgba(151,187,205,1)',
-            borderColor: 'white',
-            shadow: false,
-          },
-        },
-        scaleX: {
-          labels: activityLabels
-        },
-        plotarea: {
-          backgroundColor: 'white',
-        },
-        series: [{
-            values: avgX,
-            alpha: 0.5,
-            backgroundColor1: 'rgba(220,220,220,1)',
-            backgroundColor2: 'rgba(220,220,220,1)',
-            borderBottom: '0px',
-            borderColor: '#C7C7C7',
-            borderTop: '2px solid #C7C7C7',
-            borderWidth: '2px',
-            lineColor: 'rgba(220,220,220,1)',
-            lineWidth: '2px',
-            marker: {
-              backgroundColor: 'rgba(220,220,220,1)',
-            },
-          },
-          {
-            values: avgY,
-            alpha: 0.5,
-            backgroundColor1: colors.blue,
-            backgroundColor2: colors.blue,
-            borderBottom: '0px',
-            borderColor: colors.blue,
-            borderTop: '2px solid ' + colors.blue,
-            borderWidth: '2px',
-          },
-        ],
-      }
-    });
+    // Set up the scales for x and y axes
+    var xScale = d3.scaleTime()
+      .domain(d3.extent(dates))
+      .range([margin.left, width - margin.right]);
+
+    // Use a linear scale for the y axis (adjust as needed)
+    var yScale = d3.scaleLinear()
+      .domain([0, d3.max(dates)]) // Adjust the domain based on your data
+      .range([height - margin.bottom, margin.top]);
+
+    // Create the line generator
+    var line = d3.line()
+      .x(function(d, i) { return xScale(dates[i]); })
+      .y(function(d) { return yScale(d); });
+
+    // Append the line to the SVG
+    svg.append("path")
+      .datum(dates)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 2)
+      .attr("d", line);
   });
-
-  // Convert the timestamps to JavaScript Date objects
-  var dates = timestamps.map(function(timestamp) {
-    return new Date(timestamp);
-  });
-
-  // Set up the chart dimensions
-  var width = 800;
-  var height = 400;
-  var margin = { top: 20, right: 20, bottom: 30, left: 50 };
-
-  // Create an SVG element for the chart
-  var svg = d3.select("#myChart4")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  // Set up the scales for x and y axes
-  var xScale = d3.scaleTime()
-    .domain(d3.extent(dates))
-    .range([margin.left, width - margin.right]);
-
-  // Use a linear scale for the y axis (adjust as needed)
-  var yScale = d3.scaleLinear()
-    .domain([0, d3.max(dates)]) // Adjust the domain based on your data
-    .range([height - margin.bottom, margin.top]);
-
-  // Create the line generator
-  var line = d3.line()
-    .x(function(d, i) { return xScale(dates[i]); })
-    .y(function(d) { return yScale(d); });
-
-  // Append the line to the SVG
-  svg.append("path")
-    .datum(dates)
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 2)
-    .attr("d", line);
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

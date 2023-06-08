@@ -74,7 +74,8 @@
     var svg = d3.select("#myChart4")
       .append("svg")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height)
+      .style("background-color", "white");
 
     // Set up the scales for x and y axes
     var xScale = d3.scaleTime()
@@ -91,6 +92,49 @@
     var line = d3.line()
     .x(function(d, i) { return xScale(dates[i]); })
     .y(function(d) { return yScale(d); });
+
+    // Create x-axis
+    var xAxis = d3.axisBottom(xScale);
+
+    // Append x-axis to the SVG
+    svg.append("g")
+      .attr("class", "x-axis")
+      .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+      .call(xAxis);
+
+    // Add x-axis label
+    svg.append("text")
+      .attr("class", "x-label")
+      .attr("text-anchor", "middle")
+      .attr("x", width / 2)
+      .attr("y", height - margin.bottom / 2)
+      .text("Date");
+
+    // Create y-axis
+    var yAxis = d3.axisLeft(yScale);
+
+    // Append y-axis to the SVG
+    svg.append("g")
+      .attr("class", "y-axis")
+      .attr("transform", "translate(" + margin.left + ",0)")
+      .call(yAxis);
+
+    // Add y-axis label
+    svg.append("text")
+      .attr("class", "y-label")
+      .attr("text-anchor", "middle")
+      .attr("x", -height / 2)
+      .attr("y", margin.left / 2)
+      .attr("transform", "rotate(-90)")
+      .text("Visit Count");
+
+    // Add chart title
+    svg.append("text")
+      .attr("class", "chart-title")
+      .attr("text-anchor", "middle")
+      .attr("x", width / 2)
+      .attr("y", margin.top / 2)
+      .text("Webpage Visits by Day");
 
     // Append the line to the SVG
     svg.append("path")

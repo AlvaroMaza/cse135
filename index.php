@@ -75,7 +75,6 @@
       .append("svg")
       .attr("width", width)
       .attr("height", height)
-      .style("background-color", "white");
 
     // Set up the scales for x and y axes
     var xScale = d3.scaleTime()

@@ -38,14 +38,6 @@
     <script>
 
         window.onload = function() {
-            auth_token = sessionStorage.getItem('auth_token');
-            if(auth_token == null){
-                console.log('Auth token not present')
-                window.location.href = "./login.html";
-            }
-        };
-
-        window.onload = function() {
           var sessionID = sessionStorage.getItem('id');
 
           // Send a GET request to the API endpoint
@@ -53,19 +45,23 @@
           var xhr = new XMLHttpRequest();
           xhr.open("GET", url, true);
           xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-              var response = JSON.parse(xhr.responseText);
-              var isAdmin = response.admin;
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                var isAdmin = response.admin;
 
-              // Hide the CRUD button if the user is not admin
-              if (!isAdmin) {
-                window.location.href = "./index.php";
+                // Hide the CRUD button if the user is not admin
+                if (!isAdmin) {
+                  window.location.href = "./index.php";
+                }
+              } else {
+                // Redirect to index.php in case of a 500 error
+                window.location.href = "./login.html";
               }
             }
           };
           xhr.send();
         };
-
 
         // Add a click event listener to the logout button
         document.getElementById("logout-button").addEventListener("click", function() {

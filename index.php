@@ -114,7 +114,7 @@
     var yAxis = d3.axisLeft(yScale);
 
     // Append y-axis to the SVG
-    svg.append("g")
+    var yAxisGroup = svg.append("g")
       .attr("class", "y-axis")
       .attr("transform", "translate(" + margin.left + ",0)")
       .call(yAxis);
@@ -127,6 +127,10 @@
       .attr("y", margin.left / 2)
       .attr("transform", "rotate(-90)")
       .text("Visit Count");
+
+    // Add numbers to the y-axis ticks
+    yAxisGroup.selectAll(".tick text")
+      .style("font-size", "10px"); // Adjust font size as needed
 
     // Add chart title
     svg.append("text")

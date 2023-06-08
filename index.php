@@ -25,6 +25,7 @@
   </div>-->
   <h3>Number of times the webpage is entered</h3>
   <div class="chart2" id="myChart4"></div>
+  <h4> If you want to see a detail report of the static data of the website click here</h4>
 
   <?php
     $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");
@@ -153,14 +154,14 @@
       .attr("cx", function(d, i) { return xScale(dates[i]); })
       .attr("cy", function(d) { return yScale(d); })
       .attr("r", 4)
-      .attr("fill", "0000b3");
+      .attr("fill", "steelblue");
 
 
     // Append the line to the SVG
     svg.append("path")
       .datum(visitCounts)
       .attr("fill", "none")
-      .attr("stroke", "0000b3")
+      .attr("stroke", "steelblue")
       .attr("stroke-width", 4)
       .attr("d", line);
   });

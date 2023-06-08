@@ -55,6 +55,10 @@ body {
   button:hover {
     background-color: #555;
   }
+  
+  a {
+    color: #fff;
+  }
 
   a button {
     background-color: #45a049;

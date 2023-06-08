@@ -67,7 +67,7 @@
     });
 
     var containerWidth = document.getElementById("myChart4").offsetWidth;
-    var containerHeight = 0.6 * containerWidth; // Adjust the aspect ratio as needed
+    var containerHeight = 0.3 * containerWidth; // Adjust the aspect ratio as needed
 
     // Calculate the margin based on the container size
     var margin = {
@@ -80,7 +80,7 @@
     // Calculate the actual width and height based on the container size and margins
     var width = containerWidth - margin.left - margin.right;
     var height = containerHeight - margin.top - margin.bottom;
-    
+
     // Create an SVG element for the chart
     var svg = d3.select("#myChart4")
       .append("svg")

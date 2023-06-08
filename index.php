@@ -138,6 +138,11 @@
       .tickSize(-width + margin.left + margin.right)
       .tickFormat("");
 
+    // Append the y-axis grid lines to the SVG
+    svg.append("g")
+      .attr("class", "y-grid")
+      .attr("transform", "translate(" + margin.left + ")")
+      .call(yGrid);
 
     // Append the line to the SVG
     svg.append("path")

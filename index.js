@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(cors({
   origin: '*'
 }));
-
+app.options('*', cors());
 
 // Read all users
 app.get("/db", async (req, res) => {

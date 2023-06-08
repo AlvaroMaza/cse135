@@ -25,7 +25,7 @@
   </div>-->
   <h3>Number of times the webpage is entered</h3>
   <div class="chart2" id="myChart4"></div>
-  <h4>If you want to see a detailed report of the static data of the website <a href="/report.html">click here</a></h4>
+  <h4>If you want to see a detailed report of the static data of the website <a href="/report.html">click here</a>!!</h4>
 
   <?php
     $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");

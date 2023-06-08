@@ -82,5 +82,6 @@ body {
   .y-grid line {
     stroke: lightgray;
     stroke-opacity: 0.3;
-    stroke-dasharray: 2;
+    stroke-dasharray: 4;
+    stroke-width: 1px;
   }

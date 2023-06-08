@@ -153,14 +153,14 @@
       .attr("cx", function(d, i) { return xScale(dates[i]); })
       .attr("cy", function(d) { return yScale(d); })
       .attr("r", 4)
-      .attr("fill", "steelblue");
+      .attr("fill", "0000b3");
 
 
     // Append the line to the SVG
     svg.append("path")
       .datum(visitCounts)
       .attr("fill", "none")
-      .attr("stroke", "steelblue")
+      .attr("stroke", "0000b3")
       .attr("stroke-width", 4)
       .attr("d", line);
   });

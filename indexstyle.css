@@ -88,14 +88,3 @@ body {
     stroke-opacity: 0.5;
     stroke-dasharray: 4;
   }
-
-  .dot {
-    stroke: white;
-    stroke-width: 2px;
-  }
-  
-  .value-label {
-    fill: white;
-    font-size: 12px;
-    pointer-events: none; /* Prevent the value label from interfering with hover events */
-  }

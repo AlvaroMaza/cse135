@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <!-- <script src="script.js"></script> -->
     <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
-    <link rel="stylesheet" href="crud.css"
+    <link rel="stylesheet" href="crud.css">
 </head>
 <body>
     <header>
@@ -16,6 +16,10 @@
     
     <main>
         <zing-grid src="https://reporting.cse135spain.site/api/db"  
+        id=“user-grid”
+        idKey=“username”
+        caption=“users”
+        params=‘{“idKey”:“username”}’
         caption="CRUD Endpoint"
         editor-controls
         pager

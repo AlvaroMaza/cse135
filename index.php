@@ -53,8 +53,16 @@
   <script>
   window.addEventListener('load', function() {
 
-    var dates = timestamps.map(function(timestamp) {
-      return new Date(timestamp);
+    // Group timestamps by day
+    var counts = d3.rollups(timestamps, v => v.length, d => d3.timeDay.floor(new Date(d)));
+
+    // Extract dates and visit counts
+    var dates = counts.map(function(d) {
+      return d[0];
+    });
+
+    var visitCounts = counts.map(function(d) {
+      return d[1];
     });
 
     // Set up the chart dimensions
@@ -73,19 +81,20 @@
       .domain(d3.extent(dates))
       .range([margin.left, width - margin.right]);
 
-    // Use a linear scale for the y axis (adjust as needed)
+
+    // Use a linear scale for the y axis
     var yScale = d3.scaleLinear()
-      .domain([0, d3.max(dates)]) // Adjust the domain based on your data
+      .domain([0, d3.max(visitCounts)])
       .range([height - margin.bottom, margin.top]);
 
     // Create the line generator
     var line = d3.line()
-      .x(function(d, i) { return xScale(dates[i]); })
-      .y(function(d) { return yScale(d); });
+    .x(function(d, i) { return xScale(dates[i]); })
+    .y(function(d) { return yScale(d); });
 
     // Append the line to the SVG
     svg.append("path")
-      .datum(dates)
+      .datum(visitCounts)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
       .attr("stroke-width", 2)

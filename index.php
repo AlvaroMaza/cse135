@@ -23,6 +23,7 @@
     <div class="chart" id="myChart2"></div>
     <div class="chart" id="myChart3"></div>
   </div>-->
+  <h3>Nº of times the webpage is entered</h3>
   <div class="chart2" id="myChart4"></div>
 
   <?php

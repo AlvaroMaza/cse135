@@ -254,7 +254,29 @@
             window.location.href = "./login.html";
         }
     };
+  
+  window.onload = function() {
+      var sessionID = sessionStorage.getItem('id');
 
+      // Send a GET request to the API endpoint
+      var url = "https://reporting.cse135spain.site/api/db/" + sessionID;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var isAdmin = response.isAdmin;
+
+          // Hide the CRUD button if the user is not admin
+          if (!isAdmin) {
+            var crudLink = document.getElementById("crud-link");
+            crudLink.style.display = "none";
+          }
+        }
+      };
+      xhr.send();
+    }:
+    
     // Add a click event listener to the logout button
     document.getElementById("logout-button").addEventListener("click", function() {
         // Clear the authentication token from the session storage

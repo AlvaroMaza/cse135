@@ -144,6 +144,33 @@
       .attr("transform", "translate(" + margin.left + ",0)")
       .call(yGrid);
 
+    // Append circles for each data point
+    svg.selectAll(".dot")
+      .data(visitCounts)
+      .enter()
+      .append("circle")
+      .attr("class", "dot")
+      .attr("cx", function(d, i) { return xScale(dates[i]); })
+      .attr("cy", function(d) { return yScale(d); })
+      .attr("r", 4)
+      .attr("fill", "steelblue")
+      .on("mouseover", function(d, i) {
+        // Get the position of the mouse pointer
+        var mouseX = d3.event.pageX;
+        var mouseY = d3.event.pageY;
+
+        // Display the value on hover
+        svg.append("text")
+          .attr("class", "value-label")
+          .attr("x", mouseX + 10)
+          .attr("y", mouseY - 10)
+          .text(d);
+      })
+      .on("mouseout", function() {
+        // Remove the value label on mouseout
+        svg.select(".value-label").remove();
+      });
+
     // Append the line to the SVG
     svg.append("path")
       .datum(visitCounts)

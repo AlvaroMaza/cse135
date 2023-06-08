@@ -68,7 +68,7 @@
     // Set up the chart dimensions
     var width = 1400;
     var height = 400;
-    var margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    var margin = { top: 20, right: 20, bottom: 50, left: 80 };
 
     // Create an SVG element for the chart
     var svg = d3.select("#myChart4")
@@ -129,14 +129,14 @@
 
     // Add numbers to the y-axis ticks
     yAxisGroup.selectAll(".tick text")
-      .style("font-size", "16px"); // Adjust font size as needed
+      .style("font-size", "14px"); // Adjust font size as needed
 
     // Append the line to the SVG
     svg.append("path")
       .datum(visitCounts)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
-      .attr("stroke-width", 2)
+      .attr("stroke-width", 4)
       .attr("d", line);
   });
 

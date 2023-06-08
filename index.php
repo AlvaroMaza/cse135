@@ -129,15 +129,7 @@
 
     // Add numbers to the y-axis ticks
     yAxisGroup.selectAll(".tick text")
-      .style("font-size", "10px"); // Adjust font size as needed
-
-    // Add chart title
-    svg.append("text")
-      .attr("class", "chart-title")
-      .attr("text-anchor", "middle")
-      .attr("x", width / 2)
-      .attr("y", margin.top / 2)
-      .text("Webpage Visits by Day");
+      .style("font-size", "16px"); // Adjust font size as needed
 
     // Append the line to the SVG
     svg.append("path")

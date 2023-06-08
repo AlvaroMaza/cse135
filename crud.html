@@ -61,6 +61,9 @@
               if (!isAdmin) {
                 window.location.href = "./index.php";
               }
+            } else {
+              // Redirect to index.php in case of a 500 error
+              window.location.href = "./index.php";
             }
           };
           xhr.send();

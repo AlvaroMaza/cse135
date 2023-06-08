@@ -66,11 +66,21 @@
       return d[1];
     });
 
-    // Set up the chart dimensions
-    var width = 1400;
-    var height = 400;
-    var margin = { top: 20, right: 20, bottom: 70, left: 80 };
+    var containerWidth = document.getElementById("myChart4").offsetWidth;
+    var containerHeight = 0.6 * containerWidth; // Adjust the aspect ratio as needed
 
+    // Calculate the margin based on the container size
+    var margin = {
+      top: containerHeight * 0.05,
+      right: containerWidth * 0.05,
+      bottom: containerHeight * 0.15,
+      left: containerWidth * 0.1
+    };
+
+    // Calculate the actual width and height based on the container size and margins
+    var width = containerWidth - margin.left - margin.right;
+    var height = containerHeight - margin.top - margin.bottom;
+    
     // Create an SVG element for the chart
     var svg = d3.select("#myChart4")
       .append("svg")

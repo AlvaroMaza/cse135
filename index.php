@@ -107,7 +107,7 @@
       .attr("class", "x-label")
       .attr("text-anchor", "middle")
       .attr("x", width / 2)
-      .attr("y", height - margin.bottom / 2)
+      .attr("y", height - margin.bottom -10 / 2)
       .text("Date");
 
     // Create y-axis

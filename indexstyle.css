@@ -88,3 +88,8 @@ body {
     stroke-opacity: 0.5;
     stroke-dasharray: 4;
   }
+
+  .dot {
+    stroke: white;
+    stroke-width: 5px;
+  }

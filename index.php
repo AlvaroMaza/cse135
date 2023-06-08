@@ -69,7 +69,7 @@
     // Set up the chart dimensions
     var width = 1400;
     var height = 400;
-    var margin = { top: 20, right: 20, bottom: 50, left: 80 };
+    var margin = { top: 20, right: 20, bottom: 70, left: 80 };
 
     // Create an SVG element for the chart
     var svg = d3.select("#myChart4")
@@ -107,7 +107,7 @@
       .attr("class", "x-label")
       .attr("text-anchor", "middle")
       .attr("x", width / 2)
-      .attr("y", height - margin.bottom + 10 / 2)
+      .attr("y", height - margin.bottom / 2)
       .text("Date");
 
     // Create y-axis

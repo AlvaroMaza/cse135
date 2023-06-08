@@ -266,7 +266,7 @@
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
-        var isAdmin = response.isAdmin;
+        var isAdmin = response.admin;
 
         // Hide the CRUD button if the user is not admin
         if (!isAdmin) {

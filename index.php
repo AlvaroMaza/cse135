@@ -33,7 +33,7 @@
     }
 
     // Fetch timestamp data from the database table
-    $query = "SELECT timestamp FROM log_table";
+    $query = "SELECT timestamp FROM static";
     $result = $mysqli->query($query);
 
     $timestamps = array();

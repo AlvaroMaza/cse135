@@ -23,7 +23,7 @@
     <div class="chart" id="myChart2"></div>
     <div class="chart" id="myChart3"></div>
   </div>-->
-  <h3>Nº of times the webpage is entered</h3>
+  <h3>Number of times the webpage is entered</h3>
   <div class="chart2" id="myChart4"></div>
 
   <?php
@@ -165,23 +165,28 @@
   window.onload = function() {
     var sessionID = sessionStorage.getItem('id');
 
-    // Send a GET request to the API endpoint
-    var url = "https://reporting.cse135spain.site/api/db/" + sessionID;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        var isAdmin = response.admin;
+    if (sessionID) {
+      // Send a GET request to the API endpoint
+      var url = "https://reporting.cse135spain.site/api/db/" + sessionID;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var isAdmin = response.admin;
 
-        // Hide the CRUD button if the user is not admin
-        if (!isAdmin) {
-          var crudLink = document.getElementById("crud-link");
-          crudLink.style.display = "none";
+          // Hide the CRUD button if the user is not admin
+          if (!isAdmin) {
+            var crudLink = document.getElementById("crud-link");
+            crudLink.style.display = "none";
+          }
         }
-      }
-    };
-    xhr.send();
+      };
+      xhr.send();
+    } else {
+      // Redirect to the login page
+      window.location.href = "./login.html";
+    }
   };
     
 

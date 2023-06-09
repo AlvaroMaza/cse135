@@ -104,7 +104,7 @@ body {
     background-size: 780px 380px; /* Set the size to match the heatmap SVG dimensions */
     background-repeat: no-repeat; /* Prevent the photo from repeating */
     background-position: center;
-    width: 800px; /* Set the width to match the background size */
-    height: 400px; /* Set the height to match the background size */
+    width: 780px; /* Set the width to match the background size */
+    height: 380px; /* Set the height to match the background size */
     margin: 0 auto; /* Center the div horizontally */
   }

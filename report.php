@@ -89,8 +89,8 @@
       .attr("height", pieHeight);
 
     // Define color scales for different language prefixes
-    var colorScaleEs = d3.scaleOrdinal(d3.schemeBlues[5].map(color => d3.color(color).darker(0.7))); // Darker blues for "es" languages
-    var colorScaleEn = d3.scaleOrdinal(d3.schemeGreens[5].map(color => d3.color(color).darker(0.7))); // Darker greens for "en" languages
+    var colorScaleEs = d3.scaleOrdinal(d3.schemeBlues[5].reverse()); // Reverse the blues for "es" languages
+    var colorScaleEn = d3.scaleOrdinal(d3.schemeGreens[5].reverse()); // Reverse the greens for "en" languages
 
     var pie = d3.pie()
       .value(function(d) { return d.count; });
@@ -114,9 +114,9 @@
       .attr("d", arc)
       .attr("fill", function(d) {
         if (d.data.language.startsWith("es")) {
-          return colorScaleEs(d.data.language);
+          return colorScaleEs(d.data.count);
         } else if (d.data.language.startsWith("en")) {
-          return colorScaleEn(d.data.language);
+          return colorScaleEn(d.data.count);
         }
       });
 
@@ -146,9 +146,9 @@
       .attr("height", 18)
       .attr("fill", function(d) {
         if (d.data.language.startsWith("es")) {
-          return colorScaleEs(d.data.language);
+          return colorScaleEs(d.data.count);
         } else if (d.data.language.startsWith("en")) {
-          return colorScaleEn(d.data.language);
+          return colorScaleEn(d.data.count);
         }
       });
 
@@ -162,7 +162,6 @@
       });
 
     });
-
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

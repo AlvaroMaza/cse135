@@ -72,147 +72,148 @@
 
 
   <script>
-
-  var width = 800;
-  var height = 400;
-  var margin = { top: 20, right: 20, bottom: 20, left: 20 };
-
-  var svg = d3.select("#heatmap")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  var xScale = d3.scaleLinear()
-    .domain([0, d3.max(coordinates, function(d) { return d.x; })])
-    .range([margin.left, width - margin.right]);
-
-  var yScale = d3.scaleLinear()
-    .domain([0, d3.max(coordinates, function(d) { return d.y; })])
-    .range([height - margin.bottom, margin.top]);
-
-  var colorScale = d3.scaleSequential(d3.interpolateReds)
-    .domain([0, d3.max(coordinates, function(d) { return d.length; })]);
-
-  svg.selectAll("circle")
-    .data(coordinates)
-    .enter()
-    .append("circle")
-    .attr("cx", function(d) { return xScale(d.x); })
-    .attr("cy", function(d) { return yScale(d.y); })
-    .attr("r", 4)
-    .attr("fill", function(d) { return colorScale(d.length); });
-
   window.addEventListener('load', function() {
 
-    // Group timestamps by day
-    var counts = d3.rollups(timestamps, v => v.length, d => d3.timeDay.floor(new Date(d)));
-
-    // Extract dates and visit counts
-    var dates = counts.map(function(d) {
-      return d[0];
-    });
-
-    var visitCounts = counts.map(function(d) {
-      return d[1];
-    });
-
-    // Set up the chart dimensions
-    var width = 1400;
+    var width = 800;
     var height = 400;
-    var margin = { top: 20, right: 20, bottom: 70, left: 80 };
+    var margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
-    // Create an SVG element for the chart
-    var svg = d3.select("#myChart4")
+    var svg = d3.select("#heatmap")
       .append("svg")
       .attr("width", width)
-      .attr("height", height)
+      .attr("height", height);
 
-    // Set up the scales for x and y axes
-    var xScale = d3.scaleTime()
-      .domain(d3.extent(dates))
+    var xScale = d3.scaleLinear()
+      .domain([0, d3.max(coordinates, function(d) { return d.x; })])
       .range([margin.left, width - margin.right]);
 
-
-    // Use a linear scale for the y axis
     var yScale = d3.scaleLinear()
-      .domain([0, d3.max(visitCounts)])
+      .domain([0, d3.max(coordinates, function(d) { return d.y; })])
       .range([height - margin.bottom, margin.top]);
 
-    // Create the line generator
-    var line = d3.line()
-    .x(function(d, i) { return xScale(dates[i]); })
-    .y(function(d) { return yScale(d); });
+    var colorScale = d3.scaleSequential(d3.interpolateReds)
+      .domain([0, d3.max(coordinates, function(d) { return d.length; })]);
 
-    // Create x-axis
-    var xAxis = d3.axisBottom(xScale);
-
-    // Append x-axis to the SVG
-    svg.append("g")
-      .attr("class", "x-axis")
-      .attr("transform", "translate(0," + (height - margin.bottom) + ")")
-      .call(xAxis);
-
-    // Add x-axis label
-    svg.append("text")
-      .attr("class", "x-label")
-      .attr("text-anchor", "middle")
-      .attr("x", width / 2)
-      .attr("y", height - margin.bottom / 2)
-      .text("Date");
-
-    // Create y-axis
-    var yAxis = d3.axisLeft(yScale);
-
-    // Append y-axis to the SVG
-    var yAxisGroup = svg.append("g")
-      .attr("class", "y-axis")
-      .attr("transform", "translate(" + margin.left + ",0)")
-      .call(yAxis);
-
-    // Add y-axis label
-    svg.append("text")
-      .attr("class", "y-label")
-      .attr("text-anchor", "middle")
-      .attr("x", -height / 2)
-      .attr("y", margin.left / 2)
-      .attr("transform", "rotate(-90)")
-      .text("Visit Count");
-
-    // Add numbers to the y-axis ticks
-    yAxisGroup.selectAll(".tick text")
-      .style("font-size", "14px"); // Adjust font size as needed
-
-
-    // Create the y-axis grid lines
-    var yGrid = d3.axisLeft(yScale)
-      .tickSize(-width + margin.left + margin.right)
-      .tickFormat("");
-
-    // Append the y-axis grid lines to the SVG
-    svg.append("g")
-      .attr("class", "y-grid")
-      .attr("transform", "translate(" + margin.left + ",0)")
-      .call(yGrid);
-
-    // Append circles for each data point
-    svg.selectAll(".dot")
-      .data(visitCounts)
+    svg.selectAll("circle")
+      .data(coordinates)
       .enter()
       .append("circle")
-      .attr("class", "dot")
-      .attr("cx", function(d, i) { return xScale(dates[i]); })
-      .attr("cy", function(d) { return yScale(d); })
+      .attr("cx", function(d) { return xScale(d.x); })
+      .attr("cy", function(d) { return yScale(d.y); })
       .attr("r", 4)
-      .attr("fill", "steelblue");
+      .attr("fill", function(d) { return colorScale(d.length); });
+
+    
+
+      // Group timestamps by day
+      var counts = d3.rollups(timestamps, v => v.length, d => d3.timeDay.floor(new Date(d)));
+
+      // Extract dates and visit counts
+      var dates = counts.map(function(d) {
+        return d[0];
+      });
+
+      var visitCounts = counts.map(function(d) {
+        return d[1];
+      });
+
+      // Set up the chart dimensions
+      var width = 1400;
+      var height = 400;
+      var margin = { top: 20, right: 20, bottom: 70, left: 80 };
+
+      // Create an SVG element for the chart
+      var svg = d3.select("#myChart4")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+      // Set up the scales for x and y axes
+      var xScale = d3.scaleTime()
+        .domain(d3.extent(dates))
+        .range([margin.left, width - margin.right]);
 
 
-    // Append the line to the SVG
-    svg.append("path")
-      .datum(visitCounts)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 4)
-      .attr("d", line);
+      // Use a linear scale for the y axis
+      var yScale = d3.scaleLinear()
+        .domain([0, d3.max(visitCounts)])
+        .range([height - margin.bottom, margin.top]);
+
+      // Create the line generator
+      var line = d3.line()
+      .x(function(d, i) { return xScale(dates[i]); })
+      .y(function(d) { return yScale(d); });
+
+      // Create x-axis
+      var xAxis = d3.axisBottom(xScale);
+
+      // Append x-axis to the SVG
+      svg.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+        .call(xAxis);
+
+      // Add x-axis label
+      svg.append("text")
+        .attr("class", "x-label")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", height - margin.bottom / 2)
+        .text("Date");
+
+      // Create y-axis
+      var yAxis = d3.axisLeft(yScale);
+
+      // Append y-axis to the SVG
+      var yAxisGroup = svg.append("g")
+        .attr("class", "y-axis")
+        .attr("transform", "translate(" + margin.left + ",0)")
+        .call(yAxis);
+
+      // Add y-axis label
+      svg.append("text")
+        .attr("class", "y-label")
+        .attr("text-anchor", "middle")
+        .attr("x", -height / 2)
+        .attr("y", margin.left / 2)
+        .attr("transform", "rotate(-90)")
+        .text("Visit Count");
+
+      // Add numbers to the y-axis ticks
+      yAxisGroup.selectAll(".tick text")
+        .style("font-size", "14px"); // Adjust font size as needed
+
+
+      // Create the y-axis grid lines
+      var yGrid = d3.axisLeft(yScale)
+        .tickSize(-width + margin.left + margin.right)
+        .tickFormat("");
+
+      // Append the y-axis grid lines to the SVG
+      svg.append("g")
+        .attr("class", "y-grid")
+        .attr("transform", "translate(" + margin.left + ",0)")
+        .call(yGrid);
+
+      // Append circles for each data point
+      svg.selectAll(".dot")
+        .data(visitCounts)
+        .enter()
+        .append("circle")
+        .attr("class", "dot")
+        .attr("cx", function(d, i) { return xScale(dates[i]); })
+        .attr("cy", function(d) { return yScale(d); })
+        .attr("r", 4)
+        .attr("fill", "steelblue");
+
+
+      // Append the line to the SVG
+      svg.append("path")
+        .datum(visitCounts)
+        .attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 4)
+        .attr("d", line);
   });
 
   window.onload = function() {

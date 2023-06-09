@@ -32,13 +32,9 @@
           page-size-options="5,10,20"
           caption="What is enabled?"
           theme="black">
-          <zg-colgroup>
-          <!-- default type is text -->
-            <zg-column index="Cookie enabled"></zg-column>
-            <zg-column index="Js enabled"></zg-column>
-            <zg-column index="Css enabled"></zg-column>
-            <zg-column index="Images enabled"></zg-column>
-        </zg-colgroup>
+        <zing-grid-column index="0" header="Column 1"></zing-grid-column>
+        <zing-grid-column index="1" header="Column 2"></zing-grid-column>
+        <zing-grid-column index="3" header="Column 4"></zing-grid-column>
       </zing-grid></div>
   <div id="report">
     <h4>If you want to see a detailed report of the static data of the website click here!!</h4>

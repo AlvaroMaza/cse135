@@ -88,10 +88,9 @@
         .attr("width", pieWidth)
         .attr("height", pieHeight);
 
-      // Define colors for "es" and "en" languages
-      var color = d3.scaleOrdinal()
-        .domain(languages.map(function(d) { return d.language; }))
-        .range(languages.map(function(d) { return d.language.startsWith("es") ? "steelblue" : "lightgreen"; }));
+      // Define color scales for different language prefixes
+      var colorScaleEs = d3.scaleOrdinal(d3.schemeBlues[5]); // Range of blues for "es" languages
+      var colorScaleEn = d3.scaleOrdinal(d3.schemeGreens[5]); // Range of greens for "en" languages
 
       var pie = d3.pie()
         .value(function(d) { return d.count; });
@@ -111,7 +110,13 @@
 
       arcs.append("path")
         .attr("d", arc)
-        .attr("fill", function(d) { return color(d.data.language); });
+        .attr("fill", function(d) {
+          if (d.data.language.startsWith("es")) {
+            return colorScaleEs(d.data.language);
+          } else if (d.data.language.startsWith("en")) {
+            return colorScaleEn(d.data.language);
+          }
+        });
 
       // Define the width and height for the legend
       var legendWidth = 200;
@@ -124,7 +129,7 @@
         .attr("height", legendHeight);
 
       var legend = legendSvg.selectAll(".legend")
-        .data(languages)
+        .data(pie(languages))
         .enter()
         .append("g")
         .attr("class", "legend")
@@ -137,16 +142,21 @@
         .attr("y", 0)
         .attr("width", 18)
         .attr("height", 18)
-        .attr("fill", function(d) { return color(d.language); });
+        .attr("fill", function(d) {
+          if (d.data.language.startsWith("es")) {
+            return colorScaleEs(d.data.language);
+          } else if (d.data.language.startsWith("en")) {
+            return colorScaleEn(d.data.language);
+          }
+        });
 
       legend.append("text")
         .attr("x", 24)
         .attr("y", 9)
         .attr("dy", ".35em")
-        .text(function(d) { return d.language; })
-        .style("fill", function(d) { return color(d.language); });
-
+        .text(function(d) { return d.data.language + " (" + d.data.count + "%)"; });
     });
+
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

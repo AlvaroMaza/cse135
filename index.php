@@ -46,8 +46,8 @@
           filter 
           pager 
           gridlines="both"
-          page-size="5"
-          page-size-options="5,10,20"
+          page-size="3"
+          page-size-options="3,5,10,20"
           caption="Errors"
           theme="black">
       </zing-grid>

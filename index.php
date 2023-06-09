@@ -74,35 +74,38 @@
   <script>
   window.addEventListener('load', function() {
 
-    var width = 800;
-    var height = 400;
-    var margin = { top: 20, right: 20, bottom: 20, left: 20 };
-
     var svg = d3.select("#heatmap")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-    var xScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.x; })])
-      .range([margin.left, width - margin.right]);
+  var xScale = d3.scaleLinear()
+    .domain([0, d3.max(coordinates, function(d) { return d.x; })])
+    .range([margin.left, width - margin.right]);
 
-    var yScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.y; })])
-      .range([margin.top, height - margin.bottom]);
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(coordinates, function(d) { return d.y; })])
+    .range([height - margin.bottom, margin.top]);
 
-    var colorScale = d3.scaleSequential(d3.interpolateReds)
-      .domain([0, d3.max(coordinates, function(d) { return d.length; })]);
+  var colorScale = d3.scaleSequential(d3.interpolateReds)
+    .domain([0, d3.max(coordinates, function(d) { return d.length; })]);
 
-    svg.selectAll("circle")
-      .data(coordinates)
-      .enter()
-      .append("circle")
-      .attr("cx", function(d) { return xScale(d.x); })
-      .attr("cy", function(d) { return yScale(d.y); })
-      .attr("r", 4)
-      .attr("fill", function(d) { return colorScale(d.length); });
+  var densityData = d3.contourDensity()
+    .x(function(d) { return xScale(d.x); })
+    .y(function(d) { return yScale(d.y); })
+    .size([width, height])
+    .bandwidth(20) // Adjust the bandwidth to control the density level
 
+  var densityMap = svg.append("g")
+    .attr("class", "density-map");
+
+  densityMap.append("g")
+    .selectAll("path")
+    .data(densityData(coordinates))
+    .enter()
+    .append("path")
+    .attr("d", d3.geoPath())
+    .attr("fill", function(d) { return colorScale(d.value); });
     
 
       // Group timestamps by day

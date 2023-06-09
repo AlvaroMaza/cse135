@@ -20,7 +20,7 @@
     </div>
   </header>
 
-  <h3>Number of times the webpage is entered</h3>
+  <h3>Number of times the Webpage is entered</h3>
   <div class="chart2" id="myChart4"></div>
   <div id="report">
     <h4>If you want to see a detailed report of the static data of the website click here!!</h4>
@@ -29,6 +29,7 @@
     </a>
   </div>
 
+  <h3>Heatmap of the Webpage</h3>
   <div id="container">
     <div class="chart" id="heatmap"></div>
     <div class="chart"></div>

@@ -21,6 +21,21 @@
     </div>
   </header>
 
+  <div class = "titles">
+    <h3>Heatmap of the mouse moves</h3>
+    <h3 class="additional-h3">Log of errors</h3>
+  </div>
+  <div id="container">
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div id="heatmap"></div>
+      <div style="margin: 5px;">
+        <p>As you can see, blah blah blah</p>
+      </div>
+    </div>
+    <div class="chart" id="pie-chart">
+    </div>
+  </div>
+
   <h3>Number of times the Webpage is entered</h3>
   <div class="chart2">     
     <zing-grid src="https://cse135spain.site/api/static" 
@@ -40,20 +55,7 @@
             <zg-column index="3"></zg-column>
         </zg-colgroup>
       </zing-grid></div>
-  <div class = "titles">
-    <h3>Heatmap of the mouse moves</h3>
-    <h3 class="additional-h3">Log of errors</h3>
-  </div>
-  <div id="container">
-    <div style="flex: 1; display: flex; flex-direction: column;">
-      <div id="heatmap"></div>
-      <div style="margin: 5px;">
-        <p>As you can see, blah blah blah</p>
-      </div>
-    </div>
-    <div class="chart" id="pie-chart">
-    </div>
-  </div>
+
 
   <?php
     $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");

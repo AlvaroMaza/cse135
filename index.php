@@ -53,7 +53,7 @@
     $result->free();
 
     // Fetch X and Y coordinates from the "mouseactivity" collection
-    $query = "SELECT X, Y FROM mouseactivity";
+    $query = "SELECT x, y FROM mouseactivity";
     $result = $mysqli->query($query);
 
     $coordinates = array();
@@ -84,11 +84,11 @@
       .attr("height", height);
 
     var xScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.X; })])
+      .domain([0, d3.max(coordinates, function(d) { return d.x; })])
       .range([margin.left, width - margin.right]);
 
     var yScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.Y; })])
+      .domain([0, d3.max(coordinates, function(d) { return d.y; })])
       .range([height - margin.bottom, margin.top]);
 
     var colorScale = d3.scaleSequential(d3.interpolateReds)

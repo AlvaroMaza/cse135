@@ -135,6 +135,16 @@
     var legendDataEs = pie(languages.filter(function(d) { return d.language.startsWith("es"); })); // Filter "es" languages
     var legendDataEn = pie(languages.filter(function(d) { return d.language.startsWith("en"); })); // Filter "en" languages
 
+    // Sort the legend data for "es" languages by count in descending order
+    legendDataEs.sort(function(a, b) {
+      return b.data.count - a.data.count;
+    });
+
+    // Sort the legend data for "en" languages by count in descending order
+    legendDataEn.sort(function(a, b) {
+      return b.data.count - a.data.count;
+    });
+
     var legendEs = legendSvg.selectAll(".legend-es")
       .data(legendDataEs)
       .enter()

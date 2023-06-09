@@ -101,7 +101,5 @@ body {
 
   #heatmap {
     background-image: url("background_web.PNG");
-    background-position: center;
     background-size: 800px 400px; /* Set the size to match the heatmap SVG dimensions */
-    background-position: center;
   }

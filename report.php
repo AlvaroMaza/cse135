@@ -121,6 +121,38 @@
       .attr("dy", ".35em")
       .text(function(d) { return d.data.language; });
 
+    // Define the width and height for the legend
+    var legendWidth = 200;
+    var legendHeight = languages.length * 20;
+
+    // Create a legend
+    var legendSvg = d3.select("#legend")
+      .append("svg")
+      .attr("width", legendWidth)
+      .attr("height", legendHeight);
+
+    var legend = legendSvg.selectAll(".legend")
+      .data(languages)
+      .enter()
+      .append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) {
+        return "translate(0," + i * 20 + ")";
+      });
+
+    legend.append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", 18)
+      .attr("height", 18)
+      .attr("fill", function(d) { return color(d.language); });
+
+    legend.append("text")
+      .attr("x", 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.language; })
+
 
   });
 

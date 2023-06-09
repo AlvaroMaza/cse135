@@ -19,10 +19,7 @@
       </div>
     </div>
   </header>
-  <!--<div id="container">
-    <div class="chart" id="myChart2"></div>
-    <div class="chart" id="myChart3"></div>
-  </div>-->
+
   <h3>Number of times the webpage is entered</h3>
   <div class="chart2" id="myChart4"></div>
   <div id="report">
@@ -31,7 +28,11 @@
       <button>Go to Report</button>
     </a>
   </div>
-  <div id="heatmap"></div>
+
+  <div id="container">
+    <div class="chart" id="heatmap"></div>
+    <div class="chart" id="heatmap"></div>
+  </div>
 
   <?php
     $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");

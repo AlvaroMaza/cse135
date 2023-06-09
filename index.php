@@ -74,9 +74,9 @@
   <script>
   window.addEventListener('load', function() {
 
-    var width = 4000;
-    var height = 2000;
-    var margin = { top: 2000, right: 20, bottom: 20, left: 20 };
+    var width = 2000;
+    var height = 1000;
+
 
     var svg = d3.select("#heatmap")
       .append("svg")
@@ -85,11 +85,11 @@
 
     var xScale = d3.scaleLinear()
       .domain([0, d3.max(coordinates, function(d) { return d.x; })])
-      .range([margin.left, 800 - margin.right]);
+      .range([0, 800]);
 
     var yScale = d3.scaleLinear()
       .domain([0, d3.max(coordinates, function(d) { return d.y; })])
-      .range([400 - margin.bottom, margin.top]);
+      .range([400,0]);
 
     var colorScale = d3.scaleSequential(d3.interpolateReds)
       .domain([0, d3.max(coordinates, function(d) { return d.length; })]);

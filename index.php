@@ -74,34 +74,25 @@
   <script>
   window.addEventListener('load', function() {
 
-    var width = 2000;
-    var height = 1000;
-
+    var width = 800;
+    var height = 400;
+    var margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
     var svg = d3.select("#heatmap")
       .append("svg")
       .attr("width", width)
       .attr("height", height);
 
-    var xScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.x; })])
-      .range([0, 800]);
-
-    var yScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.y; })])
-      .range([400,0]);
-
-    var colorScale = d3.scaleSequential(d3.interpolateReds)
-      .domain([0, d3.max(coordinates, function(d) { return d.length; })]);
+    // Assuming `coordinates` is an array of objects with `x` and `y` properties representing the original coordinates.
 
     svg.selectAll("circle")
       .data(coordinates)
       .enter()
       .append("circle")
-      .attr("cx", function(d) { return xScale(d.x); })
-      .attr("cy", function(d) { return yScale(d.y); })
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
       .attr("r", 4)
-      .attr("fill", function(d) { return colorScale(d.length); });
+      .attr("fill", "red");
 
     
 

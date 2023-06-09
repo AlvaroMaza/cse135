@@ -93,7 +93,6 @@
     var colorScaleEn = d3.scaleOrdinal(d3.schemeGreens[5].reverse()); // Reverse the greens for "en" languages
 
     var pie = d3.pie()
-      .sort(null) // Disable sorting
       .value(function(d) { return d.count; });
 
     var arc = d3.arc()
@@ -105,28 +104,20 @@
     var pieChart = pieSvg.append("g")
       .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
 
-    var arcsEs = pieChart.selectAll(".arc-es")
-      .data(pie(languages.filter(function(d) { return d.language.startsWith("es"); }))) // Filter "es" languages
+    var arcs = pieChart.selectAll(".arc")
+      .data(pie(languages))
       .enter()
       .append("g")
-      .attr("class", "arc-es");
+      .attr("class", "arc");
 
-    arcsEs.append("path")
+    arcs.append("path")
       .attr("d", arc)
       .attr("fill", function(d) {
-        return colorScaleEs(d.data.count);
-      });
-
-    var arcsEn = pieChart.selectAll(".arc-en")
-      .data(pie(languages.filter(function(d) { return d.language.startsWith("en"); }))) // Filter "en" languages
-      .enter()
-      .append("g")
-      .attr("class", "arc-en");
-
-    arcsEn.append("path")
-      .attr("d", arc)
-      .attr("fill", function(d) {
-        return colorScaleEn(d.data.count);
+        if (d.data.language.startsWith("es")) {
+          return colorScaleEs(d.data.count);
+        } else if (d.data.language.startsWith("en")) {
+          return colorScaleEn(d.data.count);
+        }
       });
 
     // Define the width and height for the legend
@@ -139,55 +130,29 @@
       .attr("width", legendWidth)
       .attr("height", legendHeight);
 
-    var legendDataEs = pie(languages.filter(function(d) { return d.language.startsWith("es"); })); // Filter "es" languages
-    var legendDataEn = pie(languages.filter(function(d) { return d.language.startsWith("en"); })); // Filter "en" languages
-
-    var legendEs = legendSvg.selectAll(".legend-es")
-      .data(legendDataEs)
+    var legend = legendSvg.selectAll(".legend")
+      .data(pie(languages))
       .enter()
       .append("g")
-      .attr("class", "legend-es")
+      .attr("class", "legend")
       .attr("transform", function(d, i) {
         return "translate(0," + i * 20 + ")";
       });
 
-    legendEs.append("rect")
+    legend.append("rect")
       .attr("x", 0)
       .attr("y", 0)
       .attr("width", 18)
       .attr("height", 18)
       .attr("fill", function(d) {
-        return colorScaleEs(d.data.count);
+        if (d.data.language.startsWith("es")) {
+          return colorScaleEs(d.data.count);
+        } else if (d.data.language.startsWith("en")) {
+          return colorScaleEn(d.data.count);
+        }
       });
 
-    legendEs.append("text")
-      .attr("x", 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .text(function(d) {
-        var percentage = (d.data.count / total) * 100;
-        return d.data.language + " (" + percentage.toFixed(2) + "%)";
-      });
-
-    var legendEn = legendSvg.selectAll(".legend-en")
-      .data(legendDataEn)
-      .enter()
-      .append("g")
-      .attr("class", "legend-en")
-      .attr("transform", function(d, i) {
-        return "translate(0," + (i + legendDataEs.length) * 20 + ")";
-      });
-
-    legendEn.append("rect")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", 18)
-      .attr("height", 18)
-      .attr("fill", function(d) {
-        return colorScaleEn(d.data.count);
-      });
-
-    legendEn.append("text")
+    legend.append("text")
       .attr("x", 24)
       .attr("y", 9)
       .attr("dy", ".35em")
@@ -197,7 +162,6 @@
       });
 
     });
-
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

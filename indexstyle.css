@@ -27,6 +27,7 @@ body {
   #container {
     display: flex;
     height: 60vh;
+    padding: 20px;
   }
   
   .chart {

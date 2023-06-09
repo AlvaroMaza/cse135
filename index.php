@@ -20,10 +20,8 @@
       </div>
     </div>
   </header>
-  <div class = "titles">
-    <h3>Number of times the Webpage is entered</h3>
-    <h3 class="additional-h3">Title on errors</h3>
-  </div>
+
+  <h3>Number of times the Webpage is entered</h3>
   <div class="chart2" id="myChart4"></div>
   <div id="report">
     <h4>If you want to see a detailed report of the static data of the website click here!!</h4>
@@ -31,8 +29,10 @@
       <button>Go to Report</button>
     </a>
   </div>
-
-  <h3>Heatmap of the Webpage</h3>
+  <div class = "titles">
+    <h3>Heatmap of the Webpage</h3>
+    <h3 class="additional-h3">Title on errors</h3>
+  </div>
   <div id="container">
     <div style="flex: 1; display: flex; flex-direction: column;">
       <div id="heatmap"></div>

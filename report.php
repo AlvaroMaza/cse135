@@ -89,7 +89,11 @@
       .attr("height", pieHeight);
 
     // Define color scales for different language prefixes
-    var colorScaleEs = d3.scaleOrdinal(d3.schemeBlues[5]); // Reverse the blues for "es" languages
+    var colorScaleEs = d3.scaleOrdinal(d3.schemeBlues[5]); // Use the original blues for "es" languages
+
+    // Reverse the colors for "es" languages
+    colorScaleEs.range(colorScaleEs.range().reverse());
+
     var colorScaleEn = d3.scaleOrdinal(d3.schemeGreens[5].reverse()); // Reverse the greens for "en" languages
 
     var pie = d3.pie()

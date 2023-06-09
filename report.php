@@ -23,13 +23,13 @@
 
   <h3>Number of times the Webpage is entered</h3>
   <div class="chart2">     
-    <zing-grid src="https://cse135spain.site/api/errors" 
+    <zing-grid src="https://cse135spain.site/api/static" 
           sort 
           filter 
           pager 
           gridlines="both"
-          page-size="3"
-          page-size-options="3,5,10,20"
+          page-size="5"
+          page-size-options="5,10,20"
           caption="Errors"
           theme="black">
       </zing-grid></div>

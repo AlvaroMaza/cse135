@@ -99,6 +99,8 @@
       .outerRadius(radius - 10)
       .innerRadius(0);
 
+    var total = d3.sum(languages, function(d) { return d.count; }); // Calculate the total count of all languages
+
     var pieChart = pieSvg.append("g")
       .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
 
@@ -154,9 +156,12 @@
       .attr("x", 24)
       .attr("y", 9)
       .attr("dy", ".35em")
-      .text(function(d) { return d.data.language + " (" + d.data.count + "%)"; });
-    });
+      .text(function(d) {
+        var percentage = (d.data.count / total) * 100;
+        return d.data.language + " (" + percentage.toFixed(2) + "%)";
+      });
 
+    });
 
 
   window.onload = function() {

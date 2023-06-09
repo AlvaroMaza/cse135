@@ -33,7 +33,7 @@
   <h3>Heatmap of the Webpage</h3>
   <div id="container">
     <div style="flex: 1; display: flex; flex-direction: column;">
-      <div class="chart" id="heatmap"></div>
+      <div id="heatmap"></div>
       <div style="margin: 5px;">
         <p>As you can see, blah blah blah</p>
       </div>

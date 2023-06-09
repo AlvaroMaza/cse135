@@ -44,11 +44,6 @@
           caption="What is enabled?"
           theme="black">
           <zg-colgroup>
-          <!-- default type is text -->
-            <zg-column index="0"></zg-column>
-            <zg-column index="1"></zg-column>
-            <zg-column index="2"></zg-column>
-            <zg-column index="3"></zg-column>
         </zg-colgroup>
       </zing-grid></div>
 

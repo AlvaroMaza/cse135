@@ -76,7 +76,7 @@
 
     var width = 4000;
     var height = 2000;
-    var margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    var margin = { top: 2000, right: 20, bottom: 20, left: 20 };
 
     var svg = d3.select("#heatmap")
       .append("svg")

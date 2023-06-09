@@ -27,9 +27,9 @@
   <div class="chart2" id="myChart4"></div>
   <div id="report">
     <h4>If you want to see a detailed report of the static data of the website click here!!</h4>
-    <button id="logout-button">Logout</button>
-        <a href="./report.html" id="report">
-    <button>Go to CRUD</button>
+    <a href="./report.html" id="report">
+      <button>Go to Report</button>
+    </a>
   </div>
   <?php
     $mysqli = new mysqli("localhost", "sammy", "realmadrid", "rest");

@@ -91,7 +91,7 @@
       // Define colors for "es" and "en" languages
       var color = d3.scaleOrdinal()
         .domain(languages.map(function(d) { return d.language; }))
-        .range(languages.map(function(d) { return d.language.startsWith("es") ? "blue" : "green"; }));
+        .range(languages.map(function(d) { return d.language.startsWith("es") ? "steelblue" : "lightgreen"; }));
 
       var pie = d3.pie()
         .value(function(d) { return d.count; });

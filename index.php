@@ -84,12 +84,6 @@
 
     // Assuming `coordinates` is an array of objects with `x` and `y` properties representing the original coordinates.
 
-    var maxCount = d3.max(coordinates, function(d) { return d.count; });
-
-    var colorScale = d3.scaleSequential()
-      .domain([0, maxCount])
-      .interpolator(d3.interpolateBlues);
-
     svg.selectAll("circle")
       .data(coordinates)
       .enter()
@@ -97,9 +91,8 @@
       .attr("cx", function(d) { return d.x / 2; })
       .attr("cy", function(d) { return d.y / 2; })
       .attr("r", 4)
-      .attr("fill", function(d) { return colorScale(d.count); })
+      .attr("fill", "red")
       .attr("opacity", 0.5);
-
     
 
       // Group timestamps by day

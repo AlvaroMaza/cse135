@@ -98,3 +98,9 @@ body {
     align-items: center;
     text-align: center;
   }
+
+  #heatmap {
+    background-image: url("background_web.PNG");
+    background-size: cover;
+    background-position: center;
+  }

@@ -4,27 +4,37 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel = "icon" href = "crown-solid.svg">
+    <style>
+      body {
+          visibility: hidden;
+      }
+    </style>
     <script>
+        // Retrieve the session ID from the session storage
         var sessionID = sessionStorage.getItem('id');
+
         // Send a GET request to the API endpoint
         var url = "https://reporting.cse135spain.site/api/db/" + sessionID;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
         xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              var response = JSON.parse(xhr.responseText);
-              var isAdmin = response.admin;
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var isAdmin = response.admin;
 
-              // Hide the CRUD button if the user is not admin
-              if (!isAdmin) {
-                window.location.href = "./index.php";
-              }
-            } else {
-              // Redirect to index.php in case of a 500 error
-              window.location.href = "./login.html";
+                    // Redirect if the user is not an admin
+                    if (!isAdmin) {
+                        window.location.href = "./index.php";
+                    } else {
+                        // Make the content visible once the redirection is complete
+                        document.body.style.visibility = "visible";
+                    }
+                } else {
+                    // Redirect to the login page in case of a 500 error
+                    window.location.href = "./login.html";
+                }
             }
-          }
         };
         xhr.send();
     </script>

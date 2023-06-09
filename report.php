@@ -83,80 +83,78 @@
 
 
   <script>
-  window.addEventListener('load', function() {
+    window.addEventListener('load', function() {
 
-    // Define the width and height for the pie chart
-    var pieWidth = 400;
-    var pieHeight = 400;
-    var radius = Math.min(pieWidth, pieHeight) / 2;
+      // Define the width and height for the pie chart
+      var pieWidth = 400;
+      var pieHeight = 400;
+      var radius = Math.min(pieWidth, pieHeight) / 2;
 
-    // Create a pie chart
-    var pieSvg = d3.select("#pie-chart")
-      .append("svg")
-      .attr("width", pieWidth)
-      .attr("height", pieHeight);
+      // Create a pie chart
+      var pieSvg = d3.select("#pie-chart")
+        .append("svg")
+        .attr("width", pieWidth)
+        .attr("height", pieHeight);
 
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
+      // Define colors for "es" and "en" languages
+      var color = d3.scaleOrdinal()
+        .domain(languages.map(function(d) { return d.language; }))
+        .range(languages.map(function(d) { return d.language.startsWith("es") ? "blue" : "green"; }));
 
-    var pie = d3.pie()
-      .value(function(d) { return d.count; });
+      var pie = d3.pie()
+        .value(function(d) { return d.count; });
 
-    var arc = d3.arc()
-      .outerRadius(radius - 10)
-      .innerRadius(0);
+      var arc = d3.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
 
-    var pieChart = pieSvg.append("g")
-      .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
+      var pieChart = pieSvg.append("g")
+        .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
 
-    var arcs = pieChart.selectAll(".arc")
-      .data(pie(languages))
-      .enter()
-      .append("g")
-      .attr("class", "arc");
+      var arcs = pieChart.selectAll(".arc")
+        .data(pie(languages))
+        .enter()
+        .append("g")
+        .attr("class", "arc");
 
-    arcs.append("path")
-      .attr("d", arc)
-      .attr("fill", function(d) { return color(d.data.language); });
+      arcs.append("path")
+        .attr("d", arc)
+        .attr("fill", function(d) { return color(d.data.language); });
 
-    arcs.append("text")
-      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-      .attr("dy", ".35em")
-      .text(function(d) { return d.data.language; });
+      // Define the width and height for the legend
+      var legendWidth = 200;
+      var legendHeight = languages.length * 20;
 
-    // Define the width and height for the legend
-    var legendWidth = 200;
-    var legendHeight = languages.length * 20;
+      // Create a legend
+      var legendSvg = d3.select("#legend")
+        .append("svg")
+        .attr("width", legendWidth)
+        .attr("height", legendHeight);
 
-    // Create a legend
-    var legendSvg = d3.select("#legend")
-      .append("svg")
-      .attr("width", legendWidth)
-      .attr("height", legendHeight);
+      var legend = legendSvg.selectAll(".legend")
+        .data(languages)
+        .enter()
+        .append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) {
+          return "translate(0," + i * 20 + ")";
+        });
 
-    var legend = legendSvg.selectAll(".legend")
-      .data(languages)
-      .enter()
-      .append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) {
-        return "translate(0," + i * 20 + ")";
-      });
+      legend.append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", 18)
+        .attr("height", 18)
+        .attr("fill", function(d) { return color(d.language); });
 
-    legend.append("rect")
-      .attr("x", 0)
-      .attr("y", 0)
-      .attr("width", 18)
-      .attr("height", 18)
-      .attr("fill", function(d) { return color(d.language); });
+      legend.append("text")
+        .attr("x", 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .text(function(d) { return d.language; })
+        .style("fill", function(d) { return color(d.language); });
 
-    legend.append("text")
-      .attr("x", 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .text(function(d) { return d.language; })
-
-
-  });
+    });
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

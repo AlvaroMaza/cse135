@@ -83,15 +83,17 @@
   <script>
   window.addEventListener('load', function() {
 
-    // Create a pie chart
-    var pieSvg = d3.select("#pie-chart")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
+    // Define the width and height for the pie chart
     var pieWidth = 400;
     var pieHeight = 400;
     var radius = Math.min(pieWidth, pieHeight) / 2;
+
+    // Create a pie chart
+    var pieSvg = d3.select("#pie-chart")
+      .append("svg")
+      .attr("width", pieWidth)
+      .attr("height", pieHeight);
+
     var color = d3.scaleOrdinal(d3.schemeCategory10);
 
     var pie = d3.pie()
@@ -118,6 +120,7 @@
       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       .attr("dy", ".35em")
       .text(function(d) { return d.data.language; });
+
 
   });
 

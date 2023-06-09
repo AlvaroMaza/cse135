@@ -105,13 +105,13 @@
     var pieChart = pieSvg.append("g")
       .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
 
-    var arcs = pieChart.selectAll(".arc")
+    var arcsEs = pieChart.selectAll(".arc-es")
       .data(pie(languages.filter(function(d) { return d.language.startsWith("es"); }))) // Filter "es" languages
       .enter()
       .append("g")
-      .attr("class", "arc");
+      .attr("class", "arc-es");
 
-    arcs.append("path")
+    arcsEs.append("path")
       .attr("d", arc)
       .attr("fill", function(d) {
         return colorScaleEs(d.data.count);
@@ -197,6 +197,8 @@
       });
 
     });
+
+
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');
         if(auth_token == null){

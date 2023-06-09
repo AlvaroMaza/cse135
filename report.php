@@ -89,7 +89,6 @@
       .attr("height", pieHeight);
 
     // Define color scales for different language prefixes
-    var colorScaleEs = d3.scaleOrdinal(d3.schemeBlues[7]); // Reverse the blues for "es" languages
     var colorScaleEs = d3.scaleOrdinal()
       .domain(languages.filter(function(d) { return d.language.startsWith("es"); }).map(function(d) { return d.language; }))
       .range(["#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594"]);

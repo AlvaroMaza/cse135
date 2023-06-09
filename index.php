@@ -84,9 +84,11 @@
 
     // Assuming `coordinates` is an array of objects with `x` and `y` properties representing the original coordinates.
 
-    var colorScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.count; })])
-      .range(["blue", "red"]);
+    var maxCount = d3.max(coordinates, function(d) { return d.count; });
+
+    var colorScale = d3.scaleSequential()
+      .domain([0, maxCount])
+      .interpolator(d3.interpolateBlues);
 
     svg.selectAll("circle")
       .data(coordinates)

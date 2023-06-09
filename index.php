@@ -92,7 +92,7 @@
       .attr("cy", function(d) { return d.y / 2; })
       .attr("r", 4)
       .attr("fill", "red")
-      .attr("opacity", 0.5);
+      .attr("opacity", 0.2);
     
 
       // Group timestamps by day

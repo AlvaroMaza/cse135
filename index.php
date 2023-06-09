@@ -46,7 +46,8 @@
           gridlines="both"
           page-size="5"
           page-size-options="5,10,20"
-          caption="Errors">
+          caption="Errors"
+          theme="black">
       </zing-grid>
     </div>
   </div>

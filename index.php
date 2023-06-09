@@ -74,8 +74,8 @@
   <script>
   window.addEventListener('load', function() {
 
-    var width = 1200;
-    var height = 600;
+    var width = 800;
+    var height = 400;
     var margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
     var svg = d3.select("#heatmap")

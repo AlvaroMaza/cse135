@@ -31,7 +31,7 @@
 
   <div id="container">
     <div class="chart" id="heatmap"></div>
-    <div class="chart" id="heatmap"></div>
+    <div class="chart"></div>
   </div>
 
   <?php

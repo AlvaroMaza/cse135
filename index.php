@@ -84,11 +84,11 @@
       .attr("height", height);
 
     var xScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.x; })])
+      .domain([0, d3.max(coordinates, function(d) { return d.X; })])
       .range([margin.left, width - margin.right]);
 
     var yScale = d3.scaleLinear()
-      .domain([0, d3.max(coordinates, function(d) { return d.y; })])
+      .domain([0, d3.max(coordinates, function(d) { return d.Y; })])
       .range([height - margin.bottom, margin.top]);
 
     var colorScale = d3.scaleSequential(d3.interpolateReds)

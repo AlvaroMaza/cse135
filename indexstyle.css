@@ -91,3 +91,11 @@ body {
   .dot {
     stroke-width: 5px;
   }
+
+  #report {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center the text horizontally */
+  }

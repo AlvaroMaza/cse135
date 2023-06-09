@@ -89,7 +89,7 @@
 
     var yScale = d3.scaleLinear()
       .domain([0, d3.max(coordinates, function(d) { return d.y; })])
-      .range([height - margin.bottom, margin.top]);
+      .range([margin.top, height - margin.bottom]);
 
     var colorScale = d3.scaleSequential(d3.interpolateReds)
       .domain([0, d3.max(coordinates, function(d) { return d.length; })]);

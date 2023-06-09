@@ -85,11 +85,11 @@
 
     var xScale = d3.scaleLinear()
       .domain([0, d3.max(coordinates, function(d) { return d.x; })])
-      .range([margin.left, width - margin.right]);
+      .range([margin.left, 800 - margin.right]);
 
     var yScale = d3.scaleLinear()
       .domain([0, d3.max(coordinates, function(d) { return d.y; })])
-      .range([height - margin.bottom, margin.top]);
+      .range([400 - margin.bottom, margin.top]);
 
     var colorScale = d3.scaleSequential(d3.interpolateReds)
       .domain([0, d3.max(coordinates, function(d) { return d.length; })]);

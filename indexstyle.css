@@ -38,6 +38,7 @@ body {
   }
   
   .chart2 {
+    margin: 0 5px; 
     background-color: #333;
     padding: 20px;
   }
@@ -107,4 +108,9 @@ body {
     background-position: center;
     width: 780px; /* Set the width to match the background size */
     height: 380px; /* Set the height to match the background size */
+  }
+
+  h3 {
+    padding: 0;
+    margin: 0 5px;
   }

@@ -100,7 +100,9 @@ body {
   }
 
   #heatmap {
+
     background-image: url("background_web.PNG");
-    background-size: 800px 400px; /* Set the size to match the heatmap SVG dimensions */
+    background-size:  780px 400px; /* Set the size to match the heatmap SVG dimensions */
     background-repeat: no-repeat; /* Prevent the photo from repeating */
+    background-position: center;
   }

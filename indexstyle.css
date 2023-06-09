@@ -126,3 +126,32 @@ body {
     top: 0;
     left: 830px;
   }
+
+
+  /* Styles for the vertical scroll bar */
+::-webkit-scrollbar {
+  width: 10px; /* Adjust the width as needed */
+  background-color: #333; /* Set the background color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #666; /* Set the color of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* Set the color of the scroll thumb on hover */
+}
+
+/* Styles for the horizontal scroll bar */
+::-webkit-scrollbar-horizontal {
+  height: 10px; /* Adjust the height as needed */
+  background-color: #333; /* Set the background color */
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: #666; /* Set the color of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover:horizontal {
+  background-color: #888; /* Set the color of the scroll thumb on hover */
+}

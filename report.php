@@ -29,6 +29,7 @@
     <div class="chart">
     </div>
     <div class="chart" id="pie-chart">
+    <div id="legend"></div>
     </div>
   </div>
 

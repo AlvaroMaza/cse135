@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="indexstyle.css">
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
 </head>
 <body>
 <header>
@@ -32,7 +33,16 @@
   <h3>Heatmap of the Webpage</h3>
   <div id="container">
     <div class="chart" id="heatmap"></div>
-    <div class="chart"></div>
+    <div class="chart">
+      <zing-grid src="https://cse135spain.site/api/errors" 
+          sort 
+          filter 
+          pager 
+          gridlines="both"
+          page-size="5"
+          page-size-options="5,10,20"
+          caption = 'Errors'></zing-grid>
+    </div>
   </div>
 
   <?php

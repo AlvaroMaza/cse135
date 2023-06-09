@@ -26,11 +26,7 @@
     <h3 class="additional-h3">Log of errors</h3>
   </div>
   <div id="container">
-    <div style="flex: 1; display: flex; flex-direction: column;">
-      <div id="heatmap"></div>
-      <div style="margin: 5px;">
-        <p>As you can see, blah blah blah</p>
-      </div>
+    <div class="chart">
     </div>
     <div class="chart" id="pie-chart">
     </div>

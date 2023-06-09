@@ -74,8 +74,8 @@
   <script>
   window.addEventListener('load', function() {
 
-    var width = 1000;
-    var height = 500;
+    var width = 8000;
+    var height = 400;
 
     var svg = d3.select("#heatmap")
       .append("svg")

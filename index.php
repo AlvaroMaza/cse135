@@ -32,8 +32,13 @@
 
   <h3>Heatmap of the Webpage</h3>
   <div id="container">
-    <div class="chart" id="heatmap"></div>
-    <div class="chart">
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div class="chart" id="heatmap"></div>
+      <div style="margin: 5px;">
+        <p>As you can see, blah blah blah</p>
+      </div>
+    </div>
+    <div class="chart" style="flex: 1;">
       <zing-grid src="https://cse135spain.site/api/errors" 
           sort 
           filter 
@@ -41,7 +46,8 @@
           gridlines="both"
           page-size="5"
           page-size-options="5,10,20"
-          caption = 'Errors'></zing-grid>
+          caption="Errors">
+      </zing-grid>
     </div>
   </div>
 

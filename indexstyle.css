@@ -32,7 +32,7 @@ body {
   
   .chart {
     flex: 1;
-    margin: 5px;
+    margin: 0 5px; 
     background-color: #333;
     padding: 20px;
   }

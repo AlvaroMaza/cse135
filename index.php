@@ -53,7 +53,7 @@
     $result->free();
 
     // Fetch X and Y coordinates from the "mouseactivity" collection
-    $query = "SELECT x, y FROM mouseactivity";
+    $query = "SELECT x, y FROM mouseactivity WHERE `type` = 'mousemove'";
     $result = $mysqli->query($query);
 
     $coordinates = array();
@@ -94,22 +94,17 @@
     var colorScale = d3.scaleSequential(d3.interpolateReds)
       .domain([0, d3.max(coordinates, function(d) { return d.length; })]);
 
-    var densityData = d3.contourDensity()
-      .x(function(d) { return xScale(d.x); })
-      .y(function(d) { return yScale(d.y); })
-      .size([width, height])
-      .bandwidth(20) // Adjust the bandwidth to control the density level
-
-    var densityMap = svg.append("g")
-      .attr("class", "density-map");
-
-    densityMap.append("g")
-      .selectAll("path")
-      .data(densityData(coordinates))
+    svg.selectAll("circle")
+      .data(coordinates)
       .enter()
-      .append("path")
-      .attr("d", d3.geoPath())
-      .attr("fill", function(d) { return colorScale(d.value); });
+      .append("circle")
+      .attr("cx", function(d) { return xScale(d.x); })
+      .attr("cy", function(d) { return yScale(d.y); })
+      .attr("r", 4)
+      .attr("fill", function(d) { return colorScale(d.length); });
+
+    
+
       // Group timestamps by day
       var counts = d3.rollups(timestamps, v => v.length, d => d3.timeDay.floor(new Date(d)));
 

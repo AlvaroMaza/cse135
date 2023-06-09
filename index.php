@@ -84,14 +84,19 @@
 
     // Assuming `coordinates` is an array of objects with `x` and `y` properties representing the original coordinates.
 
+    var colorScale = d3.scaleLinear()
+      .domain([0, d3.max(coordinates, function(d) { return d.count; })])
+      .range(["blue", "red"]);
+
     svg.selectAll("circle")
       .data(coordinates)
       .enter()
       .append("circle")
-      .attr("cx", function(d) { return d.x/2; })
-      .attr("cy", function(d) { return d.y/2; })
+      .attr("cx", function(d) { return d.x / 2; })
+      .attr("cy", function(d) { return d.y / 2; })
       .attr("r", 4)
-      .attr("fill", "red");
+      .attr("fill", function(d) { return colorScale(d.count); })
+      .attr("opacity", 0.5);
 
     
 

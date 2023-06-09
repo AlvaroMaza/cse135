@@ -130,29 +130,28 @@
       .attr("width", legendWidth)
       .attr("height", legendHeight);
 
-    var legend = legendSvg.selectAll(".legend")
-      .data(pie(languages))
+    var legendDataEs = pie(languages.filter(function(d) { return d.language.startsWith("es"); })); // Filter "es" languages
+    var legendDataEn = pie(languages.filter(function(d) { return d.language.startsWith("en"); })); // Filter "en" languages
+
+    var legendEs = legendSvg.selectAll(".legend-es")
+      .data(legendDataEs)
       .enter()
       .append("g")
-      .attr("class", "legend")
+      .attr("class", "legend-es")
       .attr("transform", function(d, i) {
         return "translate(0," + i * 20 + ")";
       });
 
-    legend.append("rect")
+    legendEs.append("rect")
       .attr("x", 0)
       .attr("y", 0)
       .attr("width", 18)
       .attr("height", 18)
       .attr("fill", function(d) {
-        if (d.data.language.startsWith("es")) {
-          return colorScaleEs(d.data.count);
-        } else if (d.data.language.startsWith("en")) {
-          return colorScaleEn(d.data.count);
-        }
+        return colorScaleEs(d.data.count);
       });
 
-    legend.append("text")
+    legendEs.append("text")
       .attr("x", 24)
       .attr("y", 9)
       .attr("dy", ".35em")
@@ -161,6 +160,32 @@
         return d.data.language + " (" + percentage.toFixed(2) + "%)";
       });
 
+    var legendEn = legendSvg.selectAll(".legend-en")
+      .data(legendDataEn)
+      .enter()
+      .append("g")
+      .attr("class", "legend-en")
+      .attr("transform", function(d, i) {
+        return "translate(0," + (i + legendDataEs.length) * 20 + ")";
+      });
+
+    legendEn.append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", 18)
+      .attr("height", 18)
+      .attr("fill", function(d) {
+        return colorScaleEn(d.data.count);
+      });
+
+    legendEn.append("text")
+      .attr("x", 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .text(function(d) {
+        var percentage = (d.data.count / total) * 100;
+        return d.data.language + " (" + percentage.toFixed(2) + "%)";
+      });
     });
 
   window.onload = function() {

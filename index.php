@@ -30,8 +30,8 @@
     </a>
   </div>
   <div class = "titles">
-    <h3>Heatmap of the Webpage</h3>
-    <h3 class="additional-h3">Title on errors</h3>
+    <h3>Heatmap of the mouse moves</h3>
+    <h3 class="additional-h3">Log of errors</h3>
   </div>
   <div id="container">
     <div style="flex: 1; display: flex; flex-direction: column;">

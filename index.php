@@ -20,8 +20,10 @@
       </div>
     </div>
   </header>
-
-  <h3>Number of times the Webpage is entered</h3>
+  <div class = "titles">
+    <h3>Number of times the Webpage is entered</h3>
+    <h3 class="additional-h3">Title on errors</h3>
+  </div>
   <div class="chart2" id="myChart4"></div>
   <div id="report">
     <h4>If you want to see a detailed report of the static data of the website click here!!</h4>

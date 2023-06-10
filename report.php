@@ -321,6 +321,14 @@
         .append("svg")
         .attr("width", barPlotWidth)
         .attr("height", barPlotHeight);
+    
+    // Add the title to the height bar plot
+    heightBarPlotSvg.append("text")
+        .attr("x", (barPlotWidth - barPlotMargin.left - barPlotMargin.right) / 2 + barPlotMargin.left)
+        .attr("y", barPlotMargin.top / 2)
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text("Height");
 
     // Create the x-scale for the height dimensions
     var xHeightScale = d3.scaleBand()

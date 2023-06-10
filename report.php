@@ -22,8 +22,8 @@
   </header>
 
   <div class = "titles">
-    <h4>--------</h4>
-    <h4 class="additional-h3">User Languages</h4>
+    <h3>--------</h3>
+    <h3 class="additional-h3">User Languages</h3>
   </div>
   <div id="container">
     <div class="chart">
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <h3>Table with all static data</h3>
+  <h3>Table with all static</h3>
   <div class="chart2">     
     <zing-grid src="https://cse135spain.site/api/static" 
           sort 

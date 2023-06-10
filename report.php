@@ -28,8 +28,12 @@
 
   <div id="container">
     <div class="chart" id="barplot">
-      <div id="width-barplot"></div>
-      <div id="height-barplot"></div>
+      <div id="width-barplot">
+        <button id = "widthButton"></button>
+      </div>
+      <div id="height-barplot">
+      <button id = "heightButton"></button>
+      </div>
     </div>
 
     <div class="chart" >
@@ -382,8 +386,8 @@
 
 
 // Create a download button for widthBarPlotSvg
-var widthDownloadButton = document.createElement("a");
-widthDownloadButton.innerHTML = "Download Width Bar Plot";
+var widthDownloadButton = document.getElementById("widthButton");
+widthDownloadButton.innerHTML = "Download";
 widthDownloadButton.href = "#";
 
 // Add an event listener to the width download button
@@ -413,8 +417,8 @@ document.getElementById("barplot").appendChild(widthDownloadButton);
 
 
 // Create a download button for heightBarPlotSvg
-var heightDownloadButton = document.createElement("a");
-heightDownloadButton.innerHTML = "Download Height Bar Plot";
+var heightDownloadButton = document.getElementById("heightButton");
+heightDownloadButton.innerHTML = "Download";
 heightDownloadButton.href = "#";
 
 // Add an event listener to the height download button

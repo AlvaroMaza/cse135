@@ -114,7 +114,7 @@ body {
 
   h3 {
     padding: 0;
-    margin: 20px 5px 0px 5px;
+    margin: 0 5px;
   }
 
   .titles {
@@ -123,6 +123,7 @@ body {
 
   .additional-h3 {
     position: absolute;
+    top: 0;
     left: 830px;
   }
 
@@ -153,10 +154,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover:horizontal {
   background-color: #888; /* Set the color of the scroll thumb on hover */
-}
-
-.legend-container {
-  position: absolute;
-  top: 180px;
-  right: 80px;
 }

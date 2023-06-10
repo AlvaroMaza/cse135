@@ -32,7 +32,7 @@
     <div id="legend" class="legend-container"></div>
     </div>
   </div>
-
+  <p></p>
   <h3>Table with all static</h3>
   <div class="chart2">     
     <zing-grid src="https://cse135spain.site/api/static" 

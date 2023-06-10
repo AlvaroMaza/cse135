@@ -296,7 +296,7 @@
         .attr("y", function(d) { return yWidthScale(d.frequency); })
         .attr("width", xWidthScale.bandwidth())
         .attr("height", function(d) { return barPlotHeight - barPlotMargin.bottom - yWidthScale(d.frequency); })
-        .attr("fill", "green");
+        .attr("fill", "#005a32");
 
 
     var screenHeights = screenDimensions.map(function(d) {

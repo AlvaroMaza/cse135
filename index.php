@@ -113,7 +113,7 @@
       .attr("cx", function(d) { return d.x / 2; })
       .attr("cy", function(d) { return d.y / 2; })
       .attr("r", 4)
-      .attr("fill", "green")
+      .attr("fill", "#ff471a")
       .attr("opacity", 0.2);
     
 
@@ -216,14 +216,14 @@
         .attr("cx", function(d, i) { return xScale(dates[i]); })
         .attr("cy", function(d) { return yScale(d); })
         .attr("r", 4)
-        .attr("fill", "green");
+        .attr("fill", "#004d00");
 
 
       // Append the line to the SVG
       svg.append("path")
         .datum(visitCounts)
         .attr("fill", "none")
-        .attr("stroke", "green")
+        .attr("stroke", "#004d00")
         .attr("stroke-width", 4)
         .attr("d", line);
   });

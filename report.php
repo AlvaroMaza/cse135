@@ -390,7 +390,7 @@ downloadButton.addEventListener("click", function() {
 
     var heightBarPlotSvg = document.getElementById("height-barplot").getElementsByTagName("svg")[0];
     // Convert the SVG element to a Blob
-    var svgString = new XMLSerializer().serializeToString(heightBarPlotSvg.node());
+    var svgString = new XMLSerializer().serializeToString(heightBarPlotSvg);
     var blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
 
     // Create a URL for the Blob

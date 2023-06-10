@@ -44,8 +44,6 @@
           page-size-options="5,10,20"
           caption="What is enabled?"
           theme="black">
-          <zg-colgroup>
-        </zg-colgroup>
       </zing-grid></div>
 
 

@@ -157,7 +157,7 @@ body {
 }
 
 .legend-container {
-  position: absolute;
-  top: 160px;
-  right: 60px;
-}
+    position: absolute;
+    top: 10%;
+    right: 5%;
+  }

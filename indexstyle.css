@@ -155,3 +155,9 @@ body {
 ::-webkit-scrollbar-thumb:hover:horizontal {
   background-color: #888; /* Set the color of the scroll thumb on hover */
 }
+
+.legend-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

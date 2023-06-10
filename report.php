@@ -324,7 +324,7 @@
     
       heightBarPlotSvg.append("text")
         .attr("x", barPlotMargin.left)
-        .attr("y", 0) // Adjust the y-coordinate to give space for the title
+        .attr("y", 5) // Adjust the y-coordinate to give space for the title
         .attr("text-anchor", "start")
         .style("font-size", "16px")
         .style("fill", "white") // Set the title color to white

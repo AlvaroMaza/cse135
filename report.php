@@ -249,6 +249,14 @@
         .attr("width", barPlotWidth)
         .attr("height", barPlotHeight);
 
+    widthBarPlotSvg.append("text")
+        .attr("x", barPlotMargin.left - 10)
+        .attr("y", 20) // Adjust the y-coordinate to give space for the title
+        .attr("text-anchor", "start")
+        .style("font-size", "16px")
+        .style("fill", "white") // Set the title color to white
+        .text("Width");
+
     // Create the x-scale for the width dimensions
     var xWidthScale = d3.scaleBand()
         .domain(widthData.map(function(d) { return d.width; }))
@@ -322,13 +330,13 @@
         .attr("width", barPlotWidth)
         .attr("height", barPlotHeight);
     
-      heightBarPlotSvg.append("text")
-        .attr("x", barPlotMargin.left)
-        .attr("y", 20) // Adjust the y-coordinate to give space for the title
-        .attr("text-anchor", "start")
-        .style("font-size", "16px")
-        .style("fill", "white") // Set the title color to white
-        .text("Height");
+    heightBarPlotSvg.append("text")
+      .attr("x", barPlotMargin.left - 10)
+      .attr("y", 20) // Adjust the y-coordinate to give space for the title
+      .attr("text-anchor", "start")
+      .style("font-size", "16px")
+      .style("fill", "white") // Set the title color to white
+      .text("Height");
 
     // Create the x-scale for the height dimensions
     var xHeightScale = d3.scaleBand()

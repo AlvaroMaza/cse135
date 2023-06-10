@@ -377,7 +377,7 @@
         .attr("y", function(d) { return yHeightScale(d.frequency); })
         .attr("width", xHeightScale.bandwidth())
         .attr("height", function(d) { return barPlotHeight - barPlotMargin.bottom - yHeightScale(d.frequency); })
-        .attr("fill", "green");       
+        .attr("fill", "#004d00");       
   });
 
   window.onload = function() {

@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <h3>Number of times the Webpage is entered</h3>
+  <h3>Table with all static data</h3>
   <div class="chart2">     
     <zing-grid src="https://cse135spain.site/api/static" 
           sort 

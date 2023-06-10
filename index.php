@@ -38,7 +38,7 @@
     <div style="flex: 1; display: flex; flex-direction: column;">
       <div id="heatmap"></div>
       <div style="margin: 5px;">
-        <p>As you can see, blah blah blah</p>
+        <p>As you can see, the most mousemoves of the page are around the link to our personal webs.</p>
       </div>
     </div>
     <div class="chart" style="flex: 1;">

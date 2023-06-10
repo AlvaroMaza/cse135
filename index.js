@@ -66,6 +66,16 @@ app.put("/db/:id", async (req, res) => {
   }
 });
 
+// Update a user partially
+app.patch("/db/:id", async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Delete a user
 app.delete("/db/:id", async (req, res) => {
   try {

@@ -26,7 +26,7 @@
     <h3 class="additional-h3">User Languages</h3>
   </div>
   <div id="container">
-    <div class="chart" id="screen-dimensions-chart"></div>
+    <div class="chart" id="screen-width-chart"></div>
     <div class="chart" id="pie-chart">
     <div id="legend" class="legend-container"></div>
     </div>
@@ -214,7 +214,6 @@
 
 
 
-    
     // Get an array of screen widths
     var screenWidths = screenDimensions.map(function(d) {
         return d.width;
@@ -230,55 +229,105 @@
     var histogramHeight = 400;
     var histogramMargin = { top: 20, right: 20, bottom: 50, left: 50 };
 
-    // Create the SVG container for the histogram chart
-    var histogramSvg = d3.select("#screen-dimensions-chart")
+    // Create the SVG container for the width histogram chart
+    var widthHistogramSvg = d3.select("#screen-width-histogram")
         .append("svg")
         .attr("width", histogramWidth)
         .attr("height", histogramHeight);
 
     // Create the x-scale for screen widths
-    var xScale = d3.scaleLinear()
+    var xWidthScale = d3.scaleLinear()
         .domain([0, d3.max(screenWidths)])
         .range([histogramMargin.left, histogramWidth - histogramMargin.right]);
 
     // Create the histogram bins for screen widths
-    var histogramBins = d3.histogram()
+    var widthHistogramBins = d3.histogram()
         .value(function(d) { return d; })
-        .domain(xScale.domain())
-        .thresholds(xScale.ticks(10))
+        .domain(xWidthScale.domain())
+        .thresholds(xWidthScale.ticks(10))
         (screenWidths);
 
-    // Create the y-scale for the histogram
-    var yScale = d3.scaleLinear()
-        .domain([0, d3.max(histogramBins, function(d) { return d.length; })])
+    // Create the y-scale for the width histogram
+    var yWidthScale = d3.scaleLinear()
+        .domain([0, d3.max(widthHistogramBins, function(d) { return d.length; })])
         .range([histogramHeight - histogramMargin.bottom, histogramMargin.top]);
 
-    // Create the x-axis
-    var xAxis = d3.axisBottom(xScale);
+    // Create the x-axis for width histogram
+    var xWidthAxis = d3.axisBottom(xWidthScale);
 
-    // Create the y-axis
-    var yAxis = d3.axisLeft(yScale);
+    // Create the y-axis for width histogram
+    var yWidthAxis = d3.axisLeft(yWidthScale);
 
-    // Append the x-axis to the SVG container
-    histogramSvg.append("g")
+    // Append the x-axis to the width histogram SVG container
+    widthHistogramSvg.append("g")
         .attr("transform", "translate(0," + (histogramHeight - histogramMargin.bottom) + ")")
-        .call(xAxis);
+        .call(xWidthAxis);
 
-    // Append the y-axis to the SVG container
-    histogramSvg.append("g")
+    // Append the y-axis to the width histogram SVG container
+    widthHistogramSvg.append("g")
         .attr("transform", "translate(" + histogramMargin.left + ",0)")
-        .call(yAxis);
+        .call(yWidthAxis);
 
-    // Create the histogram bars
-    histogramSvg.selectAll("rect")
-        .data(histogramBins)
+    // Create the width histogram bars
+    widthHistogramSvg.selectAll("rect")
+        .data(widthHistogramBins)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return xScale(d.x0) + 1; })
-        .attr("y", function(d) { return yScale(d.length); })
-        .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) - 1; })
-        .attr("height", function(d) { return histogramHeight - histogramMargin.bottom - yScale(d.length); })
-        .attr("fill", "steelblue");  
+        .attr("x", function(d) { return xWidthScale(d.x0) + 1; })
+        .attr("y", function(d) { return yWidthScale(d.length); })
+        .attr("width", function(d) { return xWidthScale(d.x1) - xWidthScale(d.x0) - 1; })
+        .attr("height", function(d) { return histogramHeight - histogramMargin.bottom - yWidthScale(d.length); })
+        .attr("fill", "steelblue");
+
+    // Create the SVG container for the height histogram chart
+    var heightHistogramSvg = d3.select("#screen-height-histogram")
+        .append("svg")
+        .attr("width", histogramWidth)
+        .attr("height", histogramHeight);
+
+    // Create the x-scale for screen heights
+    var xHeightScale = d3.scaleLinear()
+        .domain([0, d3.max(screenHeights)])
+        .range([histogramMargin.left, histogramWidth - histogramMargin.right]);
+
+    // Create the histogram bins for screen heights
+    var heightHistogramBins = d3.histogram()
+        .value(function(d) { return d; })
+        .domain(xHeightScale.domain())
+        .thresholds(xHeightScale.ticks(10))
+        (screenHeights);
+
+    // Create the y-scale for the height histogram
+    var yHeightScale = d3.scaleLinear()
+        .domain([0, d3.max(heightHistogramBins, function(d) { return d.length; })])
+        .range([histogramHeight - histogramMargin.bottom, histogramMargin.top]);
+
+    // Create the x-axis for height histogram
+    var xHeightAxis = d3.axisBottom(xHeightScale);
+
+    // Create the y-axis for height histogram
+    var yHeightAxis = d3.axisLeft(yHeightScale);
+
+    // Append the x-axis to the height histogram SVG container
+    heightHistogramSvg.append("g")
+        .attr("transform", "translate(0," + (histogramHeight - histogramMargin.bottom) + ")")
+        .call(xHeightAxis);
+
+    // Append the y-axis to the height histogram SVG container
+    heightHistogramSvg.append("g")
+        .attr("transform", "translate(" + histogramMargin.left + ",0)")
+        .call(yHeightAxis);
+
+    // Create the height histogram bars
+    heightHistogramSvg.selectAll("rect")
+        .data(heightHistogramBins)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) { return xHeightScale(d.x0) + 1; })
+        .attr("y", function(d) { return yHeightScale(d.length); })
+        .attr("width", function(d) { return xHeightScale(d.x1) - xHeightScale(d.x0) - 1; })
+        .attr("height", function(d) { return histogramHeight - histogramMargin.bottom - yHeightScale(d.length); })
+        .attr("fill", "steelblue"); 
 
     });
 

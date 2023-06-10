@@ -75,7 +75,6 @@
 
     $result->free();
     $mysqli->close();
-    $mysqli->close();
 
     // Pass the language data to JavaScript
     echo "<script>var languages = " . json_encode($languages) . ";</script>";

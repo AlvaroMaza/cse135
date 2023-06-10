@@ -89,7 +89,7 @@
     // Define color scales for different language prefixes
     var colorScaleEs = d3.scaleOrdinal()
       .domain(languages.filter(function(d) { return d.language.startsWith("es"); }).map(function(d) { return d.language; }))
-      .range(["#787878", "#888888", "#909090", "#A0A0A0", "#A9A9A9"]);
+      .range(["#888888", "#787878", "#909090", "#A0A0A0", "#A9A9A9"]);
     var colorScaleEn = d3.scaleOrdinal(d3.schemeGreens[7].reverse()); // Reverse the greens for "en" languages
 
     var pie = d3.pie()

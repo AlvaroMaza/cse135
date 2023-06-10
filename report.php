@@ -32,7 +32,7 @@
       <div id="height-barplot"></div>
     </div>
 
-    <div class="chart" >
+    <div class="chart3" >
       <div id="pie-chart"></div>
     <div id="legend" class="legend-container"></div>
     </div>

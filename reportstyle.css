@@ -40,6 +40,16 @@ body {
     background-color: #333;
     padding: 20px;
   }
+
+  .chart3 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px; 
+    background-color: #333;
+    padding: 20px;
+  }
   
   button {
     margin-top: 10px;

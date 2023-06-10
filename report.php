@@ -128,7 +128,8 @@
     var legendSvg = d3.select("#legend")
       .append("svg")
       .attr("width", legendWidth)
-      .attr("height", legendHeight);
+      .attr("height", legendHeight)
+      .style("background-color", "#f5f5f5"); // Set the background color;
 
     var legendDataEs = pie(languages.filter(function(d) { return d.language.startsWith("es"); })); // Filter "es" languages
     var legendDataEn = pie(languages.filter(function(d) { return d.language.startsWith("en"); })); // Filter "en" languages

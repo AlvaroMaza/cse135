@@ -27,7 +27,7 @@
   </div>
 
   <div id="container">
-    <div class="chart" >
+    <div class="chart" id="barplot">
       <div id="width-barplot"></div>
       <div id="height-barplot"></div>
     </div>
@@ -405,7 +405,7 @@ downloadButton.addEventListener("click", function() {
 });
 
 // Append the download button to the container element
-document.getElementById("container").appendChild(downloadButton);
+document.getElementById("barplot").appendChild(downloadButton);
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

@@ -26,8 +26,7 @@
     <h3 class="additional-h3">User Languages</h3>
   </div>
   <div id="container">
-    <div class="chart">
-    </div>
+    <div class="chart" id="screen-dimensions-chart"></div>
     <div class="chart" id="pie-chart">
     <div id="legend" class="legend-container"></div>
     </div>
@@ -65,10 +64,22 @@
     }
 
     $result->free();
+    // Fetch window dimensions data from the database table
+    $query = "SELECT windowDimensions FROM static";
+    $result = $mysqli->query($query);
+
+    $windowDimensions = array();
+    while ($row = $result->fetch_assoc()) {
+        $windowDimensions[] = json_decode($row['windowDimensions']);
+    }
+
+    $result->free();
+    $mysqli->close();
     $mysqli->close();
 
     // Pass the language data to JavaScript
     echo "<script>var languages = " . json_encode($languages) . ";</script>";
+    echo "<script>var windowDimensions = " . json_encode($windowDimensions) . ";</script>";
   ?>
 
 
@@ -89,7 +100,7 @@
     // Define color scales for different language prefixes
     var colorScaleEs = d3.scaleOrdinal()
       .domain(languages.filter(function(d) { return d.language.startsWith("es"); }).map(function(d) { return d.language; }))
-      .range(["#F0F0F0", "#F0F0F0", "#B8B8B8", "#707070"]);
+      .range(["#F0F0F0", "#D8D8D8", "#B8B8B8", "#707070"]);
     var colorScaleEn = d3.scaleOrdinal(d3.schemeGreens[7].reverse()); // Reverse the greens for "en" languages
 
     var pie = d3.pie()
@@ -198,6 +209,78 @@
         var percentage = (d.data.count / total) * 100;
         return d.data.language + " (" + percentage.toFixed(2) + "%)";
       });
+
+
+
+
+
+
+    
+    // Get an array of screen widths
+    var screenWidths = screenDimensions.map(function(d) {
+        return d.width;
+    });
+
+    // Get an array of screen heights
+    var screenHeights = screenDimensions.map(function(d) {
+        return d.height;
+    });
+
+    // Define the dimensions and margins for the histogram chart
+    var histogramWidth = 600;
+    var histogramHeight = 400;
+    var histogramMargin = { top: 20, right: 20, bottom: 50, left: 50 };
+
+    // Create the SVG container for the histogram chart
+    var histogramSvg = d3.select("#screen-dimensions-chart")
+        .append("svg")
+        .attr("width", histogramWidth)
+        .attr("height", histogramHeight);
+
+    // Create the x-scale for screen widths
+    var xScale = d3.scaleLinear()
+        .domain([0, d3.max(screenWidths)])
+        .range([histogramMargin.left, histogramWidth - histogramMargin.right]);
+
+    // Create the histogram bins for screen widths
+    var histogramBins = d3.histogram()
+        .value(function(d) { return d; })
+        .domain(xScale.domain())
+        .thresholds(xScale.ticks(10))
+        (screenWidths);
+
+    // Create the y-scale for the histogram
+    var yScale = d3.scaleLinear()
+        .domain([0, d3.max(histogramBins, function(d) { return d.length; })])
+        .range([histogramHeight - histogramMargin.bottom, histogramMargin.top]);
+
+    // Create the x-axis
+    var xAxis = d3.axisBottom(xScale);
+
+    // Create the y-axis
+    var yAxis = d3.axisLeft(yScale);
+
+    // Append the x-axis to the SVG container
+    histogramSvg.append("g")
+        .attr("transform", "translate(0," + (histogramHeight - histogramMargin.bottom) + ")")
+        .call(xAxis);
+
+    // Append the y-axis to the SVG container
+    histogramSvg.append("g")
+        .attr("transform", "translate(" + histogramMargin.left + ",0)")
+        .call(yAxis);
+
+    // Create the histogram bars
+    histogramSvg.selectAll("rect")
+        .data(histogramBins)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) { return xScale(d.x0) + 1; })
+        .attr("y", function(d) { return yScale(d.length); })
+        .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0) - 1; })
+        .attr("height", function(d) { return histogramHeight - histogramMargin.bottom - yScale(d.length); })
+        .attr("fill", "steelblue");  
+
     });
 
   window.onload = function() {

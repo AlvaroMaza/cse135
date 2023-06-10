@@ -298,7 +298,7 @@
     // Define the dimensions and margins for the bar plot
     var barPlotWidth = 600;
     var barPlotHeight = 300;
-    var barPlotMargin = { top: 200, right: 20, bottom: 50, left: 50 };
+    var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each height dimension
     var heightFrequencies = screenHeights.reduce(function(acc, curr) {
@@ -324,7 +324,7 @@
     
       heightBarPlotSvg.append("text")
         .attr("x", barPlotMargin.left)
-        .attr("y", -5) // Adjust the y-coordinate to give space for the title
+        .attr("y", 0) // Adjust the y-coordinate to give space for the title
         .attr("text-anchor", "start")
         .style("font-size", "16px")
         .style("fill", "white") // Set the title color to white

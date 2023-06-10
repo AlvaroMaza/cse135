@@ -29,6 +29,8 @@
       <button>Go to Report</button>
     </a>
   </div>
+  <p></p>
+  <p></p>
   <div class = "titles">
     <h3>Heatmap of the mouse moves</h3>
     <h3 class="additional-h3">Log of errors</h3>

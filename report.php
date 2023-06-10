@@ -224,8 +224,8 @@
 
     // Define the dimensions and margins for the bar plot
     var barPlotWidth = 600;
-    var barPlotHeight = 300;
-    var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
+    var barPlotHeight = 250;
+    var barPlotMargin = { top: 40, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each width dimension
     var widthFrequencies = screenWidths.reduce(function(acc, curr) {
@@ -305,7 +305,7 @@
 
     // Define the dimensions and margins for the bar plot
     var barPlotWidth = 600;
-    var barPlotHeight = 300;
+    var barPlotHeight = 250;
     var barPlotMargin = { top: 40, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each height dimension

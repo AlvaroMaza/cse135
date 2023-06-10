@@ -78,7 +78,7 @@
 
     // Pass the language data to JavaScript
     echo "<script>var languages = " . json_encode($languages) . ";</script>";
-    echo "<script>var windowDimensions = " . json_encode($windowDimensions) . ";</script>";
+    echo "<script>var screenDimensions = " . json_encode($windowDimensions) . ";</script>";
   ?>
 
 

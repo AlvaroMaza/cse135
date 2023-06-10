@@ -22,7 +22,7 @@
   </header>
 
   <div class = "titles">
-    <h3>Screen width and heiht of the User</h3>
+    <h3>Screen width and height of the User</h3>
     <h3 class="additional-h3">User Languages</h3>
   </div>
 
@@ -39,7 +39,7 @@
   </div>
 
   <p></p>
-  <h3>Table with all static</h3>
+  <h3>Table with all static data</h3>
   <div class="chart2">     
     <zing-grid src="https://cse135spain.site/api/static" 
           sort 

@@ -219,8 +219,8 @@
     });
 
     // Define the dimensions and margins for the bar plot
-    var barPlotWidth = 300;
-    var barPlotHeight = 400;
+    var barPlotWidth = 600;
+    var barPlotHeight = 300;
     var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each width dimension
@@ -292,8 +292,8 @@
     });
 
     // Define the dimensions and margins for the bar plot
-    var barPlotWidth = 300;
-    var barPlotHeight = 400;
+    var barPlotWidth = 600;
+    var barPlotHeight = 300;
     var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each height dimension

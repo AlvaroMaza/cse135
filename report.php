@@ -22,7 +22,7 @@
   </header>
 
   <div class = "titles">
-    <h3>--------</h3>
+    <h3>Screen width and heiht of the User</h3>
     <h3 class="additional-h3">User Languages</h3>
   </div>
 
@@ -296,7 +296,7 @@
         .attr("y", function(d) { return yWidthScale(d.frequency); })
         .attr("width", xWidthScale.bandwidth())
         .attr("height", function(d) { return barPlotHeight - barPlotMargin.bottom - yWidthScale(d.frequency); })
-        .attr("fill", "steelblue");
+        .attr("fill", "green");
 
 
     var screenHeights = screenDimensions.map(function(d) {
@@ -377,7 +377,7 @@
         .attr("y", function(d) { return yHeightScale(d.frequency); })
         .attr("width", xHeightScale.bandwidth())
         .attr("height", function(d) { return barPlotHeight - barPlotMargin.bottom - yHeightScale(d.frequency); })
-        .attr("fill", "steelblue");       
+        .attr("fill", "green");       
   });
 
   window.onload = function() {

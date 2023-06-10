@@ -380,15 +380,48 @@
         .attr("fill", "#005a32");       
   });
 
-  // Create a download button
-var downloadButton = document.createElement("a");
-downloadButton.innerHTML = "Download";
-downloadButton.href = "#";
 
-// Add an event listener to the download button
-downloadButton.addEventListener("click", function() {
+// Create a download button for widthBarPlotSvg
+var widthDownloadButton = document.createElement("a");
+widthDownloadButton.innerHTML = "Download Width Bar Plot";
+widthDownloadButton.href = "#";
 
-    var heightBarPlotSvg = document.getElementById("height-barplot").getElementsByTagName("svg")[0];
+// Add an event listener to the width download button
+widthDownloadButton.addEventListener("click", function() {
+    // Get the widthBarPlotSvg element by its ID
+    var widthBarPlotSvg = document.getElementById("width-barplot");
+
+    // Convert the SVG element to a Blob
+    var svgString = new XMLSerializer().serializeToString(widthBarPlotSvg);
+    var blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+
+    // Create a URL for the Blob
+    var url = URL.createObjectURL(blob);
+
+    // Create a temporary link and click it to trigger the download
+    var link = document.createElement("a");
+    link.href = url;
+    link.download = "width_barplot.svg";
+    link.click();
+
+    // Clean up the temporary URL
+    URL.revokeObjectURL(url);
+});
+
+// Append the width download button to the container element
+document.getElementById("barplot").appendChild(widthDownloadButton);
+
+
+// Create a download button for heightBarPlotSvg
+var heightDownloadButton = document.createElement("a");
+heightDownloadButton.innerHTML = "Download Height Bar Plot";
+heightDownloadButton.href = "#";
+
+// Add an event listener to the height download button
+heightDownloadButton.addEventListener("click", function() {
+    // Get the heightBarPlotSvg element by its ID
+    var heightBarPlotSvg = document.getElementById("height-barplot");
+
     // Convert the SVG element to a Blob
     var svgString = new XMLSerializer().serializeToString(heightBarPlotSvg);
     var blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
@@ -399,15 +432,15 @@ downloadButton.addEventListener("click", function() {
     // Create a temporary link and click it to trigger the download
     var link = document.createElement("a");
     link.href = url;
-    link.download = "barplot.svg";
+    link.download = "height_barplot.svg";
     link.click();
 
     // Clean up the temporary URL
     URL.revokeObjectURL(url);
 });
 
-// Append the download button to the container element
-document.getElementById("barplot").appendChild(downloadButton);
+// Append the height download button to the container element
+document.getElementById("barplot").appendChild(heightDownloadButton);
 
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');

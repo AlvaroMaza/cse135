@@ -30,7 +30,7 @@
     <div class="chart" id="barplot">
       <div id="width-barplot"></div>
       <div id="height-barplot"> </div>
-    <div id="downloadButtons">
+    <div class = "buttons-container">
       <button id = "widthButton"></button>
       <button id = "heightButton"></button>
     </div>

@@ -26,7 +26,7 @@
     <h3 class="additional-h3">User Languages</h3>
   </div>
   <div id="container">
-    <div class="chart" id="screen-width-chart"></div>
+    <div class="chart" id="screen-width-histogram"></div>
     <div class="chart" id="pie-chart">
     <div id="legend" class="legend-container"></div>
     </div>

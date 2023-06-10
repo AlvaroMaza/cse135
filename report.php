@@ -15,7 +15,7 @@
       <div class="buttons-container">
         <button id="logout-button">Logout</button>
         <a href="./index.php">
-          <button>Go to CRUD</button>
+          <button>Go back to dashboard</button>
         </a>
       </div>
     </div>

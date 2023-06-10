@@ -55,6 +55,12 @@ body {
   button:hover {
     background-color: #555;
   }
+
+  #downloadButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 4px
+  }
   
   a {
     color: #fff;

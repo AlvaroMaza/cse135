@@ -216,14 +216,14 @@
         .attr("cx", function(d, i) { return xScale(dates[i]); })
         .attr("cy", function(d) { return yScale(d); })
         .attr("r", 4)
-        .attr("fill", "steelblue");
+        .attr("fill", "green");
 
 
       // Append the line to the SVG
       svg.append("path")
         .datum(visitCounts)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
+        .attr("stroke", "green")
         .attr("stroke-width", 4)
         .attr("d", line);
   });

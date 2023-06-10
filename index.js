@@ -13,7 +13,8 @@ const MONGOURI = "mongodb://127.0.0.1/users";
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: '*'
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 

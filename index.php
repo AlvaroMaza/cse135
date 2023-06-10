@@ -130,7 +130,7 @@
       });
 
       // Set up the chart dimensions
-      var width =  document.getElementById("myChart4").offsetWidth;
+      var width =  document.getElementById("myChart4").offsetWidth - 100;
       var height = 400;
       var margin = { top: 20, right: 20, bottom: 70, left: 80 };
 

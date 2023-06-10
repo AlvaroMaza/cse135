@@ -22,8 +22,8 @@
   </header>
 
   <div class = "titles">
-    <h3>--------</h3>
-    <h3 class="additional-h3">User Languages</h3>
+    <h4>--------</h4>
+    <h4 class="additional-h3">User Languages</h4>
   </div>
   <div id="container">
     <div class="chart">

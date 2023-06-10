@@ -380,6 +380,33 @@
         .attr("fill", "#005a32");       
   });
 
+  // Create a download button
+var downloadButton = document.createElement("a");
+downloadButton.innerHTML = "Download";
+downloadButton.href = "#";
+
+// Add an event listener to the download button
+downloadButton.addEventListener("click", function() {
+    // Convert the SVG element to a Blob
+    var svgString = new XMLSerializer().serializeToString(heightBarPlotSvg.node());
+    var blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+
+    // Create a URL for the Blob
+    var url = URL.createObjectURL(blob);
+
+    // Create a temporary link and click it to trigger the download
+    var link = document.createElement("a");
+    link.href = url;
+    link.download = "barplot.svg";
+    link.click();
+
+    // Clean up the temporary URL
+    URL.revokeObjectURL(url);
+});
+
+// Append the download button to the container element
+document.getElementById("container").appendChild(downloadButton);
+
   window.onload = function() {
         auth_token = sessionStorage.getItem('auth_token');
         if(auth_token == null){

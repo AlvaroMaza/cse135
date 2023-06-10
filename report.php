@@ -26,7 +26,10 @@
     <h3 class="additional-h3">User Languages</h3>
   </div>
   <div id="container">
-    <div class="chart" id="width-barplot"></div>
+    <div class="chart" >
+      <div id="width-barplot"></div>
+      <div id="height-barplot"></div>
+    </div>
     <div class="chart" id="pie-chart">
     <div id="legend" class="legend-container"></div>
     </div>
@@ -44,7 +47,7 @@
           caption="What is enabled?"
           theme="black">
       </zing-grid></div>
-      <div class="chart" id="height-barplot"></div>
+      
 
 
   <?php
@@ -217,7 +220,7 @@
 
     // Define the dimensions and margins for the bar plot
     var barPlotWidth = 300;
-    var barPlotHeight = 200;
+    var barPlotHeight = 400;
     var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each width dimension
@@ -290,7 +293,7 @@
 
     // Define the dimensions and margins for the bar plot
     var barPlotWidth = 300;
-    var barPlotHeight = 200;
+    var barPlotHeight = 400;
     var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each height dimension

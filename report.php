@@ -14,7 +14,7 @@
       <h1>Analytics Dashboard</h1>
       <div class="buttons-container">
         <button id="logout-button">Logout</button>
-        <a href="./index.php">
+        <a href="./crud.html" id="crud-link">
           <button>Go to CRUD</button>
         </a>
       </div>
@@ -209,7 +209,33 @@
     };
 
     
+  window.onload = function() {
+    var sessionID = sessionStorage.getItem('id');
 
+    if (sessionID) {
+      // Send a GET request to the API endpoint
+      var url = "https://reporting.cse135spain.site/api/db/" + sessionID;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var isAdmin = response.admin;
+
+          // Hide the CRUD button if the user is not admin
+          if (!isAdmin) {
+            var crudLink = document.getElementById("crud-link");
+            crudLink.style.display = "none";
+          }
+        }
+      };
+      xhr.send();
+    } else {
+      // Redirect to the login page
+      window.location.href = "./login.html";
+    }
+  };
+    
 
     // Add a click event listener to the logout button
     document.getElementById("logout-button").addEventListener("click", function() {

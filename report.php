@@ -25,16 +25,19 @@
     <h3>--------</h3>
     <h3 class="additional-h3">User Languages</h3>
   </div>
+
   <div id="container">
     <div class="chart" >
       <div id="width-barplot"></div>
       <div id="height-barplot"></div>
     </div>
+
     <div class="chart" >
       <div id="pie-chart"></div>
     <div id="legend" class="legend-container"></div>
     </div>
   </div>
+
   <p></p>
   <h3>Table with all static</h3>
   <div class="chart2">     

@@ -44,6 +44,7 @@
           caption="What is enabled?"
           theme="black">
       </zing-grid></div>
+      <div class="chart" id="height-barplot"></div>
 
 
   <?php
@@ -215,8 +216,8 @@
     });
 
     // Define the dimensions and margins for the bar plot
-    var barPlotWidth = 600;
-    var barPlotHeight = 400;
+    var barPlotWidth = 300;
+    var barPlotHeight = 200;
     var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
 
     // Count the frequency of each width dimension
@@ -281,6 +282,79 @@
         .attr("width", xWidthScale.bandwidth())
         .attr("height", function(d) { return barPlotHeight - barPlotMargin.bottom - yWidthScale(d.frequency); })
         .attr("fill", "steelblue");
+
+
+    var screenHeights = screenDimensions.map(function(d) {
+        return d.height;
+    });
+
+    // Define the dimensions and margins for the bar plot
+    var barPlotWidth = 300;
+    var barPlotHeight = 200;
+    var barPlotMargin = { top: 20, right: 20, bottom: 50, left: 50 };
+
+    // Count the frequency of each height dimension
+    var heightFrequencies = screenHeights.reduce(function(acc, curr) {
+        acc[curr] = (acc[curr] || 0) + 1;
+        return acc;
+    }, {});
+
+    // Convert the height frequencies object into an array of objects
+    var heightData = Object.keys(heightFrequencies).map(function(key) {
+        return { height: parseInt(key), frequency: heightFrequencies[key] };
+    });
+
+    // Sort the height data based on the frequency in descending order
+    heightData.sort(function(a, b) {
+        return b.frequency - a.frequency;
+    });
+
+    // Create the SVG container for the height bar plot
+    var heightBarPlotSvg = d3.select("#height-barplot")
+        .append("svg")
+        .attr("width", barPlotWidth)
+        .attr("height", barPlotHeight);
+
+    // Create the x-scale for the height dimensions
+    var xHeightScale = d3.scaleBand()
+        .domain(heightData.map(function(d) { return d.height; }))
+        .range([barPlotMargin.left, barPlotWidth - barPlotMargin.right])
+        .padding(0.1);
+
+    // Create the y-scale for the frequency
+    var yHeightScale = d3.scaleLinear()
+        .domain([0, d3.max(heightData, function(d) { return d.frequency; })])
+        .range([barPlotHeight - barPlotMargin.bottom, barPlotMargin.top]);
+
+    // Create the x-axis for the height bar plot
+    var xHeightAxis = d3.axisBottom(xHeightScale);
+
+    // Create the y-axis for the height bar plot
+    var yHeightAxis = d3.axisLeft(yHeightScale);
+
+    // Append the x-axis to the height bar plot SVG container
+    heightBarPlotSvg.append("g")
+        .attr("transform", "translate(0," + (barPlotHeight - barPlotMargin.bottom) + ")")
+        .call(xHeightAxis)
+        .selectAll("text")
+        .attr("transform", "rotate(-45)")
+        .style("text-anchor", "end");
+
+    // Append the y-axis to the height bar plot SVG container
+    heightBarPlotSvg.append("g")
+        .attr("transform", "translate(" + barPlotMargin.left + ",0)")
+        .call(yHeightAxis);
+
+    // Create the height bars
+    heightBarPlotSvg.selectAll("rect")
+        .data(heightData)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) { return xHeightScale(d.height); })
+        .attr("y", function(d) { return yHeightScale(d.frequency); })
+        .attr("width", xHeightScale.bandwidth())
+        .attr("height", function(d) { return barPlotHeight - barPlotMargin.bottom - yHeightScale(d.frequency); })
+        .attr("fill", "steelblue");       
   });
 
   window.onload = function() {

@@ -113,7 +113,7 @@
       .attr("cx", function(d) { return d.x / 2; })
       .attr("cy", function(d) { return d.y / 2; })
       .attr("r", 4)
-      .attr("fill", "steelblue")
+      .attr("fill", "green")
       .attr("opacity", 0.2);
     
 

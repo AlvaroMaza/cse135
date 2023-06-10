@@ -230,9 +230,9 @@
         return { width: parseInt(key), frequency: widthFrequencies[key] };
     });
 
-    // Sort the width data based on the width values
+    // Sort the width data based on the frequency in descending order
     widthData.sort(function(a, b) {
-        return a.width - b.width;
+        return b.frequency - a.frequency;
     });
 
     // Create the SVG container for the width bar plot
